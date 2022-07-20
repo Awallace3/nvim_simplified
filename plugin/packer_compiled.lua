@@ -205,6 +205,11 @@ _G.packer_plugins = {
     path = "/theoryfs2/ds/amwalla3/.local/share/nvim/site/pack/packer/start/tokyonight.nvim",
     url = "https://github.com/folke/tokyonight.nvim"
   },
+  ["vim-gitgutter"] = {
+    loaded = true,
+    path = "/theoryfs2/ds/amwalla3/.local/share/nvim/site/pack/packer/start/vim-gitgutter",
+    url = "https://github.com/airblade/vim-gitgutter"
+  },
   ["vim-illuminate"] = {
     loaded = true,
     path = "/theoryfs2/ds/amwalla3/.local/share/nvim/site/pack/packer/start/vim-illuminate",

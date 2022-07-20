@@ -11,6 +11,7 @@ vim.opt_local.suffixesadd:prepend('init.lua')
 vim.opt_local.path:prepend(vim.fn.stdpath('config')..'/lua')
 vim.g.python3_host_prog = '/theoryfs2/ds/amwalla3/miniconda3/envs/nvim/bin/python3'
 
+
 -- vim.api.nvim_command('setlocal spell spelllang=en_us')
 --
 vim.api.nvim_create_autocmd("FileType", {
