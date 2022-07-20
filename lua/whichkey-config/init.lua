@@ -49,6 +49,7 @@ local mappings = {
         -- fugitive
         P = {":Git push<cr>", "Git Push"},
         b = {":Git blame<cr>", "Git Blame"},
+        c = {":Git commit<bar>:startinsert<cr>", "Git Commit"},
         af = {":Gw<cr>", "Add File"},
     },
     f = {":Telescope find_files<cr>", "Telescope Find Files"},
