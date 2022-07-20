@@ -46,7 +46,7 @@ local mappings = {
         s = {":Magit<cr>", "Git Status"},
         P = {":! git push<cr>", "Git Push"},
         b = {":Git blame<cr>", "Git Blame"},
-
+        af = {":Gw<cr>", "Add File"},
     },
     f = {":Telescope find_files<cr>", "Telescope Find Files"},
     r = {":Telescope live_grep<cr>", "Telescope Live Grep"},
