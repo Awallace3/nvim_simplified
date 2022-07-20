@@ -39,11 +39,14 @@ local mappings = {
     x = {":bdelete<cr>", "Close"},
     E = {":vs<bar>e ~/.config/nvim/init.lua<cr>", "Edit config"},
     g = {
+        -- gitgutter
         n = {":GitGutterNextHunk<cr>", "Next Hunk"},
         p = {":GitGutterPrevHunk<cr>", "Prev Hunk"},
         a = {":GitGutterStageHunk<cr>", "Stage Hunk"},
         u = {":GitGutterUndoHunk<cr>", "Undo Hunk"},
+        -- vimaget
         s = {":Magit<cr>", "Git Status"},
+        -- fugitive
         P = {":Git push<cr>", "Git Push"},
         b = {":Git blame<cr>", "Git Blame"},
         af = {":Gw<cr>", "Add File"},
