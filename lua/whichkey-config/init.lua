@@ -38,6 +38,13 @@ local mappings = {
     --w = {":w<cr>", "Save"},
     x = {":bdelete<cr>", "Close"},
     E = {":vs<bar>e ~/.config/nvim/init.lua<cr>", "Edit config"},
+    g = {
+        n = {":GitGutterNextHunk<cr>", "Next Hunk"},
+        p = {":GitGutterPrevHunk<cr>", "Prev Hunk"},
+        a = {":GitGutterStageHunk<cr>", "Stage Hunk"},
+        u = {":GitGutterUndoHunk<cr>", "Undo Hunk"},
+
+    },
     f = {":Telescope find_files<cr>", "Telescope Find Files"},
     r = {":Telescope live_grep<cr>", "Telescope Live Grep"},
     t = {
