@@ -44,7 +44,7 @@ local mappings = {
         a = {":GitGutterStageHunk<cr>", "Stage Hunk"},
         u = {":GitGutterUndoHunk<cr>", "Undo Hunk"},
         s = {":Magit<cr>", "Git Status"},
-        P = {":! git push<cr>", "Git Push"},
+        P = {":Git push<cr>", "Git Push"},
         b = {":Git blame<cr>", "Git Blame"},
         af = {":Gw<cr>", "Add File"},
     },
