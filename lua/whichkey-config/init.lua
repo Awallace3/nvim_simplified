@@ -43,6 +43,9 @@ local mappings = {
         p = {":GitGutterPrevHunk<cr>", "Prev Hunk"},
         a = {":GitGutterStageHunk<cr>", "Stage Hunk"},
         u = {":GitGutterUndoHunk<cr>", "Undo Hunk"},
+        s = {":Magit<cr>", "Git Status"},
+        P = {":! git push<cr>", "Git Push"},
+        b = {":Git blame<cr>", "Git Blame"},
 
     },
     f = {":Telescope find_files<cr>", "Telescope Find Files"},

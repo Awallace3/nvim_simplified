@@ -76,8 +76,6 @@ require('packer').startup(function()
     use {'sbdchd/neoformat'}
     use 'akinsho/toggleterm.nvim'
     use {'preservim/nerdtree', requires = {'Xuyuanp/nerdtree-git-plugin'}}
-    use {'lewis6991/gitsigns.nvim', requires = {'nvim-lua/plenary.nvim'}}
-
     use({
         "glepnir/lspsaga.nvim",
         config = function()
@@ -92,5 +90,14 @@ require('packer').startup(function()
         end,
     })
     use {'RRethy/vim-illuminate'}
+
+    -- git integration
+    --use {'lewis6991/gitsigns.nvim', requires = {'nvim-lua/plenary.nvim'}}
+    use { 'airblade/vim-gitgutter', }
+    use {'jreybert/vimagit'}
+    use {'tpope/vim-fugitive'}
+    use {'tpope/vim-rhubarb'}
+
+
 
 end)
