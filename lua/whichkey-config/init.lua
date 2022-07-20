@@ -1,8 +1,8 @@
 local wk = require("which-key")
 wk.setup {
     plugins = {
-        marks = false,
-        registers = false,
+        marks = true,
+        registers = true,
         spelling = {enabled = false, suggestions = 20},
         presets = {
             operators = false,
@@ -12,7 +12,7 @@ wk.setup {
             nav = false,
             z = false,
             g = false
-        }
+        },
     }
 }
 local Terminal = require('toggleterm.terminal').Terminal
@@ -35,7 +35,7 @@ end
 local mappings = {
     q = {":bn<bar>bd #<CR>", "Close Buffer"},
     Q = {":wq<cr>", "Save & Quit"},
-    w = {":w<cr>", "Save"},
+    --w = {":w<cr>", "Save"},
     x = {":bdelete<cr>", "Close"},
     E = {":vs<bar>e ~/.config/nvim/init.lua<cr>", "Edit config"},
     f = {":Telescope find_files<cr>", "Telescope Find Files"},

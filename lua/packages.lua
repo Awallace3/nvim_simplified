@@ -4,6 +4,7 @@ require('packer').startup(function()
     use 'folke/tokyonight.nvim'
     use 'tpope/vim-surround'
     use 'windwp/nvim-autopairs'
+    use 'p00f/nvim-ts-rainbow'
     use {
         'nvim-treesitter/nvim-treesitter',
         run = ':TSUpdate',
@@ -66,25 +67,8 @@ require('packer').startup(function()
         end
     }
     use { 'saadparwaiz1/cmp_luasnip' }
-
     use {"ray-x/lsp_signature.nvim"}
-
     use {'folke/which-key.nvim'}
-    --use {'tami5/lspsaga.nvim', config = "require('lspsaga-config')"}
-
---    use({
---    "glepnir/lspsaga.nvim",
---    branch = "main",
---    config = function()
---        local saga = require("lspsaga")
---
---        saga.init_lsp_saga({
---            -- your configuration
---        })
---    end,
---})
-
-    use 'p00f/nvim-ts-rainbow'
     use {
         'nvim-lualine/lualine.nvim',
         requires = {'kyazdani42/nvim-web-devicons', opt = true}
@@ -95,18 +79,18 @@ require('packer').startup(function()
     use {'lewis6991/gitsigns.nvim', requires = {'nvim-lua/plenary.nvim'}}
 
     use({
+        "glepnir/lspsaga.nvim",
+        config = function()
+            local saga = require("lspsaga")
+            -- change the lsp symbol kind
+            -- local kind = require('lspsaga.lspkind')
+            -- kind[type_number][2] = icon -- see lua/lspsaga/lspkind.lua
 
-    "glepnir/lspsaga.nvim",
-    branch = "main",
-    config = function()
-        local saga = require("lspsaga")
-
-        -- change the lsp symbol kind
-        local kind = require('lspsaga.lspkind')
-        kind[type_number][2] = icon -- see lua/lspsaga/lspkind.lua
-
-        saga.init_lsp_saga()
-    end,
-})
+            saga.init_lsp_saga({
+                border_style = "rounded"
+            })
+        end,
+    })
+    use {'RRethy/vim-illuminate'}
 
 end)

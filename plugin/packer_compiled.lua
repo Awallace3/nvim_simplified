@@ -125,7 +125,7 @@ _G.packer_plugins = {
     url = "https://github.com/onsails/lspkind-nvim"
   },
   ["lspsaga.nvim"] = {
-    config = { "\27LJ\2\nA\0\0\4\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\1\2\0004\3\0\0B\1\2\1K\0\1\0\18init_lsp_saga\flspsaga\frequire\0" },
+    config = { "\27LJ\2\nY\0\0\4\0\4\0\a6\0\0\0'\2\1\0B\0\2\0029\1\2\0005\3\3\0B\1\2\1K\0\1\0\1\0\1\17border_style\frounded\18init_lsp_saga\flspsaga\frequire\0" },
     loaded = true,
     path = "/theoryfs2/ds/amwalla3/.local/share/nvim/site/pack/packer/start/lspsaga.nvim",
     url = "https://github.com/glepnir/lspsaga.nvim"
@@ -205,6 +205,11 @@ _G.packer_plugins = {
     path = "/theoryfs2/ds/amwalla3/.local/share/nvim/site/pack/packer/start/tokyonight.nvim",
     url = "https://github.com/folke/tokyonight.nvim"
   },
+  ["vim-illuminate"] = {
+    loaded = true,
+    path = "/theoryfs2/ds/amwalla3/.local/share/nvim/site/pack/packer/start/vim-illuminate",
+    url = "https://github.com/RRethy/vim-illuminate"
+  },
   ["vim-surround"] = {
     loaded = true,
     path = "/theoryfs2/ds/amwalla3/.local/share/nvim/site/pack/packer/start/vim-surround",
@@ -216,7 +221,7 @@ _G.packer_plugins = {
     url = "https://github.com/hrsh7th/vim-vsnip"
   },
   vimwiki = {
-    config = { "\27LJ\2\nÝ\2\0\0\3\0\6\0\v6\0\0\0009\0\1\0004\1\3\0005\2\3\0>\2\1\1=\1\2\0006\0\0\0009\0\1\0005\1\5\0=\1\4\0K\0\1\0\1\0\3\b.md\rmarkdown\14.markdown\rmarkdown\v.mdown\rmarkdown\23vimwiki_ext2syntax\1\0\t\vsyntax\rmarkdown\bext\b.md\rcss_name+/Users/austinwallace/vimwiki/style.css\21template_default\fdefault\18template_path\fdefault\tpath\14~/vimwiki\17template_ext\t.tpl\21custom_wiki2html\21vimwiki_markdown\14path_html\14~/vimwiki\17vimwiki_list\6g\bvim\0" },
+    config = { "\27LJ\2\nÝ\2\0\0\3\0\6\0\v6\0\0\0009\0\1\0004\1\3\0005\2\3\0>\2\1\1=\1\2\0006\0\0\0009\0\1\0005\1\5\0=\1\4\0K\0\1\0\1\0\3\b.md\rmarkdown\14.markdown\rmarkdown\v.mdown\rmarkdown\23vimwiki_ext2syntax\1\0\t\17template_ext\t.tpl\bext\b.md\vsyntax\rmarkdown\rcss_name+/Users/austinwallace/vimwiki/style.css\21template_default\fdefault\18template_path\fdefault\tpath\14~/vimwiki\21custom_wiki2html\21vimwiki_markdown\14path_html\14~/vimwiki\17vimwiki_list\6g\bvim\0" },
     loaded = true,
     path = "/theoryfs2/ds/amwalla3/.local/share/nvim/site/pack/packer/start/vimwiki",
     url = "https://github.com/vimwiki/vimwiki"
@@ -229,14 +234,14 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
--- Config for: lspsaga.nvim
-time([[Config for lspsaga.nvim]], true)
-try_loadstring("\27LJ\2\nA\0\0\4\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\1\2\0004\3\0\0B\1\2\1K\0\1\0\18init_lsp_saga\flspsaga\frequire\0", "config", "lspsaga.nvim")
-time([[Config for lspsaga.nvim]], false)
 -- Config for: vimwiki
 time([[Config for vimwiki]], true)
-try_loadstring("\27LJ\2\nÝ\2\0\0\3\0\6\0\v6\0\0\0009\0\1\0004\1\3\0005\2\3\0>\2\1\1=\1\2\0006\0\0\0009\0\1\0005\1\5\0=\1\4\0K\0\1\0\1\0\3\b.md\rmarkdown\14.markdown\rmarkdown\v.mdown\rmarkdown\23vimwiki_ext2syntax\1\0\t\vsyntax\rmarkdown\bext\b.md\rcss_name+/Users/austinwallace/vimwiki/style.css\21template_default\fdefault\18template_path\fdefault\tpath\14~/vimwiki\17template_ext\t.tpl\21custom_wiki2html\21vimwiki_markdown\14path_html\14~/vimwiki\17vimwiki_list\6g\bvim\0", "config", "vimwiki")
+try_loadstring("\27LJ\2\nÝ\2\0\0\3\0\6\0\v6\0\0\0009\0\1\0004\1\3\0005\2\3\0>\2\1\1=\1\2\0006\0\0\0009\0\1\0005\1\5\0=\1\4\0K\0\1\0\1\0\3\b.md\rmarkdown\14.markdown\rmarkdown\v.mdown\rmarkdown\23vimwiki_ext2syntax\1\0\t\17template_ext\t.tpl\bext\b.md\vsyntax\rmarkdown\rcss_name+/Users/austinwallace/vimwiki/style.css\21template_default\fdefault\18template_path\fdefault\tpath\14~/vimwiki\21custom_wiki2html\21vimwiki_markdown\14path_html\14~/vimwiki\17vimwiki_list\6g\bvim\0", "config", "vimwiki")
 time([[Config for vimwiki]], false)
+-- Config for: lspsaga.nvim
+time([[Config for lspsaga.nvim]], true)
+try_loadstring("\27LJ\2\nY\0\0\4\0\4\0\a6\0\0\0'\2\1\0B\0\2\0029\1\2\0005\3\3\0B\1\2\1K\0\1\0\1\0\1\17border_style\frounded\18init_lsp_saga\flspsaga\frequire\0", "config", "lspsaga.nvim")
+time([[Config for lspsaga.nvim]], false)
 if should_profile then save_profiles() end
 
 end)
