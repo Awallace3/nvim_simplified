@@ -85,7 +85,14 @@ require('packer').startup(function()
             -- kind[type_number][2] = icon -- see lua/lspsaga/lspkind.lua
 
             saga.init_lsp_saga({
-                border_style = "rounded"
+                border_style = "rounded",
+                -- same as nvim-lightbulb but async
+                code_action_lightbulb = {
+                    enable = false,
+                    sign = false,
+                    sign_priority = 20,
+                    virtual_text = false,
+                },
             })
         end,
     })

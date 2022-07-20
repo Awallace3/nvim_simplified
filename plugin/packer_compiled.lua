@@ -120,7 +120,7 @@ _G.packer_plugins = {
     url = "https://github.com/onsails/lspkind-nvim"
   },
   ["lspsaga.nvim"] = {
-    config = { "\27LJ\2\nY\0\0\4\0\4\0\a6\0\0\0'\2\1\0B\0\2\0029\1\2\0005\3\3\0B\1\2\1K\0\1\0\1\0\1\17border_style\frounded\18init_lsp_saga\flspsaga\frequire\0" },
+    config = { "\27LJ\2\n¦\1\0\0\5\0\6\0\t6\0\0\0'\2\1\0B\0\2\0029\1\2\0005\3\3\0005\4\4\0=\4\5\3B\1\2\1K\0\1\0\26code_action_lightbulb\1\0\4\18sign_priority\3\20\17virtual_text\1\tsign\1\venable\1\1\0\1\17border_style\frounded\18init_lsp_saga\flspsaga\frequire\0" },
     loaded = true,
     path = "/theoryfs2/ds/amwalla3/.local/share/nvim/site/pack/packer/start/lspsaga.nvim",
     url = "https://github.com/glepnir/lspsaga.nvim"
@@ -236,7 +236,7 @@ _G.packer_plugins = {
     url = "https://github.com/jreybert/vimagit"
   },
   vimwiki = {
-    config = { "\27LJ\2\nÝ\2\0\0\3\0\6\0\v6\0\0\0009\0\1\0004\1\3\0005\2\3\0>\2\1\1=\1\2\0006\0\0\0009\0\1\0005\1\5\0=\1\4\0K\0\1\0\1\0\3\v.mdown\rmarkdown\b.md\rmarkdown\14.markdown\rmarkdown\23vimwiki_ext2syntax\1\0\t\21custom_wiki2html\21vimwiki_markdown\14path_html\14~/vimwiki\vsyntax\rmarkdown\bext\b.md\rcss_name+/Users/austinwallace/vimwiki/style.css\21template_default\fdefault\tpath\14~/vimwiki\18template_path\fdefault\17template_ext\t.tpl\17vimwiki_list\6g\bvim\0" },
+    config = { "\27LJ\2\nÝ\2\0\0\3\0\6\0\v6\0\0\0009\0\1\0004\1\3\0005\2\3\0>\2\1\1=\1\2\0006\0\0\0009\0\1\0005\1\5\0=\1\4\0K\0\1\0\1\0\3\v.mdown\rmarkdown\b.md\rmarkdown\14.markdown\rmarkdown\23vimwiki_ext2syntax\1\0\t\21custom_wiki2html\21vimwiki_markdown\14path_html\14~/vimwiki\tpath\14~/vimwiki\bext\b.md\vsyntax\rmarkdown\rcss_name+/Users/austinwallace/vimwiki/style.css\21template_default\fdefault\18template_path\fdefault\17template_ext\t.tpl\17vimwiki_list\6g\bvim\0" },
     loaded = true,
     path = "/theoryfs2/ds/amwalla3/.local/share/nvim/site/pack/packer/start/vimwiki",
     url = "https://github.com/vimwiki/vimwiki"
@@ -251,11 +251,11 @@ _G.packer_plugins = {
 time([[Defining packer_plugins]], false)
 -- Config for: vimwiki
 time([[Config for vimwiki]], true)
-try_loadstring("\27LJ\2\nÝ\2\0\0\3\0\6\0\v6\0\0\0009\0\1\0004\1\3\0005\2\3\0>\2\1\1=\1\2\0006\0\0\0009\0\1\0005\1\5\0=\1\4\0K\0\1\0\1\0\3\v.mdown\rmarkdown\b.md\rmarkdown\14.markdown\rmarkdown\23vimwiki_ext2syntax\1\0\t\21custom_wiki2html\21vimwiki_markdown\14path_html\14~/vimwiki\vsyntax\rmarkdown\bext\b.md\rcss_name+/Users/austinwallace/vimwiki/style.css\21template_default\fdefault\tpath\14~/vimwiki\18template_path\fdefault\17template_ext\t.tpl\17vimwiki_list\6g\bvim\0", "config", "vimwiki")
+try_loadstring("\27LJ\2\nÝ\2\0\0\3\0\6\0\v6\0\0\0009\0\1\0004\1\3\0005\2\3\0>\2\1\1=\1\2\0006\0\0\0009\0\1\0005\1\5\0=\1\4\0K\0\1\0\1\0\3\v.mdown\rmarkdown\b.md\rmarkdown\14.markdown\rmarkdown\23vimwiki_ext2syntax\1\0\t\21custom_wiki2html\21vimwiki_markdown\14path_html\14~/vimwiki\tpath\14~/vimwiki\bext\b.md\vsyntax\rmarkdown\rcss_name+/Users/austinwallace/vimwiki/style.css\21template_default\fdefault\18template_path\fdefault\17template_ext\t.tpl\17vimwiki_list\6g\bvim\0", "config", "vimwiki")
 time([[Config for vimwiki]], false)
 -- Config for: lspsaga.nvim
 time([[Config for lspsaga.nvim]], true)
-try_loadstring("\27LJ\2\nY\0\0\4\0\4\0\a6\0\0\0'\2\1\0B\0\2\0029\1\2\0005\3\3\0B\1\2\1K\0\1\0\1\0\1\17border_style\frounded\18init_lsp_saga\flspsaga\frequire\0", "config", "lspsaga.nvim")
+try_loadstring("\27LJ\2\n¦\1\0\0\5\0\6\0\t6\0\0\0'\2\1\0B\0\2\0029\1\2\0005\3\3\0005\4\4\0=\4\5\3B\1\2\1K\0\1\0\26code_action_lightbulb\1\0\4\18sign_priority\3\20\17virtual_text\1\tsign\1\venable\1\1\0\1\17border_style\frounded\18init_lsp_saga\flspsaga\frequire\0", "config", "lspsaga.nvim")
 time([[Config for lspsaga.nvim]], false)
 if should_profile then save_profiles() end
 

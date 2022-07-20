@@ -1,3 +1,20 @@
+snippet nppdplt
+	import numpy as np
+	import pandas as pd
+	import matplotlib.pyplot as plt
+
+snippet main
+	def main():
+	    """
+	    ${1:docstring}
+	    """
+	    ${2:func()}
+	    return
+
+
+	if __name__ == "__main__":
+	    main()
+
 snippet #!
 	#!/usr/bin/env python3
 snippet #!2
@@ -63,7 +80,10 @@ snippet def
 		"""
 		$1 ${3:...}
 		"""
-		${0}
+		${4:out} = ${5:var}
+		$6
+		return $4
+
 snippet deff
 	def ${1:fname}(${2:`indent('.') ? 'self' : ''`}):
 		${0}
