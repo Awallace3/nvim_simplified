@@ -1,5 +1,5 @@
 require'nvim-treesitter.configs'.setup {
-  ensure_installed = {"html", "javascript", "lua", "python", "c"},
+  ensure_installed = {"html", "javascript", "lua", "python", "c", "fortran"},
   highlight = {enable = true, additional_vim_regex_highlighting = false},
   context_commentstring = {enable = true, enable_autocmd = false},
   rainbow = {

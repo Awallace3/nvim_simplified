@@ -52,8 +52,12 @@ local mappings = {
         c = {":Git commit<bar>:startinsert<cr>", "Git Commit"},
         af = {":Gw<cr>", "Add File"},
     },
-    f = {":Telescope find_files<cr>", "Telescope Find Files"},
-    r = {":Telescope live_grep<cr>", "Telescope Live Grep"},
+    f ={
+        f = {":Telescope find_files<cr>", "Telescope Find Files"},
+        r = {":Telescope live_grep<cr>", "Telescope Live Grep"},
+        b = {":Telescope buffers<cr>", "Telescope Buffers"},
+        h = {":Telescope help_tags<cr>", "Telescope Help Tags"},
+    },
     t = {
         t = {":ToggleTerm<cr>", "Split Below"},
         f = {toggle_float, "Floating Terminal"},
