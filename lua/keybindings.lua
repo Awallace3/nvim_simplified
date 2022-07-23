@@ -58,13 +58,13 @@ keymap('n', '<Leader>L', ":terminal lua %<CR>", opts)
 keymap('n', '<Leader>P', ":lua Python_term() <CR>", opts)
 keymap('n', '<Leader>d', ":lua Python_term_dftd4() <CR>", opts)
 --keymap("n", '<Leader>R', ':vs | silent term rm corpus/d1.csv ', opts)
-keymap("n", '<Leader>R', ':so %<CR>', opts)
+-- keymap("n", '<Leader>R', ':so %<CR>', opts)
 -- keymap('n', '<Leader>wo', ":set ma | w out.log |  %<CR>", opts)
 keymap('n', '<Leader>wo', ":lua SaveNotModifiable() <CR>", opts)
 
 -- Telescope
-keymap('n', '<Leader>f', ':Telescope find_files<cr>', {})
-keymap('n', '<Leader>r', ':Telescope live_grep<cr>', {})
+-- keymap('n', '<Leader>f', ':Telescope find_files<cr>', {})
+-- keymap('n', '<Leader>r', ':Telescope live_grep<cr>', {})
 
 keymap('n', '<Leader>n', ':NERDTreeToggle<cr>', {})
 keymap('n', '<Leader>b', ':BufferLinePick<cr>', {})

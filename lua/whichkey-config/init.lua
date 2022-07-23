@@ -57,13 +57,7 @@ local mappings = {
         r = {":Telescope live_grep<cr>", "Telescope Live Grep"},
         b = {":Telescope buffers<cr>", "Telescope Buffers"},
         h = {":Telescope help_tags<cr>", "Telescope Help Tags"},
-    },
-    t = {
-        t = {":ToggleTerm<cr>", "Split Below"},
-        f = {toggle_float, "Floating Terminal"},
-        l = {toggle_lazygit, "LazyGit"},
-        y = {toggle_top, "top"},
-        m = {toggle_neomutt, "NeoMutt"}
+        p = {":echo expand('%:p')<cr>", "Current File Path"}
     },
     p = {
         s = {":w<bar>so %<bar>PackerSync<cr>", "PackerSync"}
@@ -98,7 +92,17 @@ local mappings = {
         N = {
             '<cmd>Lspsaga diagnostic_jump_prev<cr>', "Go To Previous Diagnostic"
         }
+    },
+    r = {":w <bar>so %<cr>", "Save and Source"},
+    t = {
+        t = {":ToggleTerm<cr>", "Split Below"},
+        f = {toggle_float, "Floating Terminal"},
+        l = {toggle_lazygit, "LazyGit"},
+        y = {toggle_top, "top"},
+        m = {toggle_neomutt, "NeoMutt"},
+        d = {":!dftd4 tmp.xyz --json t.json --param 1.0 0.9171 0.3385 2.883<cr>", "dftd4 test"}
     }
+
 }
 local opts = {prefix = '<leader>'}
 wk.register(mappings, opts)
