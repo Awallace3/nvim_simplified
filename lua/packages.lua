@@ -106,5 +106,14 @@ require('packer').startup(function()
     use {'tpope/vim-rhubarb'}
 
 
+    -- debugger
+    use 'mfussenegger/nvim-dap'
+    use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
+
+    -- comments
+    use {'terrortylor/nvim-comment'}
+
+
+
 
 end)

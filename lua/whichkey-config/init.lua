@@ -93,14 +93,24 @@ local mappings = {
             '<cmd>Lspsaga diagnostic_jump_prev<cr>', "Go To Previous Diagnostic"
         }
     },
-    r = {":w <bar>so %<cr>", "Save and Source"},
+    r = {
+        r = {":w <bar>so %<cr>", "Save and Source"},
+        d = {":vs <bar>term make build_and_test<cr>", "dftd4 build and run"},
+        t = {
+            p = {":vs<bar>term pytest tests.py<cr>", "PyTest"},
+            o = {":vs<bar>term python3 tests.py<cr>", "run tests.py"}
+
+        },
+
+    },
     t = {
         t = {":ToggleTerm<cr>", "Split Below"},
         f = {toggle_float, "Floating Terminal"},
         l = {toggle_lazygit, "LazyGit"},
         y = {toggle_top, "top"},
         m = {toggle_neomutt, "NeoMutt"},
-        d = {":!dftd4 tmp.xyz --json t.json --param 1.0 0.9171 0.3385 2.883<cr>", "dftd4 test"}
+        d = {":!dftd4 tmp.xyz --json t.json --param 1.0 0.9171 0.3385 2.883<cr>", "dftd4 test"},
+        c = {":vs<bar>term lscpu | grep -E '^Thread|^Core|^Socket|^CPU\\('<cr>", "lscpu grep"},
     }
 
 }
