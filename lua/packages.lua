@@ -114,4 +114,6 @@ require('packer').startup(function()
         "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
         config = function() require("lsp_lines").setup() end
     })
+    use 'ryanoasis/vim-devicons'
+    use 'tiagofumo/vim-nerdtree-syntax-highlight'
 end)
