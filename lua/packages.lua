@@ -103,18 +103,15 @@ require('packer').startup(function()
     use {'tpope/vim-fugitive'}
     use {'tpope/vim-rhubarb'}
 
-
     -- debugger
     use 'mfussenegger/nvim-dap'
-    use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
+    use {"rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"}}
 
     -- comments
     use {'terrortylor/nvim-comment'}
-    -- use {'lervag/vimtex'}
+    use {'lervag/vimtex'}
     use({
-      "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
-      config = function()
-        require("lsp_lines").setup()
-      end,
+        "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+        config = function() require("lsp_lines").setup() end
     })
 end)
