@@ -35,8 +35,8 @@ require('packer').startup(function()
         end
     }
     use {
-  'nvim-telescope/telescope.nvim',
-  requires = { {'nvim-lua/plenary.nvim'} }
+        'nvim-telescope/telescope.nvim',
+        requires = {{'nvim-lua/plenary.nvim'}}
     }
     use 'neovim/nvim-lspconfig'
     use({
@@ -60,13 +60,11 @@ require('packer').startup(function()
                         require'luasnip'.lsp_expand(args.body)
                     end
                 },
-                sources = {
-                    {name = 'luasnip'}
-                }
+                sources = {{name = 'luasnip'}}
             }
         end
     }
-    use { 'saadparwaiz1/cmp_luasnip' }
+    use {'saadparwaiz1/cmp_luasnip'}
     use {"ray-x/lsp_signature.nvim"}
     use {'folke/which-key.nvim'}
     use {
@@ -91,20 +89,24 @@ require('packer').startup(function()
                     enable = false,
                     sign = false,
                     sign_priority = 20,
-                    virtual_text = false,
-                },
+                    virtual_text = false
+                }
             })
-        end,
+        end
     })
     use {'RRethy/vim-illuminate'}
 
     -- git integration
-    --use {'lewis6991/gitsigns.nvim', requires = {'nvim-lua/plenary.nvim'}}
-    use { 'airblade/vim-gitgutter', }
+    -- use {'lewis6991/gitsigns.nvim', requires = {'nvim-lua/plenary.nvim'}}
+    use {'airblade/vim-gitgutter'}
     use {'jreybert/vimagit'}
     use {'tpope/vim-fugitive'}
     use {'tpope/vim-rhubarb'}
-
-
-
+    use {'lervag/vimtex'}
+    use({
+        "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+        config = function()
+            require("lsp_lines").register_lsp_virtual_lines()
+        end
+    })
 end)

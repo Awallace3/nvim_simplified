@@ -4,6 +4,7 @@ local opts = {noremap = true}
 keymap('i', 'jj', '<ESC>', opts)
 -- keymap('n', ' ', '<Leader>', opts)
 vim.g.mapleader = ' '
+-- vim.g.localleader= ';'
 
 require('nvim-autopairs').setup({disable_filetype = {"TelescopePrompt", "vim"}})
 
