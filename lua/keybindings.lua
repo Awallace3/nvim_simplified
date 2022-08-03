@@ -14,6 +14,11 @@ keymap('n', '<c-j>', '<c-w>j', opts)
 keymap('n', '<c-h>', '<c-w>h', opts)
 keymap('n', '<c-k>', '<c-w>k', opts)
 keymap('n', '<c-l>', '<c-w>l', opts)
+keymap("n", "<A-H>", ":vertical resize +5<cr>", opts)
+keymap("n", "<A-L>", ":vertical resize -5<cr>", opts)
+keymap("n", "<A-J>", ":resize +5<cr>", opts)
+keymap("n", "<A-K>", ":resize -5<cr>", opts)
+
 
 keymap('n', ']b', ':bn<cr>', opts)
 keymap('n', '[b', ':bprevious<cr>', opts)
