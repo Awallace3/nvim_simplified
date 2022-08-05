@@ -20,10 +20,10 @@ local toggle_float = function()
     local float = Terminal:new({direction = "float"})
     return float:toggle()
 end
-local toggle_lazygit = function()
-    local lazygit = Terminal:new({cmd = '~/bin/lazygit', direction = "float"})
-    return lazygit:toggle()
-end
+-- local toggle_lazygit = function()
+--     local lazygit = Terminal:new({cmd = '~/bin/lazygit', direction = "float"})
+--     return lazygit:toggle()
+-- end
 local toggle_neomutt = function()
     local lazygit = Terminal:new({cmd = 'neomutt', direction = "float"})
     return lazygit:toggle()
@@ -91,7 +91,8 @@ local mappings = {
         n = {'<cmd>Lspsaga diagnostic_jump_next<cr>', "Go To Next Diagnostic"},
         N = {
             '<cmd>Lspsaga diagnostic_jump_prev<cr>', "Go To Previous Diagnostic"
-        }
+        },
+        -- T = {'require("lsp_lines").toggle<cr>', "Toggle lsp_lines"}
     },
     r = {
         r = {":w <bar>so %<cr>", "Save and Source"},
@@ -104,7 +105,7 @@ local mappings = {
     t = {
         t = {":ToggleTerm<cr>", "Split Below"},
         f = {toggle_float, "Floating Terminal"},
-        l = {toggle_lazygit, "LazyGit"},
+        -- l = {toggle_lazygit, "LazyGit"},
         y = {toggle_top, "top"},
         m = {toggle_neomutt, "NeoMutt"},
         d = {":!dftd4 tmp.xyz --json t.json --param 1.0 0.9171 0.3385 2.883<cr>", "dftd4 test"},
