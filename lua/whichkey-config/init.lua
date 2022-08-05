@@ -99,9 +99,7 @@ local mappings = {
         t = {
             p = {":vs<bar>term pytest tests.py<cr>", "PyTest"},
             o = {":vs<bar>term python3 tests.py<cr>", "run tests.py"}
-
         },
-
     },
     t = {
         t = {":ToggleTerm<cr>", "Split Below"},

@@ -75,7 +75,7 @@ keymap('v', '<Leader>y', '"+y', opts)
 
 
 keymap('n', '<Leader>F', ':Neoformat<cr>', {})
-keymap('n', '<Leader>s', ':vs<cr>', {})
+-- keymap('n', '<Leader>s', ':vs<cr>', {})
 
 -- spell
 keymap('n', '<Leader>z', '1z=', {})
@@ -83,6 +83,11 @@ keymap('n', '<Leader>z', '1z=', {})
 keymap("n", '<Leader>lh', ":lua vim.diagnostic.hide()<cr>", {})
 keymap("n", '<Leader>ls', ":lua vim.diagnostic.show()<cr>", {})
 keymap("n", '<Leader>S', ":vs<cr>:e ~/.config/nvim/snippets<cr>5j", {})
+
+keymap("n", "<C-S>H", ":vertical resize +5<cr>", opts)
+keymap("n", "<C-S>L", ":vertical resize -5<cr>", opts)
+keymap("n", "<C-S>J", ":horizontal resize +5<cr>", opts)
+keymap("n", "<C-S>K", ":horizontal resize -5<cr>", opts)
 
 
 vim.g['copilot_no_tab_map'] = true
