@@ -18,6 +18,7 @@ require"lsp_signature".setup()
 -- require'lspconfig'.pylsp.setup {capabilities = capabilities}
 require'lspconfig'.jedi_language_server.setup{capabilities = capabilities}
 require'lspconfig'.fortls.setup {capabilities = capabilities}
+require'lspconfig'.cmake.setup{capabilities = capabilities}
 
 --require'lspconfig'.rust_analyzer.setup {
 --    -- more config
