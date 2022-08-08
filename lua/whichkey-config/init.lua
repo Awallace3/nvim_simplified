@@ -37,7 +37,10 @@ local mappings = {
     Q = {":wq<cr>", "Save & Quit"},
     --w = {":w<cr>", "Save"},
     x = {":bdelete<cr>", "Close"},
-    E = {":vs<bar>e ~/.config/nvim/init.lua<cr>", "Edit config"},
+    E = {
+        E = {":vs<bar>e ~/.config/nvim/init.lua<cr>", "Edit config"},
+        W = {":vs<bar>e ~/.config/nvim/lua/whichkey-config/init.lua<cr>", "Edit config"},
+    },
     g = {
         -- gitgutter
         n = {":GitGutterNextHunk<cr>", "Next Hunk"},
@@ -101,6 +104,7 @@ local mappings = {
             p = {":vs<bar>term pytest tests.py<cr>", "PyTest"},
             o = {":vs<bar>term python3 tests.py<cr>", "run tests.py"}
         },
+        m = {":vs<bar>term mpiexec -n 4 python3 main.py<cr>", "mpiexec 4 main.py"},
     },
     t = {
         t = {":ToggleTerm<cr>", "Split Below"},
@@ -111,7 +115,6 @@ local mappings = {
         d = {":!dftd4 tmp.xyz --json t.json --param 1.0 0.9171 0.3385 2.883<cr>", "dftd4 test"},
         c = {":vs<bar>term lscpu | grep -E '^Thread|^Core|^Socket|^CPU\\('<cr>", "lscpu grep"},
     }
-
 }
 local opts = {prefix = '<leader>'}
 wk.register(mappings, opts)

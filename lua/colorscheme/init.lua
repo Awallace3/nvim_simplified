@@ -7,8 +7,8 @@ vim.g.tokyonight_italic_functions = true
 vim.g.tokyonight_italic_comments = true
 vim.g.tokyonight_sidebars = {"qf", "vista_kind", "terminal", "packer"}
 vim.g.tokyonight_dark_float = true
--- vim.g.tokyodark_transparent_background = true
--- vim.g.tokyonight_transparent = true
+vim.g.tokyodark_transparent_background = true
+vim.g.tokyonight_transparent = true
 vim.cmd [[colorscheme tokyonight]]
 
 -- vim.g.neosolarized_contrast = "normal"
