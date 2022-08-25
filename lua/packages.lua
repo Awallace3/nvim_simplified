@@ -11,7 +11,7 @@ require('packer').startup(function()
         run = ':TSUpdate',
         highlight = {enable = true}
     }
-    use {'akinsho/bufferline.nvim', requires = 'kyazdani42/nvim-web-devicons'}
+    -- use {'akinsho/bufferline.nvim', requires = 'kyazdani42/nvim-web-devicons'}
     use {
         'vimwiki/vimwiki',
         config = function()
@@ -70,7 +70,7 @@ require('packer').startup(function()
     use {'folke/which-key.nvim'}
     use {
         'nvim-lualine/lualine.nvim',
-        requires = {'kyazdani42/nvim-web-devicons', opt = true}
+        -- requires = {'kyazdani42/nvim-web-devicons', opt = true}
     }
     use {'sbdchd/neoformat'}
     use 'akinsho/toggleterm.nvim'
