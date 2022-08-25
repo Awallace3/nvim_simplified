@@ -116,4 +116,5 @@ require('packer').startup(function()
     })
     use 'ryanoasis/vim-devicons'
     use 'tiagofumo/vim-nerdtree-syntax-highlight'
+    use 'dhruvasagar/vim-table-mode'
 end)

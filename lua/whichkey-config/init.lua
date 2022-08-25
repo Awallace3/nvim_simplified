@@ -24,10 +24,10 @@ end
 --     local lazygit = Terminal:new({cmd = '~/bin/lazygit', direction = "float"})
 --     return lazygit:toggle()
 -- end
-local toggle_neomutt = function()
-    local lazygit = Terminal:new({cmd = 'neomutt', direction = "float"})
-    return lazygit:toggle()
-end
+-- local toggle_neomutt = function()
+--     local lazygit = Terminal:new({cmd = 'neomutt', direction = "float"})
+--     return lazygit:toggle()
+-- end
 local toggle_top = function()
     local top = Terminal:new({cmd = 'top', direction = "float"})
     return top:toggle()
@@ -104,14 +104,14 @@ local mappings = {
             p = {":vs<bar>term pytest tests.py<cr>", "PyTest"},
             o = {":vs<bar>term python3 tests.py<cr>", "run tests.py"}
         },
-        m = {":vs<bar>term mpiexec -n 4 python3 main.py<cr>", "mpiexec 4 main.py"},
+        m = {":vs<bar>term mpiexec -n 2 python3 -u main.py<cr>", "mpiexec 4 main.py"},
     },
     t = {
         t = {":ToggleTerm<cr>", "Split Below"},
         f = {toggle_float, "Floating Terminal"},
         -- l = {toggle_lazygit, "LazyGit"},
         y = {toggle_top, "top"},
-        m = {toggle_neomutt, "NeoMutt"},
+        -- m = {toggle_neomutt, "NeoMutt"},
         d = {":!dftd4 tmp.xyz --json t.json --param 1.0 0.9171 0.3385 2.883<cr>", "dftd4 test"},
         c = {":vs<bar>term lscpu | grep -E '^Thread|^Core|^Socket|^CPU\\('<cr>", "lscpu grep"},
     }
