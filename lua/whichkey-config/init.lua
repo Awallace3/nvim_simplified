@@ -105,6 +105,7 @@ local mappings = {
             o = {":vs<bar>term python3 tests.py<cr>", "run tests.py"}
         },
         m = {":vs<bar>term mpiexec -n 4 python3 main.py<cr>", "mpiexec 4 main.py"},
+        a = {":vs<bar> term python3 %<cr>", "run active file"}
     },
     t = {
         t = {":ToggleTerm<cr>", "Split Below"},

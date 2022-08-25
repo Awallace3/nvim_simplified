@@ -5,6 +5,8 @@ vim.wo.number = true
 vim.wo.relativenumber = true
 vim.opt.cursorline = true
 vim.opt.cursorcolumn = true
+-- vim.g.vimtex_compiler_method = "latexrun"
+vim.g.vimtex_compiler_method = "arara"
 
 vim.opt_local.suffixesadd:prepend('.lua')
 vim.opt_local.suffixesadd:prepend('init.lua')
