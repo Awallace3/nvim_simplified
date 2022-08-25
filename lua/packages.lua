@@ -2,6 +2,7 @@ local use = require('packer').use
 require('packer').startup(function()
     use 'wbthomason/packer.nvim'
     use 'folke/tokyonight.nvim'
+    use {'lervag/vimtex'}
     use 'tpope/vim-surround'
     use 'windwp/nvim-autopairs'
     use 'p00f/nvim-ts-rainbow'
@@ -10,7 +11,7 @@ require('packer').startup(function()
         run = ':TSUpdate',
         highlight = {enable = true}
     }
-    use {'akinsho/bufferline.nvim', requires = 'kyazdani42/nvim-web-devicons'}
+    -- use {'akinsho/bufferline.nvim', requires = 'kyazdani42/nvim-web-devicons'}
     use {
         'vimwiki/vimwiki',
         config = function()
@@ -69,7 +70,7 @@ require('packer').startup(function()
     use {'folke/which-key.nvim'}
     use {
         'nvim-lualine/lualine.nvim',
-        requires = {'kyazdani42/nvim-web-devicons', opt = true}
+        -- requires = {'kyazdani42/nvim-web-devicons', opt = true}
     }
     use {'sbdchd/neoformat'}
     use 'akinsho/toggleterm.nvim'
@@ -95,7 +96,6 @@ require('packer').startup(function()
         end
     })
     use {'RRethy/vim-illuminate'}
-
     -- git integration
     -- use {'lewis6991/gitsigns.nvim', requires = {'nvim-lua/plenary.nvim'}}
     use {'airblade/vim-gitgutter'}
@@ -109,7 +109,6 @@ require('packer').startup(function()
 
     -- comments
     use {'terrortylor/nvim-comment'}
-    use {'lervag/vimtex'}
     use({
         "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
         config = function() require("lsp_lines").setup() end
