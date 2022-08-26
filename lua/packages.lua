@@ -11,7 +11,7 @@ require('packer').startup(function()
         run = ':TSUpdate',
         highlight = {enable = true}
     }
-    -- use {'akinsho/bufferline.nvim', requires = 'kyazdani42/nvim-web-devicons'}
+    use {'akinsho/bufferline.nvim', requires = 'kyazdani42/nvim-web-devicons'}
     use {
         'vimwiki/vimwiki',
         config = function()
@@ -115,4 +115,5 @@ require('packer').startup(function()
     })
     use 'ryanoasis/vim-devicons'
     use 'tiagofumo/vim-nerdtree-syntax-highlight'
+    use 'dhruvasagar/vim-table-mode'
 end)

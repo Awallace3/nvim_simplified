@@ -1,47 +1,13 @@
-import os
-import pandas as pd
+test = """
+|-----------------|----------|----------|----------|--------|--------|---------|
+| Level of Theory | s8       | a1       | a2       | MAE    | RMSE   | MAX_E   |
+|-----------------|----------|----------|----------|--------|--------|---------|
+| HF/cc-pVDZ      | 0.858035 | 0.715398 | 1.054582 | 0.5044 | 0.8769 | 12.8272 |
+| HF/jun-cc-pVDZ  | 0.866395 | 0.773136 | 0.797054 | 0.5115 | 0.8433 | 8.6852  |
+| HF/aug-cc-pVDZ  | 0.876048 | 0.741864 | 0.987095 | 0.4057 | 0.7260 | 10.1667 |
+| HF/cc-pVTZ      | 0.884898 | 0.695661 | 1.239460 | 0.4238 | 0.7396 | 7.3498  |
+|-----------------|----------|----------|----------|--------|--------|---------|
+"""
 
-
-
-import test
-
-
-def testing(insert: int):
-    """testing"""
-
-
-def testing(self, okay):
-    test.__doc__
-
-
-delattr(myname, yourname)
-
-
-pd.read_csv('lua/mappings')
-pd.read_csv('lua/mappings')
-pd.read_csv('lua/mappings')
-pd.read_csv('lua/mappings')
-pd.read_csv('lua/mappings')
-pd.read_csv('lua/mappings')
-pd.read_csv('lua/mappings')
-pd.read_csv('lua/mappings')
-pd.read_csv('lua/mappings')
-pd.read_csv('lua/mappings')
-pd.read_csv('lua/mappings')
-pd.read_csv('lua/mappings')
-pd.read_csv('lua/mappings')
-pd.read_csv('lua/mappings')
-pd.read_csv('lua/mappings')
-pd.read_csv('lua/mappings')
-pd.read_csv('lua/packages')
-pd.read_csv('lua/mappings')
-pd.read_csv('lua/mappings')
-pd.read_csv('lua/mappings')
-pd.read_csv('lua/mappings')
-pd.read_csv('lua/mappings')
-pd.read_csv('lua/mappings')
-pd.read_csv('lua/mappings')
-pd.read_csv('lua/mappings')
-pd.read_csv('lua/mappings')
-pd.read_csv('lua/mappings')
-pd.read_csv('lua/mappings')
+d = test.split("\n")
+print(d)

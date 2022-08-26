@@ -40,8 +40,8 @@ cmp.setup({
     ["<Tab>"] = cmp.mapping(function(fallback)
       if require("luasnip").expand_or_jumpable() then
         require("luasnip").expand_or_jump()
-      elseif has_words_before() then
-        cmp.complete()
+      -- elseif has_words_before() then
+      --   cmp.complete()
       else
         fallback()
       end

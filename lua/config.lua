@@ -74,3 +74,7 @@ vim.cmd [[
                 \ 'Unknown'   :'?',
                 \ }
 ]]
+
+
+-- vim-table-mode
+--
