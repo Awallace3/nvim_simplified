@@ -78,3 +78,4 @@ vim.cmd [[
 
 -- vim-table-mode
 --
+vim.notify = require("notify")

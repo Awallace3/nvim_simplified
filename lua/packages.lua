@@ -69,7 +69,7 @@ require('packer').startup(function()
     use {"ray-x/lsp_signature.nvim"}
     use {'folke/which-key.nvim'}
     use {
-        'nvim-lualine/lualine.nvim',
+        'nvim-lualine/lualine.nvim'
         -- requires = {'kyazdani42/nvim-web-devicons', opt = true}
     }
     use {'sbdchd/neoformat'}
@@ -116,4 +116,17 @@ require('packer').startup(function()
     use 'ryanoasis/vim-devicons'
     use 'tiagofumo/vim-nerdtree-syntax-highlight'
     use 'dhruvasagar/vim-table-mode'
+    use {
+        'stevearc/overseer.nvim',
+        config = function() require('overseer').setup() end
+    }
+    use {"rcarriga/nvim-notify"}
+    -- use {
+    --     "nvim-neotest/neotest",
+    --     requires = {
+    --         "nvim-lua/plenary.nvim", "nvim-treesitter/nvim-treesitter",
+    --         "antoinemadec/FixCursorHold.nvim", "nvim-neotest/neotest-python"
+    --
+    --     }
+    -- }
 end)
