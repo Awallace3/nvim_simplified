@@ -39,6 +39,7 @@ local mappings = {
     x = {":bdelete<cr>", "Close"},
     E = {
         E = {":vs<bar>e ~/.config/nvim/init.lua<cr>", "Edit config"},
+        e = {":e<bar>e ~/.config/nvim/init.lua<cr>", "Edit config"},
         W = {":vs<bar>e ~/.config/nvim/lua/whichkey-config/init.lua<cr>", "Edit config"},
     },
     g = {
@@ -115,6 +116,13 @@ local mappings = {
         -- m = {toggle_neomutt, "NeoMutt"},
         d = {":!dftd4 tmp.xyz --json t.json --param 1.0 0.9171 0.3385 2.883<cr>", "dftd4 test"},
         c = {":vs<bar>term lscpu | grep -E '^Thread|^Core|^Socket|^CPU\\('<cr>", "lscpu grep"},
+    },
+    o = {
+        o = {":OverseerToggle<cr>", "Overseer Toggle"},
+        r = {":OverseerRun<cr>", "Overseer Run"},
+        l = {":OverseerLoadBundle<cr>", "Overseer Load Bundle"},
+        d = {":OverseerDeleteBundle<cr>", "Overseer Delete Bundle"},
+        p = {":OverseerRun python3 main.py<cr>", "Overseer Run Python"},
     }
 }
 local opts = {prefix = '<leader>'}
