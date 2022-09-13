@@ -7,16 +7,17 @@
 -- syntax enable
 -- Viewer options: One may configure the viewer either by specifying a built-in
 -- viewer method:
--- vim.g.vimtex_view_method = 'zathura'
--- vim.g.vimtex_view_method = 'skim'
+vim.g.vimtex_view_method = 'zathura'
 
 -- Or with a generic interface:
 vim.g.vimtex_view_general_viewer = 'okular'
 -- vim.g.vimtex_compiler_arara = {options = {'--log'}}
+-- vim.g.vimtex_compiler_latexmk = {options = {'--log'}}
 
 vim.api.nvim_create_autocmd("BufWritePost", {
     pattern = "*.tex",
-    command = "VimtexCompileSS",
+    command = "silent VimtexCompileSS",
+    -- group = group
     desc = "Compiles Latex"
 })
 -- vim.g.vimtex_view_general_options = '--unique file:@pdf\#src:@line@tex'
@@ -28,6 +29,7 @@ vim.api.nvim_create_autocmd("BufWritePost", {
 -- see ":help vimtex-compiler".
 -- vim.g.vimtex_compiler_method = 'arara'
 vim.g.vimtex_compiler_method = 'latexmk'
+-- vim.g.vimtex_compiler_method = ''
 
 -- Most VimTeX mappings rely on localleader and this can be changed with the
 -- following line. The default is usually fine and is the symbol "\".
