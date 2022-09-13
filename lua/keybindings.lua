@@ -8,6 +8,10 @@ vim.g.mapleader = ' '
 
 require('nvim-autopairs').setup({disable_filetype = {"TelescopePrompt", "vim"}})
 
+-- luasnips
+keymap('i', '<c-j>', "<cmd>lua require'luasnip'.jump(1)<CR>", opts)
+keymap('i', '<c-k>', "<cmd>lua require'luasnip'.jump(-1)<CR>", opts)
+
 keymap('n', '<c-s>', ':w<CR>', {})
 keymap('i', '<c-s>', '<ESC>:w<CR>a', {})
 keymap('n', '<c-j>', '<c-w>j', opts)

@@ -7,15 +7,16 @@
 -- syntax enable
 -- Viewer options: One may configure the viewer either by specifying a built-in
 -- viewer method:
-vim.g.vimtex_view_method = 'zathura'
+-- vim.g.vimtex_view_method = 'zathura'
+-- vim.g.vimtex_view_method = 'skim'
 
 -- Or with a generic interface:
 vim.g.vimtex_view_general_viewer = 'okular'
-vim.g.vimtex_compiler_arara = {options = {'--log'}}
+-- vim.g.vimtex_compiler_arara = {options = {'--log'}}
 
 vim.api.nvim_create_autocmd("BufWritePost", {
     pattern = "*.tex",
-    command = "VimtexCompile",
+    command = "VimtexCompileSS",
     -- group = group
     desc = "Compiles Latex"
 })
@@ -27,7 +28,7 @@ vim.api.nvim_create_autocmd("BufWritePost", {
 -- supported backends and further explanation is provided in the documentation,
 -- see ":help vimtex-compiler".
 -- vim.g.vimtex_compiler_method = 'latexrun'
--- vim.g.vimtex_compiler_method = ''
+vim.g.vimtex_compiler_method = 'latexmk'
 
 -- Most VimTeX mappings rely on localleader and this can be changed with the
 -- following line. The default is usually fine and is the symbol "\".
