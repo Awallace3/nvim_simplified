@@ -105,7 +105,7 @@ local mappings = {
             p = {":vs<bar>term pytest tests.py<cr>", "PyTest"},
             o = {":vs<bar>term python3 tests.py<cr>", "run tests.py"}
         },
-        m = {":vs<bar>term mpiexec -n 2 python3 -u main.py<cr>", "mpiexec main.py"},
+        m = {":vs<bar>term mpiexec -n 4 python3 -u main.py<cr>", "mpiexec main.py"},
         a = {":vs<bar> term python3 %<cr>", "run active file"}
     },
     t = {
@@ -120,9 +120,12 @@ local mappings = {
     o = {
         o = {":OverseerToggle<cr>", "Overseer Toggle"},
         r = {":OverseerRun<cr>", "Overseer Run"},
+        c = {":OverseerRun ", "Overseer Run template"},
         l = {":OverseerLoadBundle<cr>", "Overseer Load Bundle"},
         d = {":OverseerDeleteBundle<cr>", "Overseer Delete Bundle"},
         p = {":OverseerRun python3 main.py<cr>", "Overseer Run Python"},
+        h = {':lua require("notify").history()<cr>', "Notify History"},
+        n = {':Notifications<cr>', "Notify Notifications"},
     }
 }
 local opts = {prefix = '<leader>'}

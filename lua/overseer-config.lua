@@ -21,28 +21,29 @@ ovr.setup({
         -- optionally define an integer/float for the exact width of the task list
         width = nil,
         -- String that separates tasks
-        separator = "────────────────────────────────────────",
+        separator = "|──────────────────────────────────────|",
         -- Default direction. Can be "left" or "right"
         direction = "left",
         -- Set keymap to false to remove default behavior
+        -- keymap=false,
         -- You can add custom keymaps here as well (anything vim.keymap.set accepts)
         bindings = {
             ["?"] = "ShowHelp",
             ["<CR>"] = "RunAction",
             ["<C-e>"] = "Edit",
             ["o"] = "Open",
-            ["<C-v>"] = "OpenVsplit",
-            ["<C-s>"] = "OpenSplit",
-            ["<C-f>"] = "OpenFloat",
-            ["p"] = "TogglePreview",
-            -- ["<C-l>"] = "IncreaseDetail",
-            -- ["<C-h>"] = "DecreaseDetail",
+            ["J"] = "IncreaseDetail",
+            ["K"] = "DecreaseDetail",
             ["L"] = "IncreaseAllDetail",
             ["H"] = "DecreaseAllDetail",
             ["["] = "DecreaseWidth",
             ["]"] = "IncreaseWidth",
             ["{"] = "PrevTask",
-            ["}"] = "NextTask"
+            ["}"] = "NextTask",
+            ["<C-v>"] = "OpenVsplit",
+            ["<C-s>"] = "OpenSplit",
+            ["<C-f>"] = "OpenFloat",
+            ["r"] = "TogglePreview",
         }
     },
     -- See :help overseer.actions
@@ -187,46 +188,90 @@ ovr.register_template({
 })
 
 ovr.register_template({
-    -- Required fields
     name = "main.py",
-    builder = function(params)
-        -- This must return an overseer.TaskDefinition
+    builder = function()
         return {
-            -- cmd is the only required field
             cmd = {'python3'},
-            -- additional arguments for the cmd
             args = {"main.py"},
-            -- the name of the task (defaults to the cmd of the task)
             name = "main.py",
-            -- set the working directory for the task
-            -- cwd = "/tmp",
-            -- additional environment variables
-            -- env = {VAR = "FOO"},
-            -- the list of components or component aliases to add to the task
             components = {"default"},
-            -- arbitrary table of data for your own personal use
             metadata = {foo = "python"}
         }
     end,
-    -- Optional fields
     desc = "Runs main.py",
-    -- Tags can be used in overseer.run_template()
     tags = {ovr.TAG.BUILD},
-    params = {
-        -- See :help overseer.params
-    },
-    -- Determines sort order when choosing tasks. Lower comes first.
     priority = 50,
-    -- Add requirements for this template. If they are not met, the template will not be visible.
-    -- All fields are optional.
     condition = {
-        -- A string or list of strings
-        -- Only matches when current buffer is one of the listed filetypes
-        -- filetype = {"lua"},
-        -- A string or list of strings
-        -- Only matches when cwd is inside one of the listed dirs
-        -- dir = "/home/user/my_project",
-        -- Arbitrary logic for determining if task is available
+        callback = function(search)
+            print(vim.inspect(search))
+            return true
+        end
+    }
+})
+
+ovr.register_template({
+    name = "hiveToCalc",
+    builder = function()
+        return {
+            cmd = {'rsync'},
+            args = {"-rP", "hive:data/calc/", "calc"},
+            name = "rsync hive:calc calc",
+            cwd = "/theoryfs2/ds/amwalla3/projects/d4_corrections",
+            components = {"default"},
+            metadata = {foo = "python"}
+        }
+    end,
+    desc = "Runs main.py",
+    tags = {ovr.TAG.BUILD},
+    priority = 50,
+    condition = {
+        callback = function(search)
+            print(vim.inspect(search))
+            return true
+        end
+    }
+})
+
+
+ovr.register_template({
+    name = "calcToHive",
+    builder = function()
+        return {
+            cmd = {'rsync'},
+            args = {"-rP", "calc/", "hive:data/calc"},
+            name = "rsync calc/ hive:data/calc",
+            cwd = "/theoryfs2/ds/amwalla3/projects/d4_corrections",
+            components = {"default"},
+            metadata = {foo = "python"}
+        }
+    end,
+    desc = "Runs main.py",
+    tags = {ovr.TAG.BUILD},
+    priority = 50,
+    condition = {
+        callback = function(search)
+            print(vim.inspect(search))
+            return true
+        end
+    }
+})
+
+ovr.register_template({
+    name = "mpi4py",
+    builder = function()
+        return {
+            cmd = {'mpiexec'},
+            args = {"-n", '4', 'python3', '-u', 'main.py'},
+            name = "mpiexec -n N python3 -u main.py",
+            -- cwd = "/theoryfs2/ds/amwalla3/projects/d4_corrections",
+            components = {"default"},
+            metadata = {foo = "python"}
+        }
+    end,
+    desc = "Runs main.py with N processes",
+    tags = {ovr.TAG.BUILD},
+    priority = 50,
+    condition = {
         callback = function(search)
             print(vim.inspect(search))
             return true

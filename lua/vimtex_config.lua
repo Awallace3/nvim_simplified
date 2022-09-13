@@ -11,11 +11,12 @@ vim.g.vimtex_view_method = 'zathura'
 
 -- Or with a generic interface:
 vim.g.vimtex_view_general_viewer = 'okular'
-vim.g.vimtex_compiler_arara = {options = {'--log'}}
+-- vim.g.vimtex_compiler_arara = {options = {'--log'}}
+-- vim.g.vimtex_compiler_latexmk = {options = {'--log'}}
 
 vim.api.nvim_create_autocmd("BufWritePost", {
     pattern = "*.tex",
-    command = "VimtexCompile",
+    command = "silent VimtexCompileSS",
     -- group = group
     desc = "Compiles Latex"
 })
@@ -26,7 +27,8 @@ vim.api.nvim_create_autocmd("BufWritePost", {
 -- want another compiler backend, you can change it as follows. The list of
 -- supported backends and further explanation is provided in the documentation,
 -- see ":help vimtex-compiler".
-vim.g.vimtex_compiler_method = 'arara'
+-- vim.g.vimtex_compiler_method = 'arara'
+vim.g.vimtex_compiler_method = 'latexmk'
 -- vim.g.vimtex_compiler_method = ''
 
 -- Most VimTeX mappings rely on localleader and this can be changed with the
