@@ -20,6 +20,7 @@ local types = require("luasnip.util.types")
 local conds = require("luasnip.extras.expand_conditions")
 
 local date = function() return {os.date('%Y-%m-%d')} end
+local f_path = function() return {vim.fn.expand("%:p")} end
 -- local snip = ls.snippet
 -- local node = ls.snippet_node
 -- local text = ls.text_node
@@ -34,7 +35,12 @@ ls.add_snippets(nil, {
             trig = "date",
             namr = "Date",
             dscr = "Date in the form of YYYY-MM-DD"
-        }, {f(date, {})})
+        }, {f(date, {})}),
+        s({
+            trig = "fpath",
+            namr = "filePath",
+            dscr = "gets current file path"
+        }, {f(f_path, {})})
     }
 })
 
