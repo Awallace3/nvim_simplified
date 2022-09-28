@@ -61,12 +61,29 @@ ls.add_snippets('vimwiki', {
             '- \\usepackage[version=4]{mhchem}', "---", ""
         }), i(0)
     }), s({
+        trig = "hqpart",
+        namr = "homeworkQuestionPart",
+        dscr = "md hw question part"
+    }, {
+        t({"#### Q "}), i(1, "a"), t({"):", "", "", "#### A "}), i(2, "a"),
+        t({":", ""}), i(0)
+    }), s({
         trig = "partials",
         namr = "partialDerivatives",
         dscr = "partial derivatives thermo"
     }, {
-        t({"\\frac{\\partial "}), i(1, "num"), t({"}{\\partial "}), i(2, "den"),
-        t({"}_{"}), i(3, "constants"), t({"}"}), i(0)
+        t({"(\\frac{\\partial "}), i(1, "num"), t({"}{\\partial "}),
+        i(2, "den"), t({"})_{"}), i(3, "constants"), t({"}"}), i(0)
+    }), s({trig = "hq", namr = "homeworkQuestion", dscr = "md hw question"}, {
+        t({"# Question "}), i(1, "number"),
+        t({"", "### Q:", "", "", "### A:", ""}), i(0)
+    }), s({
+        trig = "partials",
+        namr = "partialDerivatives",
+        dscr = "partial derivatives thermo"
+    }, {
+        t({"(\\frac{\\partial "}), i(1, "num"), t({"}{\\partial "}),
+        i(2, "den"), t({"})_{"}), i(3, "constants"), t({"}"}), i(0)
     }), s({
         trig = "python",
         namr = "pythoncodeblock",
@@ -76,7 +93,16 @@ ls.add_snippets('vimwiki', {
         t({"-->", "```python", "import sympy as sp", "", ""}),
         i(2, "start coding"), t({"", "", "```"}), i(0)
     }), s({trig = "frac", namr = "fraction", dscr = "latex math frac"},
-          {t({"\\frac{"}), i(1, "num"), t({"}{"}), i(2, "dem"), t({"}"}), i(0)})
+          {t({"\\frac{"}), i(1, "num"), t({"}{"}), i(2, "dem"), t({"}"}), i(0)}),
+    s({trig = "math", namr = "dollars", dscr = "double dollar"},
+      {t({"$$", ""}), i(1, "x = 0"), t({"", "$$", ""}), i(0)}),
+    s({trig = "sum", namr = "summation", dscr = "summation math"},
+      {t({"\\sum_{"}), i(1, "i"), t({"}^{"}), i(2, "N"), t({"}"}), i(0)}),
+    s({trig = "int", namr = "integral", dscr = "integral"}, {
+        t({"\\int_{"}), i(1, "-\\infty"), t({"}^{"}), i(2, "\\infty"), t({"}"}),
+        i(0)
+    }), s({trig = "angs", namr = "angles", dscr = "langle i rangle"},
+          {t({"\\langle "}), i(1, "X"), t({" \\rangle "}), i(0)})
 }, {key = 'vimwiki'})
 
 -- snip_latex
@@ -89,8 +115,8 @@ ls.add_snippets('tex', {
         namr = "partialDerivatives",
         dscr = "partial derivatives thermo"
     }, {
-        t({"\\frac{\\partial "}), i(1, "num"), t({"}{\\partial "}), i(2, "den"),
-        t({"}_{"}), i(3, "constants"), t({"}"}), i(0)
+        t({"(\\frac{\\partial "}), i(1, "num"), t({"}{\\partial "}),
+        i(2, "den"), t({"})_{"}), i(3, "constants"), t({"}"}), i(0)
     }), s({trig = "fig", namr = "figure", dscr = "simple figure"}, {
         t({"\\begin{figure}", '\\includegraphics{figures/'}), i(1, "i.png"),
         t({'}', '\\label{fg:'}), i(2, "label"), t({"}", "\\caption{"}),
@@ -464,7 +490,7 @@ require("luasnip.loaders.from_vscode").load({include = {"md"}}) -- Load only pyt
 -- -- a similar `package.json`)
 -- require("luasnip.loaders.from_vscode").load({ paths = { "./my-snippets" } }) -- Load snippets from my-snippets folder
 --
--- -- You can also use lazy loading so you only get in memory snippets of languages you use
+-- -- You can also use lazy loading so you only get in memory snippets of langleuages you use
 -- require("luasnip.loaders.from_vscode").lazy_load() -- You can pass { paths = "./my-snippets/"} as well
 --
 -- -- You can also use snippets in snipmate format, for example <https://github.com/honza/vim-snippets>.

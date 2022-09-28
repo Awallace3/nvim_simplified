@@ -9,18 +9,18 @@ require('packer').startup(function()
         run = function() vim.fn["mkdp#util#install"]() end
     })
 
-    --use({
+    -- use({
     --    "iamcco/markdown-preview.nvim",
     --    run = "cd app && npm install",
     --    setup = function() vim.g.mkdp_filetypes = {"markdown"} end,
     --    ft = {"markdown"}
-    --})
+    -- })
 
     -- REQUIRES TSInstall markdown
     -- use {"jbyuki/carrot.nvim"}
     use {
-        "gpanders/vim-medieval",
-        -- setup = function() require("vim-medieval").setup() end
+        "gpanders/vim-medieval"
+       -- setup = function() require("vim-medieval").setup() end
     }
     -- use {'jubnzv/mdeval.nvim'}
     use {'lervag/vimtex'}
