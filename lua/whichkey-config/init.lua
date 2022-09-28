@@ -49,6 +49,8 @@ local mappings = {
             ":vs<bar>e ~/.config/nvim/lua/luasnip-config.lua<bar>40<cr>",
             "Edit Snippets"
         },
+        C = {":vs<bar>e ~/.config/nvim/lua/lsp/cmp.lua<cr>", "Edit cmp"},
+        L = {":vs<bar>e ~/.config/nvim/lua/lsp/language_servers.lua<cr>", "Edit cmp"},
         -- S = {":vs<bar>e ~/.config/nvim/snippets<cr>", "Edit config"}
     },
     g = {
@@ -102,12 +104,13 @@ local mappings = {
         n = {'<cmd>Lspsaga diagnostic_jump_next<cr>', "Go To Next Diagnostic"},
         N = {
             '<cmd>Lspsaga diagnostic_jump_prev<cr>', "Go To Previous Diagnostic"
-        }
-        -- T = {'require("lsp_lines").toggle<cr>', "Toggle lsp_lines"}
+        },
+        T = {':lua require("lsp_lines").toggle()<cr>', "Toggle lsp_lines"}
     },
     r = {
         r = {":w <bar>so %<cr>", "Save and Source"},
         d = {":vs <bar>term make build_and_test<cr>", "dftd4 build and run"},
+        j = {":vs <bar>term julia main.jl<cr>", "julia main.jl"},
         t = {
             p = {":vs<bar>term pytest tests.py<cr>", "PyTest"},
             o = {":vs<bar>term python3 tests.py<cr>", "run tests.py"}
