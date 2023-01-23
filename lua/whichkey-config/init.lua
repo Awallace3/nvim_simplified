@@ -149,7 +149,7 @@ local mappings = {
     },
     m = {
         e = {"<cmd>EvalBlock<CR>", "EvalBlock"},
-        p = {":vs <bar> term pandoc -V geometry:margin=1in -C --bibliography=refs.bib --csl=default.csl -s h.md -o h.pdf --pdf-engine=xelatex <CR>", "pdflatex md"}
+        p = {":vs <bar> term pandoc -V geometry:margin=1in -C --bibliography=refs.bib --listings --csl=default.csl -s h.md -o h.pdf --pdf-engine=xelatex <CR>", "pdflatex md"}
     }
 
 }
