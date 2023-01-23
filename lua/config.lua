@@ -11,9 +11,9 @@ vim.g.vimtex_compiler_method = "arara"
 vim.opt_local.suffixesadd:prepend('.lua')
 vim.opt_local.suffixesadd:prepend('init.lua')
 vim.opt_local.path:prepend(vim.fn.stdpath('config')..'/lua')
--- vim.g.python3_host_prog = '/theoryfs2/ds/amwalla3/miniconda3/envs/nvim/bin/python3'
-vim.g.python3_host_prog = '/Users/austinwallace/miniconda3/envs/nvim/bin/python'
-vim.g.python_host_prog = '/Users/austinwallace/miniconda3/envs/nvim/bin/python'
+vim.g.python3_host_prog = vim.fn.expand("~/miniconda3/envs/nvim/bin/python")
+-- vim.g.python3_host_prog = '/Users/austinwallace/miniconda3/envs/nvim/bin/python'
+-- vim.g.python_host_prog = '/Users/austinwallace/miniconda3/envs/nvim/bin/python'
 
 vim.diagnostic.config({
     virtual_text = false

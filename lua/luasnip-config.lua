@@ -127,6 +127,26 @@ ls.add_snippets('tex', {
         t({"\\begin{figure}", '\\includegraphics{figures/'}), i(1, "i.png"),
         t({'}', '\\label{fg:'}), i(2, "label"), t({"}", "\\caption{"}),
         i(3, "caption..."), t({"}", "\\end{figure}"}), i(0)
+    }),
+    s({
+    trig = "itemize",
+    namr = "itemize",
+    dscr = "itemize",
+    }, {
+        t({"\\begin{itemize}", "    \\item "}),
+        i(1, "first"),
+        t({"", "\\end{itemize}"}),
+        i(0)
+    }),
+    s({
+    trig = "enumerate",
+    namr = "enumerate",
+    dscr = "enumerate",
+    }, {
+        t({"\\begin{enumerate}", "    \\item "}),
+        i(1, "first"),
+        t({"", "\\end{enumerate}"}),
+        i(0)
     })
 }, {key = 'tex'})
 -- If you're reading this file for the first time, best skip to around line 190
