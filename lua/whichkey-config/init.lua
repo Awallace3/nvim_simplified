@@ -32,11 +32,16 @@ local toggle_top = function()
     local top = Terminal:new({cmd = 'top', direction = "float"})
     return top:toggle()
 end
+
 local mappings = {
     q = {":bn<bar>bd #<CR>", "Close Buffer"},
     Q = {":wq<cr>", "Save & Quit"},
     -- w = {":w<cr>", "Save"},
     x = {":bdelete<cr>", "Close"},
+    c = {
+        c = {":set number! relativenumber!<cr>", "remove numbering"}
+
+    },
     E = {
         E = {":vs<bar>e ~/.config/nvim/init.lua<cr>", "Edit config"},
         e = {":e<bar>e ~/.config/nvim/init.lua<cr>", "Edit config"},
@@ -116,7 +121,7 @@ local mappings = {
             o = {":vs<bar>term python3 tests.py<cr>", "run tests.py"}
         },
         m = {
-            ":vs<bar>term mpiexec -n 2 python3 -u main.py<cr>",
+            ":vs<bar>term mpiexec -n 10 python3 -u main.py<cr>",
             "mpiexec main.py"
         },
         a = {":vs<bar> term python3 %<cr>", "run active file"}
@@ -149,7 +154,7 @@ local mappings = {
     },
     m = {
         e = {"<cmd>EvalBlock<CR>", "EvalBlock"},
-        p = {":vs <bar> term pandoc -V geometry:margin=1in -C --bibliography=refs.bib --csl=default.csl -s h.md -o h.pdf --pdf-engine=xelatex <CR>", "pdflatex md"}
+        p = {":vs <bar> term pandoc -V geometry:margin=1in -C --bibliography=refs.bib --listings --csl=default.csl -s h.md -o h.pdf --pdf-engine=xelatex <CR>", "pdflatex md"}
     }
 
 }

@@ -20,19 +20,21 @@ require('packer').startup(function()
     -- use {"jbyuki/carrot.nvim"}
     use {
         "gpanders/vim-medieval"
-       -- setup = function() require("vim-medieval").setup() end
+        -- setup = function() require("vim-medieval").setup() end
     }
     -- use {'jubnzv/mdeval.nvim'}
     use {'lervag/vimtex'}
+    -- use {'joom/latex-unicoder.vim'}
     use 'tpope/vim-surround'
     use 'windwp/nvim-autopairs'
-    use 'p00f/nvim-ts-rainbow'
     use {
         'nvim-treesitter/nvim-treesitter',
         run = ':TSUpdate',
         highlight = {enable = true}
     }
+    use 'p00f/nvim-ts-rainbow'
     use {'akinsho/bufferline.nvim', requires = 'kyazdani42/nvim-web-devicons'}
+    use {"chipsenkbeil/vimwiki-server.nvim"}
     use {
         'vimwiki/vimwiki',
         config = function()
@@ -51,8 +53,8 @@ require('packer').startup(function()
             }
             vim.g.vimwiki_ext2syntax = {
                 ['.md'] = 'markdown',
-                ['.markdown'] = 'markdown',
-                ['.mdown'] = 'markdown'
+                -- ['.markdown'] = 'markdown',
+                -- ['.mdown'] = 'markdown'
             }
         end
     }
@@ -96,26 +98,31 @@ require('packer').startup(function()
     use {'sbdchd/neoformat'}
     use 'akinsho/toggleterm.nvim'
     use {'preservim/nerdtree', requires = {'Xuyuanp/nerdtree-git-plugin'}}
-    use({
-        "glepnir/lspsaga.nvim",
-        config = function()
-            local saga = require("lspsaga")
-            -- change the lsp symbol kind
-            -- local kind = require('lspsaga.lspkind')
-            -- kind[type_number][2] = icon -- see lua/lspsaga/lspkind.lua
-
-            saga.init_lsp_saga({
-                border_style = "rounded",
-                -- same as nvim-lightbulb but async
-                code_action_lightbulb = {
-                    enable = false,
-                    sign = false,
-                    sign_priority = 20,
-                    virtual_text = false
-                }
-            })
-        end
-    })
+    -- use({
+    --     "glepnir/lspsaga.nvim",
+    --     branch = "main",
+    --     config = function() require('lspsaga').setup({}) end
+    -- })
+    -- use({
+    --     "glepnir/lspsaga.nvim",
+    --     config = function()
+    --         local saga = require("lspsaga")
+    --         -- change the lsp symbol kind
+    --         -- local kind = require('lspsaga.lspkind')
+    --         -- kind[type_number][2] = icon -- see lua/lspsaga/lspkind.lua
+    --
+    --         saga.init_lsp_saga({
+    --             border_style = "rounded",
+    --             -- same as nvim-lightbulb but async
+    --             code_action_lightbulb = {
+    --                 enable = false,
+    --                 sign = false,
+    --                 sign_priority = 20,
+    --                 virtual_text = false
+    --             }
+    --         })
+    --     end
+    -- })
     use {'RRethy/vim-illuminate'}
     -- git integration
     -- use {'lewis6991/gitsigns.nvim', requires = {'nvim-lua/plenary.nvim'}}

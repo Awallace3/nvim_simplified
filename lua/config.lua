@@ -12,13 +12,12 @@ vim.opt_local.suffixesadd:prepend('.lua')
 vim.opt_local.suffixesadd:prepend('init.lua')
 vim.opt_local.path:prepend(vim.fn.stdpath('config')..'/lua')
 vim.g.python3_host_prog = vim.fn.expand("~/miniconda3/envs/nvim/bin/python")
--- vim.g.python3_host_prog = '/Users/austinwallace/miniconda3/envs/nvim/bin/python'
--- vim.g.python_host_prog = '/Users/austinwallace/miniconda3/envs/nvim/bin/python'
 
 vim.diagnostic.config({
     virtual_text = false
 })
 
+vim.cmd[[set mouse=]]
 
 -- vim.api.nvim_command('setlocal spell spelllang=en_us')
 --
@@ -27,12 +26,17 @@ vim.api.nvim_create_autocmd("FileType", {
     callback = function()
         vim.api.nvim_command('setlocal spell spelllang=en_us')
         vim.api.nvim_command('set spellsuggest+=10')
+        vim.api.nvim_command('set filetype=markdown')
+
         -- vim.g.languagetool_server_jar =
         --     "/usr/local/Cellar/languagetool/5.7/libexec/languagetool-server.jar"
         -- vim.g.languagetool_server_command = "echo Server Started"
     end
-
 })
+vim.g.vimwiki_global_ext=0
+-- vim.cmd("set nocompatible")
+-- vim.cmd("filetype plugin on")
+-- vim.cmd("syntax on")
 
 vim.o.scrolloff = 8
 

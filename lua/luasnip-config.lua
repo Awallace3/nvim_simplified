@@ -36,11 +36,8 @@ ls.add_snippets(nil, {
             namr = "Date",
             dscr = "Date in the form of YYYY-MM-DD"
         }, {f(date, {})}),
-        s({
-            trig = "fpath",
-            namr = "filePath",
-            dscr = "gets current file path"
-        }, {f(f_path, {})})
+        s({trig = "fpath", namr = "filePath", dscr = "gets current file path"},
+          {f(f_path, {})})
     }
 })
 
@@ -64,7 +61,21 @@ ls.add_snippets('vimwiki', {
             'link-bibliography: true', 'header-includes:',
             '- \\usepackage{cancel}', '- \\usepackage{fancyvrb}',
             '- \\usepackage{listings}', '- \\usepackage{amsmath}',
-            '- \\usepackage[version=4]{mhchem}', "---", ""
+            '- \\usepackage[version=4]{mhchem}', '- \\usepackage{xcolor}',
+            '- \\lstset{breaklines=true}',
+            '- \\lstset{language=[Motorola68k]Assembler}',
+            '- \\lstset{basicstyle=\\small\\ttfamily}',
+            '- \\lstset{extendedchars=true}', '- \\lstset{tabsize=2}',
+            '- \\lstset{columns=fixed}', '- \\lstset{showstringspaces=false}',
+            '- \\lstset{frame=trbl}', '- \\lstset{frameround=tttt}',
+            '- \\lstset{framesep=4pt}', '- \\lstset{numbers=left}',
+            '- \\lstset{numberstyle=\\tiny\\ttfamily}',
+            '- \\lstset{postbreak=\\raisebox{0ex}[0ex][0ex]{\\ensuremath{\\color{red}\\hookrightarrow\\space}}}',
+            '- \\lstset{keywordstyle=\\color[rgb]{0.13,0.29,0.53}\\bfseries}',
+            '- \\lstset{stringstyle=\\color[rgb]{0.31,0.60,0.02}}',
+            '- \\lstset{commentstyle=\\color[rgb]{0.56,0.35,0.01}\\itshape}',
+
+            "---", ""
         }), i(0)
     }), s({
         trig = "hqpart",
@@ -108,7 +119,28 @@ ls.add_snippets('vimwiki', {
         t({"\\int_{"}), i(1, "-\\infty"), t({"}^{"}), i(2, "\\infty"), t({"}"}),
         i(0)
     }), s({trig = "angs", namr = "angles", dscr = "langle i rangle"},
-          {t({"\\langle "}), i(1, "X"), t({" \\rangle "}), i(0)})
+          {t({"\\langle "}), i(1, "X"), t({" \\rangle "}), i(0)}),
+    s({trig = "exp", namr = "exp", dscr = "exp"},
+      {t({"e^{"}), i(1, "x"), t({"}"}), i(0)}),
+    s({trig = "boltz", namr = "boltzmanexp", dscr = "boltzmanexp"},
+      {t({"e^{-\\beta E_{"}), i(1, "i"), t({"}}"}), i(0)}),
+    s({trig = "choose", namr = "choose", dscr = "choose"},
+      {t({"{{"}), i(1, "n"), t({"}\\choose{"}), i(2, "k"), t({"}}"}), i(0)}),
+      s({
+      trig = "bold",
+      namr = "bold",
+      dscr = "bold",
+      }, {
+          t({"**"}), i(1, "Word"), t({"**"}),
+          i(0)
+      }), s({
+      trig = "emph",
+      namr = "emph",
+      dscr = "emph",
+      }, {
+          t({"*"}), i(1, "Word"), t({"*"}),
+          i(0)
+      })
 }, {key = 'vimwiki'})
 
 -- snip_latex
