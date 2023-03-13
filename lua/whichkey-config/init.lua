@@ -32,11 +32,16 @@ local toggle_top = function()
     local top = Terminal:new({cmd = 'top', direction = "float"})
     return top:toggle()
 end
+
 local mappings = {
     q = {":bn<bar>bd #<CR>", "Close Buffer"},
     Q = {":wq<cr>", "Save & Quit"},
     -- w = {":w<cr>", "Save"},
     x = {":bdelete<cr>", "Close"},
+    c = {
+        c = {":set number! relativenumber!<cr>", "remove numbering"}
+
+    },
     E = {
         E = {":vs<bar>e ~/.config/nvim/init.lua<cr>", "Edit config"},
         e = {":e<bar>e ~/.config/nvim/init.lua<cr>", "Edit config"},

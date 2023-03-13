@@ -22,6 +22,15 @@ vim.g.markdown_fenced_languages = {
 
 -- might affect luasnips
 require"lsp_signature".setup()
+local lspconfig = require('lspconfig')
+lspconfig.ccls.setup {
+  init_options = {
+    cache = {
+      directory = ".ccls-cache";
+    };
+  },
+  capabilities = capabilities
+}
 
 -- require'lspconfig'.pylsp.setup {capabilities = capabilities}
 require'lspconfig'.jedi_language_server.setup{capabilities = capabilities}

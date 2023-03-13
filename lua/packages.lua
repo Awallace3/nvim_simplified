@@ -27,12 +27,12 @@ require('packer').startup(function()
     -- use {'joom/latex-unicoder.vim'}
     use 'tpope/vim-surround'
     use 'windwp/nvim-autopairs'
-    use 'p00f/nvim-ts-rainbow'
     use {
         'nvim-treesitter/nvim-treesitter',
         run = ':TSUpdate',
         highlight = {enable = true}
     }
+    use 'p00f/nvim-ts-rainbow'
     use {'akinsho/bufferline.nvim', requires = 'kyazdani42/nvim-web-devicons'}
     use {"chipsenkbeil/vimwiki-server.nvim"}
     use {
@@ -98,11 +98,11 @@ require('packer').startup(function()
     use {'sbdchd/neoformat'}
     use 'akinsho/toggleterm.nvim'
     use {'preservim/nerdtree', requires = {'Xuyuanp/nerdtree-git-plugin'}}
-    use({
-        "glepnir/lspsaga.nvim",
-        branch = "main",
-        config = function() require('lspsaga').setup({}) end
-    })
+    -- use({
+    --     "glepnir/lspsaga.nvim",
+    --     branch = "main",
+    --     config = function() require('lspsaga').setup({}) end
+    -- })
     -- use({
     --     "glepnir/lspsaga.nvim",
     --     config = function()
