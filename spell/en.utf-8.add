@@ -138,7 +138,6 @@ enthalpy
 experimentalists
 extensivity
 Eular
-<<<<<<< HEAD
 Schriber
 PBE0
 UKS
@@ -172,7 +171,6 @@ CN
 scf
 Schriber's
 QCFractal
-=======
 isothermal
 compressibility
 vibrational
@@ -212,7 +210,38 @@ datatypes
 Parameterizing
 parameterized
 rotationally
->>>>>>> e9f4434e8d075099f9f6c125908ff3c3db9054e7
+solvation
+asymptocially
+Lennard
+Quantization
+quantization
+eigenfunctions
+wavefunction
+wavefunctions
+translational
+dimensionality
+PES
+TotalView
+pentane
+variational
+CISD
+Perturbationally
+variationally
+combinatorial
+Gaussians
+quantized
+polarizable
+Drude
+ANI
+CHARMM
+Gaussain
+ORCA
+Skolnick
+metabolomics
+microbiome
+ligand
+electronegative
+orthogonalization
 OpenMP
 NVIDIA
 cuda
