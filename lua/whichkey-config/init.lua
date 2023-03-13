@@ -50,7 +50,10 @@ local mappings = {
             "Edit Snippets"
         },
         C = {":vs<bar>e ~/.config/nvim/lua/lsp/cmp.lua<cr>", "Edit cmp"},
-        L = {":vs<bar>e ~/.config/nvim/lua/lsp/language_servers.lua<cr>", "Edit cmp"},
+        L = {
+            ":vs<bar>e ~/.config/nvim/lua/lsp/language_servers.lua<cr>",
+            "Edit cmp"
+        }
         -- S = {":vs<bar>e ~/.config/nvim/snippets<cr>", "Edit config"}
     },
     g = {
@@ -116,6 +119,12 @@ local mappings = {
             o = {":vs<bar>term python3 tests.py<cr>", "run tests.py"}
         },
         m = {
+            m = {":vs<bar>term make<cr>", "make"},
+            d = {":vs<bar>term make debug<cr>", "make"},
+            t = {":vs<bar>term make t", "make"},
+
+        },
+        i = {
             ":vs<bar>term mpiexec -n 2 python3 -u main.py<cr>",
             "mpiexec main.py"
         },
@@ -149,7 +158,10 @@ local mappings = {
     },
     m = {
         e = {"<cmd>EvalBlock<CR>", "EvalBlock"},
-        p = {":vs <bar> term pandoc -V geometry:margin=1in -C --bibliography=refs.bib --listings --csl=default.csl -s h.md -o h.pdf --pdf-engine=xelatex <CR>", "pdflatex md"}
+        p = {
+            ":vs <bar> term pandoc -V geometry:margin=1in -C --bibliography=refs.bib --listings --csl=default.csl -s h.md -o h.pdf --pdf-engine=xelatex <CR>",
+            "pdflatex md"
+        }
     }
 
 }

@@ -1,4 +1,4 @@
--- vim.cmd([[colorscheme nord ]])
+-- vim.cmd([[colorscheme dracula]])
 
 -- vim.g.tokyodark_color_gamma = "1.0"
 -- vim.g.tokyonight_style = "night"

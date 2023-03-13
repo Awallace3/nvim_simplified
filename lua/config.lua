@@ -19,6 +19,7 @@ vim.diagnostic.config({
     virtual_text = false
 })
 
+vim.cmd [[ set mouse-=]]
 
 -- vim.api.nvim_command('setlocal spell spelllang=en_us')
 --

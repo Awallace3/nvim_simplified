@@ -52,7 +52,7 @@ ls.add_snippets("lua", {
 }, {key = "lua"})
 
 -- snip_markdown
-ls.add_snippets('vimwiki', {
+ls.add_snippets('markdown', {
     s({trig = "homework", namr = "homework", dscr = "markdown homework setup"},
       {
         t({"---", "title: "}), i(1, "hw_title"), t({"", "date: "}), f(date, {}),
@@ -108,7 +108,7 @@ ls.add_snippets('vimwiki', {
     }, {
         t({"<!-- target: "}), i(1, "targ"),
         t({"-->", "```python", "import sympy as sp", "", ""}),
-        i(2, "start coding"), t({"", "", "```"}), i(0)
+        i(0, "start coding"), t({"", "", "```"})
     }), s({trig = "frac", namr = "fraction", dscr = "latex math frac"},
           {t({"\\frac{"}), i(1, "num"), t({"}{"}), i(2, "dem"), t({"}"}), i(0)}),
     s({trig = "math", namr = "dollars", dscr = "double dollar"},
@@ -126,22 +126,35 @@ ls.add_snippets('vimwiki', {
       {t({"e^{-\\beta E_{"}), i(1, "i"), t({"}}"}), i(0)}),
     s({trig = "choose", namr = "choose", dscr = "choose"},
       {t({"{{"}), i(1, "n"), t({"}\\choose{"}), i(2, "k"), t({"}}"}), i(0)}),
-      s({
-      trig = "bold",
-      namr = "bold",
-      dscr = "bold",
+    s({trig = "bold", namr = "bold", dscr = "bold"},
+      {t({"**"}), i(1, "Word"), t({"**"}), i(0)}),
+    s({trig = "emph", namr = "emph", dscr = "emph"},
+      {t({"*"}), i(1, "Word"), t({"*"}), i(0)}),
+    s({trig = "img", namr = "img", dscr = "image"},
+      {t({"![](./images/"}), i(1, "image.png"), t({")"}), i(0)}),
+    s({trig = "bra", namr = "bra", dscr = "bra"},
+      {t({"\\langle "}), i(1, "\\psi"), t({" | "}), i(0)}),
+    s({trig = "ket", namr = "ket", dscr = "ket"},
+      {t({" | "}), i(1, "\\psi"), t({" \\rangle "}), i(0)}),
+    s({trig = "bk", namr = "bk", dscr = "bk"}, {
+        t({"\\langle "}), i(1, "\\psi_i"), t({" | "}), i(2, "\\psi_j"),
+        t({"\\rangle "}), i(0)
+    }), s({trig = "bka", namr = "bka", dscr = "bka"}, {
+        t({"\\langle "}), i(1, "\\psi_i"), t({" | "}), i(2, "A"), t({" | "}),
+        i(3, "\\psi_j"), t({" \\rangle "}), i(0)
+    }), s({trig = "sub", namr = "subscript", dscr = "subscript"},
+          {t({"_{ "}), i(1, "i"), t({" } "}), i(0)}),
+    s({trig = "sup", namr = "superscript", dscr = "superscript"},
+      {t({"^{ "}), i(1, "i"), t({" } "}), i(0)}), s({
+      trig = "schr",
+      namr = "schr",
+      dscr = "schrodinger equation",
       }, {
-          t({"**"}), i(1, "Word"), t({"**"}),
-          i(0)
-      }), s({
-      trig = "emph",
-      namr = "emph",
-      dscr = "emph",
-      }, {
-          t({"*"}), i(1, "Word"), t({"*"}),
+          t({"Schrodinger Equation"}),
           i(0)
       })
-}, {key = 'vimwiki'})
+
+}, {key = 'markdown'})
 
 -- snip_latex
 ls.add_snippets('tex', {
@@ -161,6 +174,13 @@ ls.add_snippets('tex', {
         i(3, "caption..."), t({"}", "\\end{figure}"}), i(0)
     })
 }, {key = 'tex'})
+
+ls.add_snippets('cpp', {
+    s({trig = "for", namr = "for", dscr = "for"}, {
+        t({"for (int "}), i(1, "i"), t({"; "}), i(2, "i"), t({"< "}),
+        i(3, "size"), t({"; "}), i(4, "i"), t({"++) {", ""}), i(0), t({"", "}"})
+    })
+}, {key = "cpp"})
 -- If you're reading this file for the first time, best skip to around line 190
 -- where the actual snippet-definitions start.
 

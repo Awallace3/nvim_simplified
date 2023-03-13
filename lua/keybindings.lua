@@ -1,7 +1,7 @@
 -- vim.api.nvim_set_keymap({mode}, {keymap}, {mapped to}, {options})
 local keymap = vim.api.nvim_set_keymap
 local opts = {noremap = true}
-keymap('i', 'jj', '<ESC>', opts)
+keymap('i', 'jk', '<ESC>', opts)
 -- keymap('n', ' ', '<Leader>', opts)
 vim.g.mapleader = ' '
 -- vim.g.localleader= ';'
@@ -11,6 +11,7 @@ require('nvim-autopairs').setup({disable_filetype = {"TelescopePrompt", "vim"}})
 -- luasnips
 keymap('i', '<c-j>', "<cmd>lua require'luasnip'.jump(1)<CR>", opts)
 keymap('i', '<c-k>', "<cmd>lua require'luasnip'.jump(-1)<CR>", opts)
+keymap('i', '<c-,>', '', {})
 
 keymap('n', '<c-s>', ':w<CR>', {})
 keymap('i', '<c-s>', '<ESC>:w<CR>a', {})
