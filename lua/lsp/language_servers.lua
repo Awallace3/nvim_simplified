@@ -9,11 +9,10 @@ require'lspconfig'.jsonls.setup {capabilities = capabilities}
 
 require'lspconfig'.html.setup {capabilities = capabilities}
 --
-require'lspconfig'.cssls.setup {capabilities = capabilities}
---
 require'lspconfig'.tsserver.setup {capabilities = capabilities}
 require'lspconfig'.ccls.setup {capabilities = capabilities}
 require'lspconfig'.denols.setup {capabilities = capabilities}
+
 vim.g.markdown_fenced_languages = {
     "ts=typescript"
 }
@@ -37,6 +36,7 @@ require'lspconfig'.jedi_language_server.setup{capabilities = capabilities}
 require'lspconfig'.fortls.setup {capabilities = capabilities}
 require'lspconfig'.cmake.setup{capabilities = capabilities}
 require'lspconfig'.julials.setup{capabilities = capabilities,
+
 on_new_config = function(new_config, _)
         local julia = vim.fn.expand("~/.julia/environments/nvim-lspconfig/bin/julia")
         -- local cmd = {
