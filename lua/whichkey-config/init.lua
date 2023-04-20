@@ -118,6 +118,7 @@ local mappings = {
     r = {
         r = {":w <bar>so %<cr>", "Save and Source"},
         d = {":vs <bar>term make build_and_test<cr>", "dftd4 build and run"},
+        b = {":vs <bar>term bash build.sh<cr>", "./build.sh"},
         j = {":vs <bar>term julia main.jl<cr>", "julia main.jl"},
         t = {
             p = {":vs<bar>term pytest tests.py<cr>", "PyTest"},

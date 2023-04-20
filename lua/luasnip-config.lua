@@ -85,6 +85,14 @@ ls.add_snippets('markdown', {
         t({"#### Q "}), i(1, "a"), t({"):", "", "", "#### A "}), i(2, "a"),
         t({":", ""}), i(0)
     }), s({
+        trig = "python",
+        namr = "pythoncodeblock",
+        dscr = "Create Markdown Python codeblock"
+    }, {
+        t({"<!-- target: "}), i(1, "targ"),
+        t({"-->", "```python", "import sympy as sp", "", ""}),
+        i(0, "start coding"), t({"", "", "```"})
+    }), s({
         trig = "partials",
         namr = "partialDerivatives",
         dscr = "partial derivatives thermo"
@@ -101,14 +109,6 @@ ls.add_snippets('markdown', {
     }, {
         t({"(\\frac{\\partial "}), i(1, "num"), t({"}{\\partial "}),
         i(2, "den"), t({"})_{"}), i(3, "constants"), t({"}"}), i(0)
-    }), s({
-        trig = "python",
-        namr = "pythoncodeblock",
-        dscr = "Create Markdown Python codeblock"
-    }, {
-        t({"<!-- target: "}), i(1, "targ"),
-        t({"-->", "```python", "import sympy as sp", "", ""}),
-        i(0, "start coding"), t({"", "", "```"})
     }), s({trig = "frac", namr = "fraction", dscr = "latex math frac"},
           {t({"\\frac{"}), i(1, "num"), t({"}{"}), i(2, "dem"), t({"}"}), i(0)}),
     s({trig = "math", namr = "dollars", dscr = "double dollar"},
@@ -145,14 +145,13 @@ ls.add_snippets('markdown', {
     }), s({trig = "sub", namr = "subscript", dscr = "subscript"},
           {t({"_{ "}), i(1, "i"), t({" } "}), i(0)}),
     s({trig = "sup", namr = "superscript", dscr = "superscript"},
-      {t({"^{ "}), i(1, "i"), t({" } "}), i(0)}), s({
-      trig = "schr",
-      namr = "schr",
-      dscr = "schrodinger equation",
-      }, {
-          t({"Schrodinger Equation"}),
-          i(0)
-      })
+      {t({"^{ "}), i(1, "i"), t({" } "}), i(0)}),
+    s({trig = "schr", namr = "schr", dscr = "schrodinger equation"},
+      {t({"Schrodinger Equation"}), i(0)}),
+    s({trig = "equation", namr = "equation", dscr = "simple equation"}, {
+        t({"\\begin{equation}", "    "}), i(1, "math_mode"),
+        t({"", "    \\label{eq:"}), i(2, "label"), t({"}", "\\end{equation}"})
+    })
 
 }, {key = 'markdown'})
 
@@ -172,27 +171,83 @@ ls.add_snippets('tex', {
         t({"\\begin{figure}", '\\includegraphics{figures/'}), i(1, "i.png"),
         t({'}', '\\label{fg:'}), i(2, "label"), t({"}", "\\caption{"}),
         i(3, "caption..."), t({"}", "\\end{figure}"}), i(0)
-    }),
-    s({
-    trig = "itemize",
-    namr = "itemize",
-    dscr = "itemize",
+    }), s({trig = "itemize", namr = "itemize", dscr = "itemize"}, {
+        t({"\\begin{itemize}", "    \\item "}), i(1, "first"),
+        t({"", "\\end{itemize}"}), i(0)
+    }), s({trig = "enumerate", namr = "enumerate", dscr = "enumerate"}, {
+        t({"\\begin{enumerate}", "    \\item "}), i(1, "first"),
+        t({"", "\\end{enumerate}"}), i(0)
+    }), s({
+        trig = "partials",
+        namr = "partialDerivatives",
+        dscr = "partial derivatives thermo"
     }, {
-        t({"\\begin{itemize}", "    \\item "}),
-        i(1, "first"),
-        t({"", "\\end{itemize}"}),
+        t({"(\\frac{\\partial "}), i(1, "num"), t({"}{\\partial "}),
+        i(2, "den"), t({"})_{"}), i(3, "constants"), t({"}"}), i(0)
+    }), s({trig = "hq", namr = "homeworkQuestion", dscr = "md hw question"}, {
+        t({"# Question "}), i(1, "number"),
+        t({"", "### Q:", "", "", "### A:", ""}), i(0)
+    }), s({
+        trig = "partials",
+        namr = "partialDerivatives",
+        dscr = "partial derivatives thermo"
+    }, {
+        t({"(\\frac{\\partial "}), i(1, "num"), t({"}{\\partial "}),
+        i(2, "den"), t({"})_{"}), i(3, "constants"), t({"}"}), i(0)
+    }), s({trig = "frac", namr = "fraction", dscr = "latex math frac"},
+          {t({"\\frac{"}), i(1, "num"), t({"}{"}), i(2, "dem"), t({"}"}), i(0)}),
+    s({trig = "math", namr = "dollars", dscr = "double dollar"},
+      {t({"$$", ""}), i(1, "x = 0"), t({"", "$$", ""}), i(0)}),
+    s({trig = "sum", namr = "summation", dscr = "summation math"},
+      {t({"\\sum_{"}), i(1, "i"), t({"}^{"}), i(2, "N"), t({"}"}), i(0)}),
+    s({trig = "int", namr = "integral", dscr = "integral"}, {
+        t({"\\int_{"}), i(1, "-\\infty"), t({"}^{"}), i(2, "\\infty"), t({"}"}),
         i(0)
+    }), s({trig = "angs", namr = "angles", dscr = "langle i rangle"},
+          {t({"\\langle "}), i(1, "X"), t({" \\rangle "}), i(0)}),
+    s({trig = "exp", namr = "exp", dscr = "exp"},
+      {t({"e^{"}), i(1, "x"), t({"}"}), i(0)}),
+    s({trig = "boltz", namr = "boltzmanexp", dscr = "boltzmanexp"},
+      {t({"e^{-\\beta E_{"}), i(1, "i"), t({"}}"}), i(0)}),
+    s({trig = "choose", namr = "choose", dscr = "choose"},
+      {t({"{{"}), i(1, "n"), t({"}\\choose{"}), i(2, "k"), t({"}}"}), i(0)}),
+    s({trig = "bold", namr = "bold", dscr = "bold"},
+      {t({"**"}), i(1, "Word"), t({"**"}), i(0)}),
+    s({trig = "emph", namr = "emph", dscr = "emph"},
+      {t({"*"}), i(1, "Word"), t({"*"}), i(0)}),
+    s({trig = "img", namr = "img", dscr = "image"},
+      {t({"![](./images/"}), i(1, "image.png"), t({")"}), i(0)}),
+    s({trig = "bra", namr = "bra", dscr = "bra"},
+      {t({"\\langle "}), i(1, "\\psi"), t({" | "}), i(0)}),
+    s({trig = "ket", namr = "ket", dscr = "ket"},
+      {t({" | "}), i(1, "\\psi"), t({" \\rangle "}), i(0)}),
+    s({trig = "bk", namr = "bk", dscr = "bk"}, {
+        t({"\\langle "}), i(1, "\\psi_i"), t({" | "}), i(2, "\\psi_j"),
+        t({"\\rangle "}), i(0)
+    }), s({trig = "bka", namr = "bka", dscr = "bka"}, {
+        t({"\\langle "}), i(1, "\\psi_i"), t({" | "}), i(2, "A"), t({" | "}),
+        i(3, "\\psi_j"), t({" \\rangle "}), i(0)
+    }), s({trig = "sub", namr = "subscript", dscr = "subscript"},
+          {t({"_{ "}), i(1, "i"), t({" } "}), i(0)}),
+    s({trig = "sup", namr = "superscript", dscr = "superscript"},
+      {t({"^{ "}), i(1, "i"), t({" } "}), i(0)}),
+    s({trig = "schr", namr = "schr", dscr = "schrodinger equation"},
+      {t({"Schrodinger Equation"}), i(0)}),
+    s({trig = "equation", namr = "equation", dscr = "simple equation"}, {
+        t({"\\begin{equation}", "    "}), i(1, "math_mode"),
+        t({"", "    \\label{eq:"}), i(2, "label"), t({"}", "\\end{equation}"})
     }),
     s({
-    trig = "enumerate",
-    namr = "enumerate",
-    dscr = "enumerate",
+    trig = "rq",
+    namr = "ref equation",
+    dscr = "reference equation in latex",
     }, {
-        t({"\\begin{enumerate}", "    \\item "}),
-        i(1, "first"),
-        t({"", "\\end{enumerate}"}),
+        t({"Equation \\ref{eq:"}),
+        i(1, "eqLabel"),
+        t({"} "}),
         i(0)
     })
+
 }, {key = 'tex'})
 
 ls.add_snippets('cpp', {

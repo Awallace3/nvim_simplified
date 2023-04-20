@@ -6,6 +6,7 @@ local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp
                                                                     .make_client_capabilities())
 
 require'lspconfig'.jsonls.setup {capabilities = capabilities}
+require'lspconfig'.texlab.setup {capabilities = capabilities}
 
 require'lspconfig'.html.setup {capabilities = capabilities}
 --
@@ -129,7 +130,7 @@ else
     print("Unsupported system for sumneko")
 end
 
-require'lspconfig'.sumneko_lua.setup {
+require'lspconfig'.lua_ls.setup {
     cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"},
     settings = {
         Lua = {

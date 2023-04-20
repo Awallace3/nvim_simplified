@@ -1,0 +1,11 @@
+-- local keymap = vim.api.nvim_set_keymap
+-- vim.g.copilot_no_tab_map = true
+-- vim.g.copilot_assume_mapped = true
+--
+-- keymap("i", "<C-f>", "jopilot#Accept(<CR>)", {expr = true})
+-- keymap("i", "<M-CR>", 'copilot#Accept("<CR>")', {expr = true})
+-- vim.keymap.set('i', '<M-k>', '<Plug>(copilot-next)')
+-- vim.keymap.set('i', '<M-j>', '<Plug>(copilot-previous)')
+-- vim.g.copilot_filetypes = {
+--     tex = false,
+-- }

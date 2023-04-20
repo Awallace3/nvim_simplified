@@ -52,7 +52,7 @@ require('packer').startup(function()
                 }
             }
             vim.g.vimwiki_ext2syntax = {
-                ['.md'] = 'markdown',
+                ['.md'] = 'markdown'
                 -- ['.markdown'] = 'markdown',
                 -- ['.mdown'] = 'markdown'
             }
@@ -98,11 +98,15 @@ require('packer').startup(function()
     use {'sbdchd/neoformat'}
     use 'akinsho/toggleterm.nvim'
     use {'preservim/nerdtree', requires = {'Xuyuanp/nerdtree-git-plugin'}}
-    -- use({
-    --     "glepnir/lspsaga.nvim",
-    --     branch = "main",
-    --     config = function() require('lspsaga').setup({}) end
-    -- })
+    use({
+        "glepnir/lspsaga.nvim",
+        branch = "main",
+        config = function() require('lspsaga').setup({}) end
+    })
+    use {"github/copilot.vim"}
+    use {"github/copilot-cmp"}
+    -- use {"github/copilot-lsp"}
+
     -- use({
     --     "glepnir/lspsaga.nvim",
     --     config = function()
@@ -156,5 +160,10 @@ require('packer').startup(function()
     --         "antoinemadec/FixCursorHold.nvim", "nvim-neotest/neotest-python"
     --
     --     }
+    -- }
+    -- use {
+    --     "zbirenbaum/copilot-cmp",
+    --     after = {"copilot.lua"},
+    --     config = function() require("copilot_cmp").setup() end
     -- }
 end)

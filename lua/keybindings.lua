@@ -24,7 +24,6 @@ keymap("n", "<A-L>", ":vertical resize -5<cr>", opts)
 keymap("n", "<A-J>", ":resize +5<cr>", opts)
 keymap("n", "<A-K>", ":resize -5<cr>", opts)
 
-
 keymap('n', ']b', ':bn<cr>', opts)
 keymap('n', '[b', ':bprevious<cr>', opts)
 -- improved indenting
@@ -32,7 +31,6 @@ keymap('n', '[b', ':bprevious<cr>', opts)
 -- vmap <S-Tab> <gv
 keymap('v', '>', ">gv", opts)
 keymap('v', '<', "<gv", opts)
-
 
 -- keymap('n', '<Leader>R', ":lua Test()<CR>", opts)
 -- keymap('n', '<Leader>R', ":lua File_type(%)", opts)
@@ -55,7 +53,6 @@ function Python_term()
     ]]
 end
 
-
 function Python_term_dftd4()
     vim.cmd [[
     vs
@@ -63,12 +60,11 @@ function Python_term_dftd4()
     ]]
 end
 
-
 keymap('n', '<Leader>L', ":terminal lua %<CR>", opts)
 -- keymap('n', '<Leader>P', ":vsplit | terminal python3 %<CR>", opts)
 keymap('n', '<Leader>P', ":lua Python_term() <CR>", opts)
 keymap('n', '<Leader>d', ":lua Python_term_dftd4() <CR>", opts)
---keymap("n", '<Leader>R', ':vs | silent term rm corpus/d1.csv ', opts)
+-- keymap("n", '<Leader>R', ':vs | silent term rm corpus/d1.csv ', opts)
 -- keymap("n", '<Leader>R', ':so %<CR>', opts)
 -- keymap('n', '<Leader>wo', ":set ma | w out.log |  %<CR>", opts)
 keymap('n', '<Leader>wo', ":lua SaveNotModifiable() <CR>", opts)
@@ -77,12 +73,11 @@ keymap('n', '<Leader>wo', ":lua SaveNotModifiable() <CR>", opts)
 -- keymap('n', '<Leader>f', ':Telescope find_files<cr>', {})
 -- keymap('n', '<Leader>r', ':Telescope live_grep<cr>', {})
 
-keymap('n', '<Leader>n', ':NERDTreeToggle<cr>', {})
+keymap('n', '<Leader>n', ':silent! NERDTreeToggle<cr>', {})
 keymap('n', '<Leader>b', ':BufferLinePick<cr>', {})
 
 keymap('v', '<Leader>w', "<esc>:'<,'>s/$/  /<cr>/added_whitespace<cr>", opts)
 keymap('v', '<Leader>y', '"+y', opts)
-
 
 keymap('n', '<Leader>F', ':Neoformat<cr>', {})
 -- keymap('n', '<Leader>s', ':vs<cr>', {})
@@ -97,8 +92,15 @@ keymap("n", '<Leader>S', ":vs<cr>:e ~/.config/nvim/snippets<cr>5j", {})
 keymap("n", "<C-S>H", ":vertical resize +5<cr>", opts)
 keymap("n", "<C-S>L", ":vertical resize -5<cr>", opts)
 keymap("n", "<C-S>J", ":horizontal resize +5<cr>", opts)
-keymap("n", "<C-S>K", ":horizontal resize -5<cr>", opts)
+keymap("n", "<C-S>K", ":horijzontal resize -5<cr>", opts)
 
+vim.g.copilot_no_tab_map = true
+vim.g.copilot_assume_mapped = true
 
-vim.g['copilot_no_tab_map'] = true
-
+keymap("i", "<M-CR>", 'copilot#Accept("<CR>")', {expr = true})
+keymap("i", "<C-f>", 'copilot#Accept("<CR>")', {expr = true})
+vim.keymap.set('i', '<M-k>', '<Plug>(copilot-next)')
+vim.keymap.set('i', '<M-j>', '<Plug>(copilot-previous)')
+vim.g.copilot_filetypes = {
+    tex = false,
+}

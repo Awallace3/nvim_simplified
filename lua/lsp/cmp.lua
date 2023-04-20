@@ -33,8 +33,8 @@ cmp.setup({
         ['<CR>'] = cmp.mapping.confirm({select = false}),
         ["<C-p>"] = cmp.mapping.select_prev_item(),
         ["<C-n>"] = cmp.mapping.select_next_item(),
-        ["<C-d>"] = cmp.mapping.scroll_docs(-4),
-        ["<C-f>"] = cmp.mapping.scroll_docs(4),
+        -- ["<C-d>"] = cmp.mapping.scroll_docs(-4),
+        -- ["<C-f>"] = cmp.mapping.scroll_docs(4),
         ["<C-e>"] = cmp.mapping.close(),
         ["<C-y>"] = cmp.mapping.confirm({select = false}),
         ["<Tab>"] = cmp.mapping(function(fallback)
@@ -115,14 +115,4 @@ cmp.setup.cmdline(':', {
     -- },
     sources = cmp.config.sources({{name = 'path'}}, {{name = 'cmdline'}})
 })
---
--- cmp.setup.cmdline(":", {
--- 	-- mapping = cmp.mapping.preset.cmdline(),
--- 	completion = { autocomplete = false },
--- 	-- sources = {
--- 	-- 	{ name = "path" },
--- 	-- 	{ name = "cmdline" },
--- 	-- },
--- 	mapping = cmp.mapping.preset.cmdline({}),   -- This line
--- })
 
