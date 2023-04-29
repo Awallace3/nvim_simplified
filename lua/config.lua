@@ -8,6 +8,13 @@ vim.opt.cursorcolumn = true
 -- vim.g.vimtex_compiler_method = "latexrun"
 vim.g.vimtex_compiler_method = "arara"
 
+-- vim.g.syntax_on = true
+vim.cmd[[
+    set nocompatible
+    filetype plugin on
+    syntax on
+]]
+
 vim.opt_local.suffixesadd:prepend('.lua')
 vim.opt_local.suffixesadd:prepend('init.lua')
 vim.opt_local.path:prepend(vim.fn.stdpath('config')..'/lua')
