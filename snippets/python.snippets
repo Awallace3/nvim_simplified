@@ -3,25 +3,33 @@ snippet nppdplt
 	import pandas as pd
 	import matplotlib.pyplot as plt
 
+snippet imps
+	import numpy as np
+	import pandas as pd
+	from qm_tools_aw import tools
+	import hrcl_jobs as hrcl
+
 snippet main
+	def ${2}():
+	    ${0}
+	    return
+
+
 	def main():
-	    """
-	    ${1:docstring}
-	    """
-	    ${2:func()}
+	    ${2:func}()
 	    return
 
 
 	if __name__ == "__main__":
 	    main()
 
-snippet #!
-	#!/usr/bin/env python3
-snippet #!2
-	#!/usr/bin/env python2
-	# -*- coding: utf-8 -*-
-snippet #!3
-	#!/usr/bin/env python3
+# snippet #!
+# 	#!/usr/bin/env python3
+# snippet #!2
+# 	#!/usr/bin/env python2
+# 	# -*- coding: utf-8 -*-
+# snippet #!3
+# 	#!/usr/bin/env python3
 snippet imp
 	import ${0:module}
 snippet uni
@@ -30,6 +38,12 @@ snippet uni
 snippet from
 	from ${1:package} import ${0:module}
 # Module Docstring
+
+snippet doc
+	"""
+	${1:module_docstring}
+	"""
+
 snippet docs
 	"""
 	File: ${1:`vim_snippets#Filename('$1.py', 'foo.py')`}
@@ -76,11 +90,12 @@ snippet clai
 			${0}
 # New Function ${3:docstring for $1}
 snippet def
-	def ${1:fname}(${2:args},) -> ${3:return type}:
+	def ${1:fname}(${2:args}) -> ${3:None}:
 		"""
 		$1 ${4:...}
 		"""
-		$5
+		$0
+		return
 
 snippet deff
 	def ${1:fname}(${2:`indent('.') ? 'self' : ''`}):
@@ -129,12 +144,12 @@ snippet for
 	for ${1:item} in ${2:items}:
 		${0}
 # Encodes
-snippet cutf8
-	# -*- coding: utf-8 -*-
-snippet clatin1
-	# -*- coding: latin-1 -*-
-snippet cascii
-	# -*- coding: ascii -*-
+# snippet cutf8
+# 	# -*- coding: utf-8 -*-
+# snippet clatin1
+# 	# -*- coding: latin-1 -*-
+# snippet cascii
+# 	# -*- coding: ascii -*-
 # Lambda
 snippet ld
 	${1:var} = lambda ${2:vars} : ${0:action}
@@ -216,9 +231,9 @@ snippet nosetrace
 	__import__('nose').tools.set_trace()
 snippet pprint
 	__import__('pprint').pprint(${1})
-snippet "
-	"""${0:doc}
-	"""
+# snippet "
+# 	"""${0:doc}
+# 	"""
 # assertions
 snippet a=
 	self.assertEqual(${0}, ${1})

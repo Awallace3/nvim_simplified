@@ -7,6 +7,7 @@ vim.opt.cursorline = true
 vim.opt.cursorcolumn = true
 -- vim.g.vimtex_compiler_method = "latexrun"
 vim.g.vimtex_compiler_method = "arara"
+-- vim.o.winbar = nil
 
 -- vim.g.syntax_on = true
 vim.cmd[[
@@ -102,3 +103,4 @@ vim.cmd [[
 
 -- vim-table-mode
 --
+

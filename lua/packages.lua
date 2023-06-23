@@ -153,6 +153,7 @@ require('packer').startup(function()
         config = function() require('overseer').setup() end
     }
     use {"rcarriga/nvim-notify"}
+    use 'rhysd/conflict-marker.vim'
     -- use {
     --     "nvim-neotest/neotest",
     --     requires = {

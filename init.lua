@@ -1,6 +1,6 @@
 require 'packages'
 require 'overseer-config'
-require 'config'
+require 'config-general'
 require 'treesitter-config'
 require 'keybindings'
 require 'luasnip-config'
