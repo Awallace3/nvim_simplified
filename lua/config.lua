@@ -40,6 +40,7 @@ vim.api.nvim_create_autocmd("FileType", {
         -- vim.g.languagetool_server_command = "echo Server Started"
     end
 })
+-- vim.g.vimwiki_listsyms = '✗○◐●✓'
 vim.api.nvim_create_autocmd("FileType", {
     pattern = {"md", "vimwiki"},
     callback = function()
