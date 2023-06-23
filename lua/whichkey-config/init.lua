@@ -15,7 +15,10 @@ wk.setup {
         }
     }
 }
-local Terminal = require('toggleterm.terminal').Terminal
+
+
+
+Terminal = require('toggleterm.terminal').Terminal
 local toggle_float = function()
     local float = Terminal:new({direction = "float"})
     return float:toggle()
@@ -32,6 +35,38 @@ local toggle_top = function()
     local top = Terminal:new({cmd = 'top', direction = "float"})
     return top:toggle()
 end
+Toggle_pymol = function()
+    local pymol = Terminal:new({cmd = 'pymol tmp.xyz', direction = "horizontal"})
+    return pymol:toggle()
+end
+
+GetPythonFunctionName = function()
+    local function_name = vim.fn.search("def", "bnW")
+    if function_name == 0 then
+
+        print("No Function")
+        return nil
+    else
+        local val = vim.fn.getline(function_name):match("def%s+(.-)%s*%(")
+        print(val)
+        return val
+    end
+end
+
+local PytestPythonFunction = function ()
+    local function_name = GetPythonFunctionName()
+    print(function_name)
+    local fname = vim.fn.expand("%:t")
+    if function_name == nil then
+        return print("No Function Name found for pytest!")
+    end
+    local cmd = "vs"
+    vim.cmd(cmd)
+    cmd = "term pytest " .. fname .. " -k '" .. function_name .. "'"
+    print(cmd)
+    vim.cmd(cmd)
+    print("R:" .. function_name)
+end
 
 local mappings = {
     q = {":bn<bar>bd #<CR>", "Close Buffer"},
@@ -40,7 +75,6 @@ local mappings = {
     x = {":bdelete<cr>", "Close"},
     c = {
         c = {":set number! relativenumber!<cr>", "remove numbering"}
-
     },
     E = {
         E = {":vs<bar>e ~/.config/nvim/init.lua<cr>", "Edit config"},
@@ -63,6 +97,7 @@ local mappings = {
     },
     g = {
         -- gitgutter
+        d = {":Git difftool<cr>", "Git Diff"},
         n = {":GitGutterNextHunk<cr>", "Next Hunk"},
         p = {":GitGutterPrevHunk<cr>", "Prev Hunk"},
         a = {":GitGutterStageHunk<cr>", "Stage Hunk"},
@@ -80,7 +115,7 @@ local mappings = {
         r = {":Telescope live_grep<cr>", "Telescope Live Grep"},
         b = {":Telescope buffers<cr>", "Telescope Buffers"},
         h = {":Telescope help_tags<cr>", "Telescope Help Tags"},
-        p = {":echo expand('%:p')<cr>", "Current File Path"}
+        p = {":redir @+ | echo expand('%:p') | redir END<CR>", "Current File Path"}
     },
     p = {s = {":w<bar>so %<bar>PackerSync<cr>", "PackerSync"}},
     -- t = {name = '+terminal', t = {":FloatermNew --wintype=popup --height=6", "terminal"}},
@@ -120,8 +155,11 @@ local mappings = {
         d = {":vs <bar>term make build_and_test<cr>", "dftd4 build and run"},
         b = {":vs <bar>term bash build.sh<cr>", "./build.sh"},
         j = {":vs <bar>term julia main.jl<cr>", "julia main.jl"},
+        -- RUN TESTS
         t = {
             p = {":vs<bar>term pytest tests.py<cr>", "PyTest"},
+            k = {":vs<bar>term pytest tests.py -k 'test_pairwise_AB_versus_classic_IE'<cr>", "PyTest"},
+            l = {PytestPythonFunction, "PyTest Specific"},
             o = {":vs<bar>term python3 tests.py<cr>", "run tests.py"}
         },
         m = {
@@ -131,7 +169,11 @@ local mappings = {
 
         },
         i = {
-            ":vs<bar>term mpiexec -n 2 python3 -u main.py<cr>",
+            ":vs<bar>term mpiexec -n 4 python3 -u main.py<cr>",
+            "mpiexec main.py"
+        },
+        k = {
+            ":vs<bar>term mpiexec -n 2 python3 -u db.py<cr>",
             "mpiexec main.py"
         },
         a = {":vs<bar> term python3 %<cr>", "run active file"}

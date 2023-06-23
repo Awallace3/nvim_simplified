@@ -79,6 +79,55 @@ keymap('n', '<Leader>b', ':BufferLinePick<cr>', {})
 keymap('v', '<Leader>w', "<esc>:'<,'>s/$/  /<cr>/added_whitespace<cr>", opts)
 keymap('v', '<Leader>y', '"+y', opts)
 
+
+function Get_visual_selection()
+  local s_start = vim.fn.getpos("'<")
+  local s_end = vim.fn.getpos("'>")
+  local n_lines = math.abs(s_end[2] - s_start[2]) + 1
+  local lines = vim.api.nvim_buf_get_lines(0, s_start[2] - 1, s_end[2], false)
+  lines[1] = string.sub(lines[1], s_start[3], -1)
+  if n_lines == 1 then
+    lines[n_lines] = string.sub(lines[n_lines], 1, s_end[3] - s_start[3] + 1)
+  else
+    lines[n_lines] = string.sub(lines[n_lines], 1, s_end[3])
+  end
+  return table.concat(lines, '\n')
+end
+
+
+
+function Pymol_visual_xyz()
+    local coords = Get_visual_selection()
+    os.remove("tmp.xyz")
+    local file = io.open("tmp.xyz", "w")
+
+    if file == nil then
+        print("Error opening file")
+        return
+    end
+    -- print("Writing to file")
+    local n_atoms = 0
+    for _ in coords:gmatch("[^\r\n]+") do
+        n_atoms = n_atoms + 1
+    end
+    print(coords)
+    file:write(n_atoms)
+    file:write("\n\n")
+    file:write(coords)
+    file:write("\n")
+    file:close()
+    -- print("Wrote to file")
+    -- local cmd = 'echo "TESTING"'
+    -- vim.cmd[[:term vmd tmp.xyz]]
+    print("Running VMD")
+    print("vmd -e ~/vmd_setup.tcl tmp.xyz")
+    io.popen("vmd -e ~/vmd_setup.tcl tmp.xyz")
+    -- wait for vmd to finishes
+    print("Finished")
+end
+
+keymap("v", "<Leader>p", ':lua Pymol_visual_xyz()<CR>', opts)
+
 keymap('n', '<Leader>F', ':Neoformat<cr>', {})
 -- keymap('n', '<Leader>s', ':vs<cr>', {})
 

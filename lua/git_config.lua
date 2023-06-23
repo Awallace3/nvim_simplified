@@ -7,6 +7,8 @@ vim.g.gitgutter_sign_modified_removed = '<'
 vim.cmd[[
     set updatetime=250
 ]]
+-- GitGutter: Hunks
 
-
-
+-- https://github.com/rhysd/conflict-marker.vim
+-- <LEADER> ct for theirs, co for ours, cn for none and cb for both.
+-- [x for next, ]x for previous

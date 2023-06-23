@@ -33,7 +33,21 @@ lspconfig.ccls.setup {
 }
 
 -- require'lspconfig'.pylsp.setup {capabilities = capabilities}
-require'lspconfig'.jedi_language_server.setup{capabilities = capabilities}
+require'lspconfig'.jedi_language_server.setup{
+    capabilities = capabilities,
+    settings = {
+        pylsp = {
+            plugins = {
+                pycodestyle = {
+                    maxLineLength = 80
+                },
+            jedi = {
+                extra_paths = {"~/miniconda3/envs/nvim/bin"}
+            }
+            }
+        }
+    }
+}
 require'lspconfig'.fortls.setup {capabilities = capabilities}
 require'lspconfig'.cmake.setup{capabilities = capabilities}
 require'lspconfig'.julials.setup{capabilities = capabilities,
