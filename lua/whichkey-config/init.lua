@@ -169,7 +169,7 @@ local mappings = {
 
         },
         i = {
-            ":vs<bar>term mpiexec -n 4 python3 -u main.py<cr>",
+            ":vs<bar>term mpiexec -n 2 python3 -u main.py<cr>",
             "mpiexec main.py"
         },
         k = {
