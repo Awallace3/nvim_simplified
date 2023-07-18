@@ -22,6 +22,7 @@ require('packer').startup(function()
         "gpanders/vim-medieval"
         -- setup = function() require("vim-medieval").setup() end
     }
+    use { 'norcalli/nvim-colorizer.lua' }
     -- use {'jubnzv/mdeval.nvim'}
     use {'lervag/vimtex'}
     -- use {'joom/latex-unicoder.vim'}
