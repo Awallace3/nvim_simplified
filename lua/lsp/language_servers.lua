@@ -1,6 +1,3 @@
--- local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp
---                                                                      .protocol
---                                                                      .make_client_capabilities())
 local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp
                                                                      .protocol
                                                                     .make_client_capabilities())
@@ -116,34 +113,10 @@ require'lspconfig'.rust_analyzer.setup({
         }
     }
 })
--- require'lspconfig'.rust_analyzer.setup {
---    -- more config
---    capabilities = capabilities,
---    settings = {["rust-analyzer"] = {checkOnSave = {command = "clippy"}}}
--- }
--- require'lspconfig'.jedi_language_server.setup{}
 
 -- lua
-
-USER = vim.fn.expand('$USER')
-
-local sumneko_root_path = ""
-local sumneko_binary = ""
-
-if vim.fn.has("mac") == 1 then
-    sumneko_root_path = "/Users/" .. USER ..
-                            "/.config/lua-language-server"
-    sumneko_binary = "/Users/" .. USER ..
-                         "/.config/lua-language-server/bin/lua-language-server"
-elseif vim.fn.has("unix") == 1 then
-    sumneko_root_path = "/theoryfs2/ds/" .. USER ..
-                            "/.config/lua-language-server"
-    sumneko_binary = "/theoryfs2/ds/" .. USER ..
-                         "/.config/lua-language-server/bin/lua-language-server"
-else
-    print("Unsupported system for sumneko")
-end
-
+local sumneko_root_path = vim.fn.expand("$HOME/.config/lua-language-server")
+local sumneko_binary = vim.fn.expand("$HOME/.config/lua-language-server/bin/lua-language-server")
 require'lspconfig'.lua_ls.setup {
     cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"},
     settings = {
@@ -168,22 +141,3 @@ require'lspconfig'.lua_ls.setup {
         }
     }
 }
-
--- snippets
--- local lspconfig = require'lspconfig'
--- local configs = require'lspconfig/configs'
---
--- if not lspconfig.emmet_ls then
---  configs.emmet_ls = {
---    default_config = {
---      cmd = {'emmet-ls', '--stdio'};
---      filetypes = {'html', 'css', 'blade'};
---      root_dir = function(fname)
---        return vim.loop.cwd()
---      end;
---      settings = {};
---    };
---  }
--- end
--- lspconfig.emmet_ls.setup{ capabilities = capabilities; }
-
