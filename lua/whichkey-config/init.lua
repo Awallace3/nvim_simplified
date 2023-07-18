@@ -58,7 +58,7 @@ local PytestPythonFunction = function ()
     print("R:" .. function_name)
 end
 
-local neogit = require("neogit")
+-- Neogit =  require("neogit")
 
 local mappings = {
     q = {":bn<bar>bd #<CR>", "Close Buffer"},
@@ -96,7 +96,8 @@ local mappings = {
         u = {":GitGutterUndoHunk<cr>", "Undo Hunk"},
         -- vimaget
         -- s = {":Magit<cr>", "Git Status"},
-        s = {":lua require('neogit').open()<cr>", "Git Status"},
+        s = {":lua require('neogit').open()<CR>", "Git Status"},
+        -- t = {":lua require('neogit')", "Git Status"},
         -- fugitive
         P = {":Git push<cr>", "Git Push"},
         b = {":Git blame<cr>", "Git Blame"},

@@ -124,10 +124,12 @@ require('packer').startup(function()
     -- })
     use {'RRethy/vim-illuminate'}
     -- git integration
-    -- use {'lewis6991/gitsigns.nvim', requires = {'nvim-lua/plenary.nvim'}}
     use {'airblade/vim-gitgutter'}
     -- use {'jreybert/vimagit'}
-    use { 'NeogitOrg/neogit', requires = 'nvim-lua/plenary.nvim' }
+    use { 'NeogitOrg/neogit',
+        requires = 'nvim-lua/plenary.nvim',
+        commit = "6375d1a450ea244b517e9be9102c8d18905b332a"
+    }
 
     use {'tpope/vim-fugitive'}
     use {'tpope/vim-rhubarb'}
