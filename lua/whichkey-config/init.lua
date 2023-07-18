@@ -16,21 +16,11 @@ wk.setup {
     }
 }
 
-
-
 Terminal = require('toggleterm.terminal').Terminal
 local toggle_float = function()
     local float = Terminal:new({direction = "float"})
     return float:toggle()
 end
--- local toggle_lazygit = function()
---     local lazygit = Terminal:new({cmd = '~/bin/lazygit', direction = "float"})
---     return lazygit:toggle()
--- end
--- local toggle_neomutt = function()
---     local lazygit = Terminal:new({cmd = 'neomutt', direction = "float"})
---     return lazygit:toggle()
--- end
 local toggle_top = function()
     local top = Terminal:new({cmd = 'top', direction = "float"})
     return top:toggle()
@@ -158,7 +148,7 @@ local mappings = {
         -- RUN TESTS
         t = {
             p = {":vs<bar>term pytest tests.py<cr>", "PyTest"},
-            k = {":vs<bar>term pytest tests.py -k 'test_pairwise_AB_versus_classic_IE'<cr>", "PyTest"},
+            k = {":vs<bar>term pytest tests.py -k 'test_ATM_water'<cr>", "PyTest"},
             l = {PytestPythonFunction, "PyTest Specific"},
             o = {":vs<bar>term python3 tests.py<cr>", "run tests.py"}
         },
@@ -169,6 +159,10 @@ local mappings = {
 
         },
         i = {
+            ":vs<bar>term mpiexec -n 2 python3 -u mpi_jobs.py<cr>",
+            "mpiexec main.py"
+        },
+        u = {
             ":vs<bar>term mpiexec -n 2 python3 -u main.py<cr>",
             "mpiexec main.py"
         },
@@ -191,7 +185,16 @@ local mappings = {
         c = {
             ":vs<bar>term lscpu | grep -E '^Thread|^Core|^Socket|^CPU\\('<cr>",
             "lscpu grep"
-        }
+        },
+        r = {':lua require("neotest").run.run()<CR>', "Neotest Pytest"},
+        a = {':lua require("neotest").run.run(vim.fn.expand("%f"))<CR>', "Neotest Pytest Active"},
+        v = {':lua require("neotest").run.attach()<CR>', "Neotest Attach"},
+        p = {':lua require("neotest").output.open({enter = true})<CR>', "Neotest Output"},
+        o = {':lua require("neotest").output_panel.toggle()<CR>', "Neotest Output"},
+        w = {':lua require("neotest").watch.toggle()<CR>', "Neotest Watch"},
+        s = {':lua require("neotest").summary.toggle()<CR>', "Neotest Summary"},
+
+
     },
     o = {
         o = {":OverseerToggle<cr>", "Overseer Toggle"},
