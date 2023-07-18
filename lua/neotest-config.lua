@@ -37,8 +37,8 @@ nt.setup({
 nt.state.adapter_ids()
 local keymap = vim.api.nvim_set_keymap
 local opts = {noremap = true}
-keymap('n', '[t', '<CMD>lua require("neotest").jump.next({status = "failed"})<CR>', opts)
-keymap('n', ']t', '<CMD>lua require("neotest").jump.prev({status = "failed"})<CR>', opts)
+keymap('n', '[j', '<CMD>lua require("neotest").jump.next({status = "failed"})<CR>', opts)
+keymap('n', ']j', '<CMD>lua require("neotest").jump.prev({status = "failed"})<CR>', opts)
 
 
 
