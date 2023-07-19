@@ -74,7 +74,8 @@ local mappings = {
     -- w = {":w<cr>", "Save"},
     x = {":bdelete<cr>", "Close"},
     c = {
-        c = {":set number! relativenumber!<cr>", "remove numbering"}
+        c = {":set number! relativenumber!<cr>", "remove numbering"},
+        s = {":colorscheme solarized<CR>", "Set Solarized Theme"}
     },
     E = {
         E = {":vs<bar>e ~/.config/nvim/init.lua<cr>", "Edit config"},

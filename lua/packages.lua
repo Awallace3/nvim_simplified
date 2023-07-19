@@ -2,6 +2,7 @@ local use = require('packer').use
 require('packer').startup(function()
     use 'wbthomason/packer.nvim'
     use 'folke/tokyonight.nvim'
+    use 'shaunsingh/solarized.nvim'
     -- install without yarn or npm
     -- markdown preview
     use({
