@@ -4,35 +4,22 @@ require('packer').startup(function()
     use 'folke/tokyonight.nvim'
     -- install without yarn or npm
     -- markdown preview
-    use({
-        "iamcco/markdown-preview.nvim",
-        run = function() vim.fn["mkdp#util#install"]() end
-    })
-
-    -- use({
-    --    "iamcco/markdown-preview.nvim",
-    --    run = "cd app && npm install",
-    --    setup = function() vim.g.mkdp_filetypes = {"markdown"} end,
-    --    ft = {"markdown"}
-    -- })
-
-    -- REQUIRES TSInstall markdown
-    -- use {"jbyuki/carrot.nvim"}
-    use {
-        "gpanders/vim-medieval"
-        -- setup = function() require("vim-medieval").setup() end
-    }
+--    use({
+--        "iamcco/markdown-preview.nvim",
+--        run = function() vim.fn["mkdp#util#install"]() end
+--    })
+--    use {
+--        "gpanders/vim-medieval"
+--    }
     use { 'norcalli/nvim-colorizer.lua' }
-    -- use {'jubnzv/mdeval.nvim'}
     use {'lervag/vimtex'}
-    -- use {'joom/latex-unicoder.vim'}
-    use 'tpope/vim-surround'
-    use 'windwp/nvim-autopairs'
     use {
         'nvim-treesitter/nvim-treesitter',
         run = ':TSUpdate',
         highlight = {enable = true}
     }
+    use 'tpope/vim-surround'
+    use 'windwp/nvim-autopairs'
     use 'p00f/nvim-ts-rainbow'
     use {'akinsho/bufferline.nvim', requires = 'kyazdani42/nvim-web-devicons'}
     use {"chipsenkbeil/vimwiki-server.nvim"}
@@ -54,8 +41,6 @@ require('packer').startup(function()
             }
             vim.g.vimwiki_ext2syntax = {
                 ['.md'] = 'markdown'
-                -- ['.markdown'] = 'markdown',
-                -- ['.mdown'] = 'markdown'
             }
         end
     }
@@ -73,6 +58,8 @@ require('packer').startup(function()
     use 'onsails/lspkind-nvim'
     use {
         'hrsh7th/nvim-cmp',
+        requires = {{"kdheepak/cmp-latex-symbols"}},
+        sources = {{name = "latex_symbols"}},
         config = function()
             require'cmp'.setup {
                 snippet = {
@@ -101,27 +88,7 @@ require('packer').startup(function()
         branch = "main",
         config = function() require('lspsaga').setup({}) end
     })
-    use {"github/copilot.vim"}
-    -- use({
-    --     "glepnir/lspsaga.nvim",
-    --     config = function()
-    --         local saga = require("lspsaga")
-    --         -- change the lsp symbol kind
-    --         -- local kind = require('lspsaga.lspkind')
-    --         -- kind[type_number][2] = icon -- see lua/lspsaga/lspkind.lua
-    --
-    --         saga.init_lsp_saga({
-    --             border_style = "rounded",
-    --             -- same as nvim-lightbulb but async
-    --             code_action_lightbulb = {
-    --                 enable = false,
-    --                 sign = false,
-    --                 sign_priority = 20,
-    --                 virtual_text = false
-    --             }
-    --         })
-    --     end
-    -- })
+   use {"github/copilot.vim"}
     use {'RRethy/vim-illuminate'}
     -- git integration
     use {'airblade/vim-gitgutter'}
@@ -162,9 +129,4 @@ require('packer').startup(function()
         "nvim-neotest/neotest-python"
       }
     }
-    -- use {
-    --     "zbirenbaum/copilot-cmp",
-    --     after = {"copilot.lua"},
-    --     config = function() require("copilot_cmp").setup() end
-    -- }
 end)
