@@ -153,3 +153,8 @@ vim.keymap.set('i', '<M-j>', '<Plug>(copilot-previous)')
 vim.g.copilot_filetypes = {
     tex = false,
 }
+
+
+
+keymap('n', '[t', '<CMD>tabnext<CR>', opts)
+keymap('n', ']t', '<CMD>tabprev<CR>', opts)

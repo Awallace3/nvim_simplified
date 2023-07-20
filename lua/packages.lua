@@ -65,11 +65,6 @@ require('packer').startup(function()
         requires = {{'nvim-lua/plenary.nvim'}}
     }
     use 'neovim/nvim-lspconfig'
-    use({
-        "hrsh7th/nvim-cmp",
-        requires = {{"kdheepak/cmp-latex-symbols"}},
-        sources = {{name = "latex_symbols"}}
-    })
     use 'hrsh7th/cmp-nvim-lsp'
     use 'hrsh7th/cmp-buffer'
     use 'hrsh7th/cmp-path'
@@ -88,7 +83,9 @@ require('packer').startup(function()
                 },
                 sources = {{name = 'luasnip'}}
             }
-        end
+        end,
+        requires = {{"kdheepak/cmp-latex-symbols"}},
+        sources = {{name = "latex_symbols"}}
     }
     use {'saadparwaiz1/cmp_luasnip'}
     use {"ray-x/lsp_signature.nvim"}
@@ -106,9 +103,6 @@ require('packer').startup(function()
         config = function() require('lspsaga').setup({}) end
     })
     use {"github/copilot.vim"}
-    use {"github/copilot-cmp"}
-    -- use {"github/copilot-lsp"}
-
     -- use({
     --     "glepnir/lspsaga.nvim",
     --     config = function()
@@ -131,9 +125,13 @@ require('packer').startup(function()
     -- })
     use {'RRethy/vim-illuminate'}
     -- git integration
-    -- use {'lewis6991/gitsigns.nvim', requires = {'nvim-lua/plenary.nvim'}}
     use {'airblade/vim-gitgutter'}
-    use {'jreybert/vimagit'}
+    -- use {'jreybert/vimagit'}
+    use { 'NeogitOrg/neogit',
+        requires = 'nvim-lua/plenary.nvim',
+        commit = "6375d1a450ea244b517e9be9102c8d18905b332a"
+    }
+
     use {'tpope/vim-fugitive'}
     use {'tpope/vim-rhubarb'}
 
@@ -156,14 +154,15 @@ require('packer').startup(function()
     }
     use {"rcarriga/nvim-notify"}
     use 'rhysd/conflict-marker.vim'
-    -- use {
-    --     "nvim-neotest/neotest",
-    --     requires = {
-    --         "nvim-lua/plenary.nvim", "nvim-treesitter/nvim-treesitter",
-    --         "antoinemadec/FixCursorHold.nvim", "nvim-neotest/neotest-python"
-    --
-    --     }
-    -- }
+    use {
+      "nvim-neotest/neotest",
+      requires = {
+        "nvim-lua/plenary.nvim",
+        "nvim-treesitter/nvim-treesitter",
+        "antoinemadec/FixCursorHold.nvim",
+        "nvim-neotest/neotest-python"
+      }
+    }
     -- use {
     --     "zbirenbaum/copilot-cmp",
     --     after = {"copilot.lua"},

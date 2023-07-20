@@ -44,7 +44,6 @@ require("tokyonight").setup({
     floats = "normal", -- style for floating windows
   },
   sidebars = { "qf", "help", "terminal", "vista_kind", "packer" }, -- Set a darker background on sidebar-like windows. For example: `["qf", "vista_kind", "terminal", "packer"]`
--- vim.g.tokyonight_sidebars = {"qf", "vista_kind", "terminal", "packer"}
   day_brightness = 0.3, -- Adjusts the brightness of the colors of the **Day** style. Number between 0 and 1, from dull to vibrant colors
   hide_inactive_statusline = false, -- Enabling this option, will hide inactive statuslines and replace them with a thin border instead. Should work with the standard **StatusLine** and **LuaLine**.
   dim_inactive = true, -- dims inactive windows
@@ -61,4 +60,5 @@ require("tokyonight").setup({
   ---@param colors ColorScheme
   on_highlights = function(highlights, colors) end,
 })
-vim.cmd [[colorscheme tokyonight]]
+
+vim.cmd[[colorscheme tokyonight]]
