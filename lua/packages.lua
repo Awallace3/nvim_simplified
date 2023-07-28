@@ -128,4 +128,9 @@ require('packer').startup(function()
         "nvim-neotest/neotest-python"
       }
     }
+    -- use { 'bennypowers/nvim-regexplainer',
+    --   requires = {
+    --     'nvim-treesitter/nvim-treesitter',
+    --     'MunifTanjim/nui.nvim',
+    --   } }
 end)
