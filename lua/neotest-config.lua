@@ -20,7 +20,7 @@ nt.setup({
     },
     floating = {
       border = "rounded",
-      max_height = 1.0,
+      max_height = 0.9,
       max_width = 0.8,
       options = {}
     },

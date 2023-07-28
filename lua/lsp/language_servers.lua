@@ -1,36 +1,35 @@
+local lspconfig = require('lspconfig')
 local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp
                                                                      .protocol
                                                                     .make_client_capabilities())
 
-require'lspconfig'.jsonls.setup {capabilities = capabilities}
-require'lspconfig'.texlab.setup {capabilities = capabilities}
 
-require'lspconfig'.html.setup {capabilities = capabilities}
+lspconfig.jsonls.setup {capabilities = capabilities}
+lspconfig.texlab.setup {capabilities = capabilities}
+
+lspconfig.html.setup {capabilities = capabilities}
 --
-require'lspconfig'.tsserver.setup {capabilities = capabilities}
-require'lspconfig'.ccls.setup {capabilities = capabilities}
-require'lspconfig'.denols.setup {capabilities = capabilities}
+lspconfig.tsserver.setup {capabilities = capabilities}
+lspconfig.denols.setup {capabilities = capabilities}
 
 vim.g.markdown_fenced_languages = {
     "ts=typescript"
 }
 -- texlab
--- require'lspconfig'.texlab.setup {capabilities = capabilities}
+-- lspconfig.texlab.setup {capabilities = capabilities}
 
 -- might affect luasnips
 require"lsp_signature".setup()
-local lspconfig = require('lspconfig')
+
+-- lspconfig.ccls.setup {capabilities = capabilities}
 lspconfig.ccls.setup {
-  init_options = {
-    cache = {
-      directory = ".ccls-cache";
-    };
-  },
-  capabilities = capabilities
+    filetypes = {"c", "cpp", "obj", "objcpp"},
+    capabilities = capabilities,
 }
 
--- require'lspconfig'.pylsp.setup {capabilities = capabilities}
-require'lspconfig'.jedi_language_server.setup{
+
+-- lspconfig.pylsp.setup {capabilities = capabilities}
+lspconfig.jedi_language_server.setup{
     capabilities = capabilities,
     settings = {
         pylsp = {
@@ -45,9 +44,9 @@ require'lspconfig'.jedi_language_server.setup{
         }
     }
 }
-require'lspconfig'.fortls.setup {capabilities = capabilities}
-require'lspconfig'.cmake.setup{capabilities = capabilities}
-require'lspconfig'.julials.setup{capabilities = capabilities,
+lspconfig.fortls.setup {capabilities = capabilities}
+lspconfig.cmake.setup{capabilities = capabilities}
+lspconfig.julials.setup{capabilities = capabilities,
 
 on_new_config = function(new_config, _)
         local julia = vim.fn.expand("~/.julia/environments/nvim-lspconfig/bin/julia")
@@ -55,7 +54,7 @@ on_new_config = function(new_config, _)
         --     vim.fn.expand("~/.julia/environments/nvim-lspconfig/bin/julia"),
         --     "-Jlanguageserver.so"
         -- }
-        if require'lspconfig'.util.path.is_file(julia) then
+        if lspconfig.util.path.is_file(julia) then
             local sys_image = "--sysimage=/theoryfs2/ds/amwalla3/.julia/environments/nvim-lspconfig/languageserver.so"
 	    vim.notify("Hello!")
             new_config.cmd[1] = julia
@@ -64,7 +63,7 @@ on_new_config = function(new_config, _)
     end
 }
 
--- require'lspconfig'.julials.setup({
+-- lspconfig.julials.setup({
 --       on_new_config = function(new_config,new_root_dir)
 --       Server_path = "/theoryfs2/ds/amwalla3/.julia/packages/LanguageServer/0vsx2/src"
 --       Cmd = {
@@ -92,7 +91,7 @@ on_new_config = function(new_config, _)
 --     end
 -- })
 
-require'lspconfig'.rust_analyzer.setup({
+lspconfig.rust_analyzer.setup({
     -- on_attach=on_attach,
     settings = {
         ["rust-analyzer"] = {
@@ -117,7 +116,7 @@ require'lspconfig'.rust_analyzer.setup({
 -- lua
 local sumneko_root_path = vim.fn.expand("$HOME/.config/lua-language-server")
 local sumneko_binary = vim.fn.expand("$HOME/.config/lua-language-server/bin/lua-language-server")
-require'lspconfig'.lua_ls.setup {
+lspconfig.lua_ls.setup {
     cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"},
     settings = {
         Lua = {
