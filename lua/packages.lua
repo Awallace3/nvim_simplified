@@ -60,7 +60,6 @@ require('packer').startup(function()
     use {
         'hrsh7th/nvim-cmp',
         requires = {{"kdheepak/cmp-latex-symbols"}},
-        sources = {{name = "latex_symbols"}},
         config = function()
             require'cmp'.setup {
                 snippet = {
@@ -71,7 +70,6 @@ require('packer').startup(function()
                 sources = {{name = 'luasnip'}}
             }
         end,
-        requires = {{"kdheepak/cmp-latex-symbols"}},
         sources = {{name = "latex_symbols"}}
     }
     use {'saadparwaiz1/cmp_luasnip'}
@@ -84,15 +82,15 @@ require('packer').startup(function()
     use {'sbdchd/neoformat'}
     use 'akinsho/toggleterm.nvim'
     use {'preservim/nerdtree', requires = {'Xuyuanp/nerdtree-git-plugin'}}
-    use({
-        "glepnir/lspsaga.nvim",
-        branch = "main",
-        config = function() require('lspsaga').setup({}) end
-    })
+    -- use({
+    --     "glepnir/lspsaga.nvim",
+    --     branch = "main",
+    --     config = function() require('lspsaga').setup({}) end
+    -- })
    use {"github/copilot.vim"}
     use {'RRethy/vim-illuminate'}
     -- git integration
-    use {'airblade/vim-gitgutter'}
+    -- use {'airblade/vim-gitgutter'}
     -- use {'jreybert/vimagit'}
     use { 'NeogitOrg/neogit',
         requires = 'nvim-lua/plenary.nvim',

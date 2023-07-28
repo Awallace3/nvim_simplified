@@ -1,11 +1,11 @@
 vim.g.completeopt = "menu,menuone,noselect,noinsert"
--- local has_words_before = function()
---     local line, col = unpack(vim.api.nvim_win_get_cursor(0))
---     return col ~= 0 and
---                vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col,
---                                                                           col)
---                    :match("%s") == nil
--- end
+local has_words_before = function()
+    local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+    return col ~= 0 and
+               vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col,
+                                                                          col)
+                   :match("%s") == nil
+end
 local cmp = require 'cmp'
 local lspkind = require('lspkind')
 local ls = require("luasnip")
@@ -13,7 +13,7 @@ local ls = require("luasnip")
 require("luasnip/loaders/from_vscode").lazy_load()
 require("luasnip.loaders.from_snipmate").lazy_load()
 local snippets_folder = vim.fn.stdpath "config" .. "snippets/"
- require("luasnip.loaders.from_lua").lazy_load { paths = snippets_folder }
+require("luasnip.loaders.from_lua").lazy_load {paths = snippets_folder}
 
 -- require('luasnip').filetype_extend("javascript", {"javascriptreact"})
 -- require('luasnip').filetype_extend("javascript", {"html"})
@@ -40,8 +40,6 @@ cmp.setup({
         ["<Tab>"] = cmp.mapping(function(fallback)
             if require("luasnip").expand_or_jumpable() then
                 require("luasnip").expand_or_jump()
-                -- elseif has_words_before() then
-                --   cmp.complete()
             else
                 fallback()
             end
