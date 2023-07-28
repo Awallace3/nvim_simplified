@@ -5,7 +5,7 @@ vim.g.gitgutter_sign_removed = '-'
 vim.g.gitgutter_sign_removed_first_line = '^'
 vim.g.gitgutter_sign_modified_removed = '<'
 vim.cmd[[
-    set updatetime=500
+    set updatetime=200
 ]]
 -- GitGutter: Hunks
 

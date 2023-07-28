@@ -90,7 +90,7 @@ require('packer').startup(function()
    use {"github/copilot.vim"}
     use {'RRethy/vim-illuminate'}
     -- git integration
-    -- use {'airblade/vim-gitgutter'}
+    use {'airblade/vim-gitgutter'}
     -- use {'jreybert/vimagit'}
     use { 'NeogitOrg/neogit',
         requires = 'nvim-lua/plenary.nvim',
