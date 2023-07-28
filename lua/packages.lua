@@ -50,29 +50,28 @@ require('packer').startup(function()
         requires = {{'nvim-lua/plenary.nvim'}}
     }
     use 'neovim/nvim-lspconfig'
-    use 'hrsh7th/cmp-nvim-lsp'
-    use 'hrsh7th/cmp-buffer'
-    use 'hrsh7th/cmp-path'
-    use 'hrsh7th/cmp-cmdline'
-    use 'hrsh7th/vim-vsnip'
-    use {'L3MON4D3/LuaSnip'}
     use 'onsails/lspkind-nvim'
+    use {'L3MON4D3/LuaSnip'}
+    use {'saadparwaiz1/cmp_luasnip'}
+    use {'hrsh7th/cmp-buffer'}
+    use {'hrsh7th/cmp-nvim-lsp'}
+    use {'hrsh7th/cmp-cmdline'}
+    use {'hrsh7th/vim-vsnip'}
     use {
         'hrsh7th/nvim-cmp',
-        requires = {{"kdheepak/cmp-latex-symbols"}},
-        config = function()
-            require'cmp'.setup {
-                snippet = {
-                    expand = function(args)
-                        require'luasnip'.lsp_expand(args.body)
-                    end
-                },
-                sources = {{name = 'luasnip'}}
-            }
-        end,
+        requires = {{"kdheepak/cmp-latex-symbols", "hrsh7th/cmp-path"}},
+        -- config = function()
+        --     require'cmp'.setup {
+        --         snippet = {
+        --             expand = function(args)
+        --                 require'luasnip'.lsp_expand(args.body)
+        --             end
+        --         },
+        --         sources = {{name = 'luasnip'}}
+        --     }
+        -- end,
         sources = {{name = "latex_symbols"}}
     }
-    use {'saadparwaiz1/cmp_luasnip'}
     use {"ray-x/lsp_signature.nvim"}
     use {'folke/which-key.nvim'}
     use {

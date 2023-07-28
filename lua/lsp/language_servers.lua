@@ -23,6 +23,7 @@ require"lsp_signature".setup()
 
 -- lspconfig.ccls.setup {capabilities = capabilities}
 lspconfig.ccls.setup {
+    cmd = {"ccls", "--log-file=/tmp/ccls.log", "-v=1"},
     filetypes = {"c", "cpp", "obj", "objcpp"},
     capabilities = capabilities,
 }
