@@ -1,12 +1,12 @@
 -- vim.api.nvim_set_keymap({mode}, {keymap}, {mapped to}, {options})
 local keymap = vim.api.nvim_set_keymap
-local opts = {noremap = true}
+local opts = { noremap = true }
 keymap('i', 'jk', '<ESC>', opts)
 -- keymap('n', ' ', '<Leader>', opts)
 vim.g.mapleader = ' '
 -- vim.g.localleader= ';'
 
-require('nvim-autopairs').setup({disable_filetype = {"TelescopePrompt", "vim"}})
+require('nvim-autopairs').setup({ disable_filetype = { "TelescopePrompt", "vim" } })
 
 -- luasnips
 keymap('i', '<c-j>', "<cmd>lua require'luasnip'.jump(1)<CR>", opts)
@@ -81,20 +81,18 @@ keymap('v', '<Leader>y', '"+y', opts)
 
 
 function Get_visual_selection()
-  local s_start = vim.fn.getpos("'<")
-  local s_end = vim.fn.getpos("'>")
-  local n_lines = math.abs(s_end[2] - s_start[2]) + 1
-  local lines = vim.api.nvim_buf_get_lines(0, s_start[2] - 1, s_end[2], false)
-  lines[1] = string.sub(lines[1], s_start[3], -1)
-  if n_lines == 1 then
-    lines[n_lines] = string.sub(lines[n_lines], 1, s_end[3] - s_start[3] + 1)
-  else
-    lines[n_lines] = string.sub(lines[n_lines], 1, s_end[3])
-  end
-  return table.concat(lines, '\n')
+    local s_start = vim.fn.getpos("'<")
+    local s_end = vim.fn.getpos("'>")
+    local n_lines = math.abs(s_end[2] - s_start[2]) + 1
+    local lines = vim.api.nvim_buf_get_lines(0, s_start[2] - 1, s_end[2], false)
+    lines[1] = string.sub(lines[1], s_start[3], -1)
+    if n_lines == 1 then
+        lines[n_lines] = string.sub(lines[n_lines], 1, s_end[3] - s_start[3] + 1)
+    else
+        lines[n_lines] = string.sub(lines[n_lines], 1, s_end[3])
+    end
+    return table.concat(lines, '\n')
 end
-
-
 
 function Pymol_visual_xyz()
     local coords = Get_visual_selection()
@@ -128,7 +126,7 @@ end
 
 keymap("v", "<Leader>p", ':lua Pymol_visual_xyz()<CR>', opts)
 
-keymap('n', '<Leader>F', ':Neoformat<cr>', {})
+-- keymap('n', '<Leader>F', ':Neoformat<cr>', {})
 -- keymap('n', '<Leader>s', ':vs<cr>', {})
 
 -- spell
@@ -146,8 +144,8 @@ keymap("n", "<C-S>K", ":horijzontal resize -5<cr>", opts)
 vim.g.copilot_no_tab_map = true
 vim.g.copilot_assume_mapped = true
 
-keymap("i", "<M-CR>", 'copilot#Accept("<CR>")', {expr = true})
-keymap("i", "<C-f>", 'copilot#Accept("<CR>")', {expr = true})
+keymap("i", "<M-CR>", 'copilot#Accept("<CR>")', { expr = true })
+keymap("i", "<C-f>", 'copilot#Accept("<CR>")', { expr = true })
 vim.keymap.set('i', '<M-k>', '<Plug>(copilot-next)')
 vim.keymap.set('i', '<M-j>', '<Plug>(copilot-previous)')
 vim.g.copilot_filetypes = {
