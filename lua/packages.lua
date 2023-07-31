@@ -78,7 +78,7 @@ require('packer').startup(function()
         'nvim-lualine/lualine.nvim'
         -- requires = {'kyazdani42/nvim-web-devicons', opt = true}
     }
-    -- use {'sbdchd/neoformat'}
+    use {'sbdchd/neoformat'}
     use 'akinsho/toggleterm.nvim'
     use {'preservim/nerdtree', requires = {'Xuyuanp/nerdtree-git-plugin'}}
     -- use({

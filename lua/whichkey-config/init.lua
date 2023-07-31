@@ -58,6 +58,16 @@ local PytestPythonFunction = function()
     print("R:" .. function_name)
 end
 
+-- determine filetype for formatter, python different from others
+local determine_formatter = function()
+    local filetype = vim.bo.filetype
+    if filetype == "python" then
+        vim.cmd("Neoformat")
+    else
+        vim.lsp.buf.format()
+    end
+end
+
 -- Neogit =  require("neogit")
 
 local mappings = {
@@ -88,7 +98,7 @@ local mappings = {
         }
         -- S = {":vs<bar>e ~/.config/nvim/snippets<cr>", "Edit config"}
     },
-    F = { ":lua vim.lsp.buf.format()<CR>", "Format Buffer" },
+    F = { determine_formatter, "Format Buffer" },
     g = {
         -- gitgutter
         d = { ":Git difftool<cr>", "Git Diff" },
@@ -137,7 +147,7 @@ local mappings = {
         D = { '<cmd>vs<bar>lua vim.lsp.buf.definition()<cr>', "Go To Definition" },
         -- D = {'<cmd>lua vim.lsp.buf.declaration()<cr>', "Go To Declaration"},
         r = { '<cmd>lua vim.lsp.buf.references()<cr>', "References" },
-        R = { '<cmd>Lspsaga rename<cr>', "Rename" },
+        R = { '<cmd>lua vim.lsp.buf.rename()<cr>', "Rename Variable" },
         a = { '<cmd>Lspsaga code_action<cr>', "Code Action" },
         e = { '<cmd>Lspsaga show_line_diagnostics<cr>', "Show Line Diagnostics" },
         n = { '<cmd>Lspsaga diagnostic_jump_next<cr>', "Go To Next Diagnostic" },

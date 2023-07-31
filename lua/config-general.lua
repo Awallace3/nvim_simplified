@@ -34,7 +34,7 @@ vim.api.nvim_create_autocmd("FileType", {
     callback = function()
         vim.api.nvim_command('setlocal spell spelllang=en_us')
         vim.api.nvim_command('set spellsuggest+=10')
-        -- vim.api.nvim_command('set filetype=markdown')
+        vim.api.nvim_command('set filetype=markdown')
 
         -- vim.g.languagetool_server_jar =
         --     "/usr/local/Cellar/languagetool/5.7/libexec/languagetool-server.jar"

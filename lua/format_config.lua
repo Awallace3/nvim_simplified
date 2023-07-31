@@ -1,3 +1,1 @@
--- vim.g.neoformat_enabled_python = {'black'}
--- vim.g.neoformat_enabled_cpp = {'uncrustify'}
--- vim.g.neoformat_enabled_c = {'uncrustify'}
+vim.g.neoformat_enabled_python = {'black'}

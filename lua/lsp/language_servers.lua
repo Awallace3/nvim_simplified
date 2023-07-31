@@ -1,16 +1,16 @@
 local lspconfig = require('lspconfig')
 local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp
-                                                                     .protocol
-                                                                    .make_client_capabilities())
+    .protocol
+    .make_client_capabilities())
 
 
-lspconfig.jsonls.setup {capabilities = capabilities}
-lspconfig.texlab.setup {capabilities = capabilities}
+lspconfig.jsonls.setup { capabilities = capabilities }
+lspconfig.texlab.setup { capabilities = capabilities }
 
-lspconfig.html.setup {capabilities = capabilities}
+lspconfig.html.setup { capabilities = capabilities }
 --
-lspconfig.tsserver.setup {capabilities = capabilities}
-lspconfig.denols.setup {capabilities = capabilities}
+lspconfig.tsserver.setup { capabilities = capabilities }
+lspconfig.denols.setup { capabilities = capabilities }
 
 vim.g.markdown_fenced_languages = {
     "ts=typescript"
@@ -19,18 +19,27 @@ vim.g.markdown_fenced_languages = {
 -- lspconfig.texlab.setup {capabilities = capabilities}
 
 -- might affect luasnips
-require"lsp_signature".setup()
+require "lsp_signature".setup()
 
 -- lspconfig.ccls.setup {capabilities = capabilities}
-lspconfig.ccls.setup {
-    cmd = {"ccls", "--log-file=/tmp/ccls.log"},
-    filetypes = {"c", "cpp", "obj", "objcpp"},
-    capabilities = capabilities,
-}
+-- lspconfig.ccls.setup {
+--     cmd = { "ccls", "--log-file=/tmp/ccls.log", '--init={"clang":{"excludeArgs":["--gcc-toolchain=/usr"]}}' },
+--     filetypes = { "c", "cpp", "obj", "objcpp" },
+--     capabilities = capabilities,
+-- }
+lspconfig.clangd.setup {
+    cmd = {
+        "clangd",
+        "--log=verbose",
+        "--compile-commands-dir=./build",
+        "--query-driver=/usr/bin/g++",
+
+    },
+    capabilities = capabilities }
 
 
 -- lspconfig.pylsp.setup {capabilities = capabilities}
-lspconfig.jedi_language_server.setup{
+lspconfig.jedi_language_server.setup {
     capabilities = capabilities,
     settings = {
         pylsp = {
@@ -38,18 +47,34 @@ lspconfig.jedi_language_server.setup{
                 pycodestyle = {
                     maxLineLength = 80
                 },
-            jedi = {
-                extra_paths = {"~/miniconda3/envs/nvim/bin"}
-            }
+                jedi = {
+                    extra_paths = { "~/miniconda3/envs/nvim/bin" }
+                }
             }
         }
     }
 }
-lspconfig.fortls.setup {capabilities = capabilities}
-lspconfig.cmake.setup{capabilities = capabilities}
-lspconfig.julials.setup{capabilities = capabilities,
+-- lspconfig.pyright.setup {
+--     capabilities = capabilities,
+--     cmd = { "pyright-langserver", "--stdio" },
+--     settings = {
+--         python = {
+--             analysis = {
+--                 autoSearchPaths = true,
+--                 useLibraryCodeForTypes = true,
+--                 -- diagnosticMode = "workspace",
+--                 diagnosticMode = "openFilesOnly",
+--                 typeCheckingMode = "basic",
+--                 -- stubPath = "/theoryfs2/ds/amwalla3/.pyright-stubs"
+--             }
+--         }
+--     }
+-- }
+lspconfig.fortls.setup { capabilities = capabilities }
+lspconfig.cmake.setup { capabilities = capabilities }
+lspconfig.julials.setup { capabilities = capabilities,
 
-on_new_config = function(new_config, _)
+    on_new_config = function(new_config, _)
         local julia = vim.fn.expand("~/.julia/environments/nvim-lspconfig/bin/julia")
         -- local cmd = {
         --     vim.fn.expand("~/.julia/environments/nvim-lspconfig/bin/julia"),
@@ -57,7 +82,7 @@ on_new_config = function(new_config, _)
         -- }
         if lspconfig.util.path.is_file(julia) then
             local sys_image = "--sysimage=/theoryfs2/ds/amwalla3/.julia/environments/nvim-lspconfig/languageserver.so"
-	    vim.notify("Hello!")
+            vim.notify("Hello!")
             new_config.cmd[1] = julia
             table.insert(new_config.cmd, 3, sys_image)
         end
@@ -118,7 +143,7 @@ lspconfig.rust_analyzer.setup({
 local sumneko_root_path = vim.fn.expand("$HOME/.config/lua-language-server")
 local sumneko_binary = vim.fn.expand("$HOME/.config/lua-language-server/bin/lua-language-server")
 lspconfig.lua_ls.setup {
-    cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"},
+    cmd = { sumneko_binary, "-E", sumneko_root_path .. "/main.lua" },
     settings = {
         Lua = {
             runtime = {
@@ -129,7 +154,7 @@ lspconfig.lua_ls.setup {
             },
             diagnostics = {
                 -- Get the language server to recognize the `vim` global
-                globals = {'vim'}
+                globals = { 'vim' }
             },
             workspace = {
                 -- Make the server aware of Neovim runtime files
