@@ -20,5 +20,6 @@ require 'neotest-config'
 require 'mdeval-config'
 require 'copilot-config'
 require 'nvim-colorizer-config'
+
 -- require 'regex-config'
 require 'format_config'
