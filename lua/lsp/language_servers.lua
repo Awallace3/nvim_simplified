@@ -32,10 +32,13 @@ lspconfig.clangd.setup {
         "clangd",
         "--log=verbose",
         "--compile-commands-dir=./build",
-        "--query-driver=/usr/bin/g++",
-
+        -- "--query-driver=/usr/bin/g++",
+        "--query-driver=/usr/bin/g++,/theoryfs2/ds/amwalla3/miniconda3/envs/p4dev18/bin/x86_64-conda-linux-gnu-c++",
     },
-    capabilities = capabilities }
+    capabilities = capabilities
+}
+
+vim.g.LanguageClient_serverStderr = "/tmp/lsp.log"
 
 
 -- lspconfig.pylsp.setup {capabilities = capabilities}
@@ -71,24 +74,30 @@ lspconfig.jedi_language_server.setup {
 --     }
 -- }
 lspconfig.fortls.setup { capabilities = capabilities }
-lspconfig.cmake.setup { capabilities = capabilities }
+lspconfig.cmake.setup { capabilities = capabilities,
+    cmd = { "cmake-language-server" },
+    filetypes = { "cmake" },
+    init_options = {
+        buildDirectory = "build",
+        maxNumJobs = 4
+    },
+    whitelist = { "cmake" }
+
+}
+
 lspconfig.julials.setup { capabilities = capabilities,
 
     on_new_config = function(new_config, _)
         local julia = vim.fn.expand("~/.julia/environments/nvim-lspconfig/bin/julia")
-        -- local cmd = {
-        --     vim.fn.expand("~/.julia/environments/nvim-lspconfig/bin/julia"),
-        --     "-Jlanguageserver.so"
-        -- }
         if lspconfig.util.path.is_file(julia) then
             local sys_image = "--sysimage=/theoryfs2/ds/amwalla3/.julia/environments/nvim-lspconfig/languageserver.so"
-            vim.notify("Hello!")
+            vim.notify("Engaged julia LSP!")
             new_config.cmd[1] = julia
             table.insert(new_config.cmd, 3, sys_image)
         end
     end
 }
-
+--
 -- lspconfig.julials.setup({
 --       on_new_config = function(new_config,new_root_dir)
 --       Server_path = "/theoryfs2/ds/amwalla3/.julia/packages/LanguageServer/0vsx2/src"
@@ -97,8 +106,8 @@ lspconfig.julials.setup { capabilities = capabilities,
 --         "--project="..Server_path,
 --         "--startup-file=no",
 --         "--history-file=no",
---         "--sysimage=/theoryfs2/ds/amwalla3/.julia/environments/nvim-lspconfig/languageserver.so",
---         "--sysimage-native-code=yes",
+--         -- "--sysimage=/theoryfs2/ds/amwalla3/.julia/environments/nvim-lspconfig/languageserver.so",
+--         -- "--sysimage-native-code=yes",
 --         "-e", [[
 --           using Pkg;
 --           Pkg.instantiate()
