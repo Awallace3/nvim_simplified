@@ -42,19 +42,26 @@ vim.g.LanguageClient_serverStderr = "/tmp/lsp.log"
 
 
 -- lspconfig.pylsp.setup {capabilities = capabilities}
+-- lspconfig.pylsp.setup {
+--     capabilities = capabilities,
+--     settings = {
+--         pylsp = {
+--             plugins = {
+--                 pycodestyle = {
+--                     maxLineLength = 80
+--                 },
+--                 jedi = {
+--                     extra_paths = { "~/miniconda3/envs/nvim/bin" }
+--                 }
+--             }
+--         }
+--     }
+-- }
+local home = os.getenv("HOME")
 lspconfig.jedi_language_server.setup {
     capabilities = capabilities,
-    settings = {
-        pylsp = {
-            plugins = {
-                pycodestyle = {
-                    maxLineLength = 80
-                },
-                jedi = {
-                    extra_paths = { "~/miniconda3/envs/nvim/bin" }
-                }
-            }
-        }
+    cmd = {
+        home .. "/miniconda3/envs/nvim/bin/jedi-language-server"
     }
 }
 -- lspconfig.pyright.setup {
