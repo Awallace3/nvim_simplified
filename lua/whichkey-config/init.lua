@@ -157,9 +157,10 @@ local mappings = {
         T = { ':lua require("lsp_lines").toggle()<cr>', "Toggle lsp_lines" }
     },
     r = {
-        r = { ":w <bar>so %<cr>", "Save and Source" },
-        d = { ":vs <bar>term make build_and_test<cr>", "dftd4 build and run" },
         b = { ":vs <bar>term bash build.sh<cr>", "./build.sh" },
+        d = { ":vs <bar>term make build_and_test<cr>", "dftd4 build and run" },
+        f = {":vs <bar>term flask --app cdsg run --debug<cr>", "Run csdg"},
+        r = { ":w <bar>so %<cr>", "Save and Source" },
         j = { ":vs <bar>term julia main.jl<cr>", "julia main.jl" },
         -- RUN TESTS
         t = {
