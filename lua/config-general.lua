@@ -104,3 +104,4 @@ vim.cmd [[
 
 -- vim-table-mode
 --
+--

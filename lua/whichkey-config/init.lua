@@ -33,7 +33,6 @@ end
 GetPythonFunctionName = function()
     local function_name = vim.fn.search("def", "bnW")
     if function_name == 0 then
-
         print("No Function")
         return nil
     else
@@ -69,6 +68,12 @@ local determine_formatter = function()
 end
 
 -- Neogit =  require("neogit")
+--
+local function get_filetype()
+    local filetype = vim.bo.filetype
+    print(filetype)
+    return filetype
+end
 
 local mappings = {
     q = { ":bn<bar>bd #<CR>", "Close Buffer" },
@@ -121,7 +126,8 @@ local mappings = {
         r = { ":Telescope live_grep<cr>", "Telescope Live Grep" },
         b = { ":Telescope buffers<cr>", "Telescope Buffers" },
         h = { ":Telescope help_tags<cr>", "Telescope Help Tags" },
-        p = { ":redir @+ | echo expand('%:p') | redir END<CR>", "Current File Path" }
+        p = { ":redir @+ | echo expand('%:p') | redir END<CR>", "Current File Path" },
+        t = { get_filetype, "Current File Path" },
     },
     p = { s = { ":w<bar>so %<bar>PackerSync<cr>", "PackerSync" } },
     -- t = {name = '+terminal', t = {":FloatermNew --wintype=popup --height=6", "terminal"}},
@@ -159,7 +165,7 @@ local mappings = {
     r = {
         b = { ":vs <bar>term bash build.sh<cr>", "./build.sh" },
         d = { ":vs <bar>term make build_and_test<cr>", "dftd4 build and run" },
-        f = {":vs <bar>term flask --app cdsg run --debug<cr>", "Run csdg"},
+        f = { ":vs <bar>term flask --app cdsg run --debug<cr>", "Run csdg" },
         r = { ":w <bar>so %<cr>", "Save and Source" },
         j = { ":vs <bar>term julia main.jl<cr>", "julia main.jl" },
         -- RUN TESTS
