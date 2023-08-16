@@ -61,7 +61,34 @@ end
 local determine_formatter = function()
     local filetype = vim.bo.filetype
     if filetype == "python" then
-        vim.cmd("Neoformat")
+        vim.cmd("Format")
+    elseif filetype == "htmldjango" then
+        vim.cmd("Format")
+    else
+        vim.lsp.buf.format()
+    end
+end
+
+GetPath = function(str, sep)
+    sep = sep or '/'
+    return str:match("(.*" .. sep .. ")")
+end
+-- get directory of python3_host_prog path
+local nvim_bin_cmd = "silent !" .. GetPath(vim.g.python3_host_prog)
+
+Formatter = function()
+    local filetype = vim.bo.filetype
+    if filetype == "python" then
+        vim.cmd("write")
+        local cmd =  nvim_bin_cmd .. "black --quiet" .. " " .. vim.fn.expand("%:p")
+        vim.cmd(cmd)
+        vim.cmd("e!")
+    elseif filetype == "htmldjango" then
+        vim.cmd("write")
+        local cmd =  nvim_bin_cmd .. "djlint" .. " --reformat --indent 4 " .. vim.fn.expand("%:p")
+        print(cmd)
+        vim.cmd(cmd)
+        vim.cmd("e!")
     else
         vim.lsp.buf.format()
     end
@@ -103,7 +130,7 @@ local mappings = {
         }
         -- S = {":vs<bar>e ~/.config/nvim/snippets<cr>", "Edit config"}
     },
-    F = { determine_formatter, "Format Buffer" },
+    F = { Formatter, "Format Buffer" },
     g = {
         -- gitgutter
         d = { ":Git difftool<cr>", "Git Diff" },

@@ -80,13 +80,13 @@ mason_lspconfig.setup_handlers({
 })
 
 
-lspconfig.jsonls.setup { capabilities = capabilities }
-lspconfig.texlab.setup { capabilities = capabilities }
+-- lspconfig.jsonls.setup { capabilities = capabilities }
+-- lspconfig.texlab.setup { capabilities = capabilities }
 
-lspconfig.html.setup { capabilities = capabilities }
+-- lspconfig.html.setup { capabilities = capabilities }
 --
-lspconfig.tsserver.setup { capabilities = capabilities }
-lspconfig.denols.setup { capabilities = capabilities }
+-- lspconfig.tsserver.setup { capabilities = capabilities }
+-- lspconfig.denols.setup { capabilities = capabilities }
 
 vim.g.markdown_fenced_languages = {
     "ts=typescript"
