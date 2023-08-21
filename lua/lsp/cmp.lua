@@ -3,6 +3,7 @@ local cmp = require 'cmp'
 local lspkind = require('lspkind')
 local ls = require("luasnip")
 local snippets_folder = vim.fn.stdpath "config" .. "snippets/"
+print(snippets_folder)
 require("luasnip/loaders/from_vscode").lazy_load()
 require("luasnip.loaders.from_snipmate").lazy_load()
 require("luasnip.loaders.from_lua").lazy_load {paths = snippets_folder}

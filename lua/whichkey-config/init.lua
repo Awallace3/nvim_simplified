@@ -61,7 +61,34 @@ end
 local determine_formatter = function()
     local filetype = vim.bo.filetype
     if filetype == "python" then
-        vim.cmd("Neoformat")
+        vim.cmd("Format")
+    elseif filetype == "htmldjango" then
+        vim.cmd("Format")
+    else
+        vim.lsp.buf.format()
+    end
+end
+
+GetPath = function(str, sep)
+    sep = sep or '/'
+    return str:match("(.*" .. sep .. ")")
+end
+-- get directory of python3_host_prog path
+local nvim_bin_cmd = "silent !" .. GetPath(vim.g.python3_host_prog)
+
+Formatter = function()
+    local filetype = vim.bo.filetype
+    if filetype == "python" then
+        vim.cmd("write")
+        local cmd =  nvim_bin_cmd .. "black --quiet" .. " " .. vim.fn.expand("%:p")
+        vim.cmd(cmd)
+        vim.cmd("e!")
+    elseif filetype == "htmldjango" then
+        vim.cmd("write")
+        local cmd =  nvim_bin_cmd .. "djlint" .. " --reformat --indent 4 " .. vim.fn.expand("%:p")
+        print(cmd)
+        vim.cmd(cmd)
+        vim.cmd("e!")
     else
         vim.lsp.buf.format()
     end
@@ -75,6 +102,12 @@ local grep_files_different_root = function()
     require("telescope.builtin").live_grep({ cwd = vim.fn.expand("%:p:h")})
 end
 -- Neogit =  require("neogit")
+--
+local function get_filetype()
+    local filetype = vim.bo.filetype
+    print(filetype)
+    return filetype
+end
 
 local mappings = {
     q = { ":bn<bar>bd #<CR>", "Close Buffer" },
@@ -104,7 +137,7 @@ local mappings = {
         }
         -- S = {":vs<bar>e ~/.config/nvim/snippets<cr>", "Edit config"}
     },
-    F = { determine_formatter, "Format Buffer" },
+    F = { Formatter, "Format Buffer" },
     g = {
         -- gitgutter
         d = { ":Git difftool<cr>", "Git Diff" },
@@ -130,7 +163,8 @@ local mappings = {
         R = { grep_files_different_root, "Telescope Live Grep" },
         b = { ":Telescope buffers<cr>", "Telescope Buffers" },
         h = { ":Telescope help_tags<cr>", "Telescope Help Tags" },
-        p = { ":redir @+ | echo expand('%:p') | redir END<CR>", "Current File Path" }
+        p = { ":redir @+ | echo expand('%:p') | redir END<CR>", "Current File Path" },
+        t = { get_filetype, "Current File Path" },
     },
     p = { s = { ":w<bar>so %<bar>PackerSync<cr>", "PackerSync" } },
     -- t = {name = '+terminal', t = {":FloatermNew --wintype=popup --height=6", "terminal"}},
@@ -170,10 +204,11 @@ local mappings = {
         T = { ':lua require("lsp_lines").toggle()<cr>', "Toggle lsp_lines" }
     },
     r = {
-        r = { ":w <bar>so %<cr>", "Save and Source" },
-        d = { ":vs <bar>term make build_and_test<cr>", "dftd4 build and run" },
         b = { ":vs <bar>term bash build.sh<cr>", "./build.sh" },
         B = { ":vs <bar>term cd src/dispersion && bash build.sh<cr>", "./build.sh" },
+        d = { ":vs <bar>term make build_and_test<cr>", "dftd4 build and run" },
+        f = { ":vs <bar>term flask --app cdsg run --debug<cr>", "Run csdg" },
+        r = { ":w <bar>so %<cr>", "Save and Source" },
         j = { ":vs <bar>term julia main.jl<cr>", "julia main.jl" },
         -- RUN TESTS
         t = {
