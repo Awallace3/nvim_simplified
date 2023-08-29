@@ -101,7 +101,7 @@ ls.add_snippets('markdown', {
     i(2, "den"), t({ "})_{" }), i(3, "constants"), t({ "}" }), i(0)
 }), s({ trig = "hq", namr = "homeworkQuestion", dscr = "md hw question" }, {
     t({ "# Question " }), i(1, "number"),
-    t({ "", "### Q:", "", "", "### A:", "" }), i(0)
+    t({ "", "### Q:", "" }), i(2, ""), t({ "", "### A:", "" }), i(0)
 }), s({
     trig = "partials",
     namr = "partialDerivatives",

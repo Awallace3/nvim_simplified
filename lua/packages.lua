@@ -6,13 +6,13 @@ require('packer').startup(function()
     use 'oxfist/night-owl.nvim'
     -- install without yarn or npm
     -- markdown preview
-    --    use({
-    --        "iamcco/markdown-preview.nvim",
-    --        run = function() vim.fn["mkdp#util#install"]() end
-    --    })
-    --    use {
-    --        "gpanders/vim-medieval"
-    --    }
+    use({
+        "iamcco/markdown-preview.nvim",
+        run = function() vim.fn["mkdp#util#install"]() end
+    })
+    use {
+        "gpanders/vim-medieval"
+    }
     use { 'norcalli/nvim-colorizer.lua' }
     use { 'lervag/vimtex' }
     use {
