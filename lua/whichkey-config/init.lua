@@ -94,6 +94,13 @@ Formatter = function()
     end
 end
 
+local find_files_different_root = function()
+    require("telescope.builtin").find_files({ cwd = vim.fn.expand("%:p:h")})
+end
+
+local grep_files_different_root = function()
+    require("telescope.builtin").live_grep({ cwd = vim.fn.expand("%:p:h")})
+end
 -- Neogit =  require("neogit")
 --
 local function get_filetype()
@@ -141,6 +148,7 @@ local mappings = {
         -- vimaget
         -- s = {":Magit<cr>", "Git Status"},
         s = { ":lua require('neogit').open()<CR>", "Git Status" },
+        S = { ":lua require('neogit').open({ cwd = vim.fn.expand('%:p:h')})<CR>", "Git Status" },
         -- t = {":lua require('neogit')", "Git Status"},
         -- fugitive
         P = { ":Git push<cr>", "Git Push" },
@@ -151,6 +159,8 @@ local mappings = {
     f = {
         f = { ":Telescope find_files<cr>", "Telescope Find Files" },
         r = { ":Telescope live_grep<cr>", "Telescope Live Grep" },
+        F = { find_files_different_root, "Telescope Find Files" },
+        R = { grep_files_different_root, "Telescope Live Grep" },
         b = { ":Telescope buffers<cr>", "Telescope Buffers" },
         h = { ":Telescope help_tags<cr>", "Telescope Help Tags" },
         p = { ":redir @+ | echo expand('%:p') | redir END<CR>", "Current File Path" },
@@ -175,6 +185,10 @@ local mappings = {
             '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<cr>',
             "List Workspace Folders"
         },
+        L = {
+            ':LspLog<cr>',
+            "LSP LOG"
+        },
         t = { '<cmd>lua vim.lsp.buf.type_definition()<cr>', "Type Definition" },
         d = { '<cmd>lua vim.lsp.buf.definition()<cr>', "Go To Definition" },
         D = { '<cmd>vs<bar>lua vim.lsp.buf.definition()<cr>', "Go To Definition" },
@@ -191,6 +205,7 @@ local mappings = {
     },
     r = {
         b = { ":vs <bar>term bash build.sh<cr>", "./build.sh" },
+        B = { ":vs <bar>term cd src/dispersion && bash build.sh<cr>", "./build.sh" },
         d = { ":vs <bar>term make build_and_test<cr>", "dftd4 build and run" },
         f = { ":vs <bar>term flask --app cdsg run --debug<cr>", "Run csdg" },
         r = { ":w <bar>so %<cr>", "Save and Source" },
