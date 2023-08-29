@@ -36,7 +36,9 @@ end
 
 
 local function format_as_json(obj)
-    if obj == nil then return "null" else
+    if obj == nil then
+        return "null"
+    else
         local buffer = {}
         format_any_value(obj, buffer)
         return table.concat(buffer)
@@ -45,6 +47,11 @@ end
 
 local function print_as_json(obj)
     print(format_as_json(obj))
+end
+
+local words = {}
+for word in io.open(vim.fn.stdpath("config") .. "/spell/en.utf-8.add", "r"):lines() do
+    table.insert(words, word)
 end
 
 mason_lspconfig.setup_handlers({
@@ -113,7 +120,8 @@ mason_lspconfig.setup_handlers({
         lspconfig.julials.setup {
             on_new_config = function(new_config, _)
                 local julia = vim.fn.expand("~/.julia/environments/nvim-lspconfig/bin/julia")
-                local sysimage_arg = "--sysimage=" .. vim.fn.expand("~/.julia/environments/nvim-lspconfig/languageserver.so")
+                local sysimage_arg = "--sysimage=" ..
+                    vim.fn.expand("~/.julia/environments/nvim-lspconfig/languageserver.so")
                 local sysimage_native = "--sysimage-native-code=yes"
                 if false then
                     new_config.cmd[5] = (new_config.cmd[5]):gsub("using LanguageServer",
@@ -142,7 +150,24 @@ mason_lspconfig.setup_handlers({
             on_attach = on_attach,
             capabilities = capabilities,
         }
-    end
+    end,
+    ["ltex"] = function()
+        lspconfig.ltex.setup {
+            enabled = { "latex", "tex", "bib" },
+            on_attach = on_attach,
+            capabilities = capabilities,
+            checkFrequency = "save",
+            language = "en-US",
+            settings = {
+                ltex = {
+                    dictionary = {
+                        ["en-US"] = words,
+                    },
+                },
+            },
+        }
+    end,
+
 })
 
 
