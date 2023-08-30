@@ -140,13 +140,14 @@ require('packer').startup(function()
             "nvim-neotest/neotest-python"
         }
     }
-    use {
-        'chipsenkbeil/distant.nvim',
-        branch = 'v0.3',
-        config = function()
-            require('distant'):setup()
-        end
-    }
+    -- use {
+    --     'chipsenkbeil/distant.nvim',
+    --     branch = 'v0.3',
+    --     config = function()
+    --         require('distant'):setup()
+    --     end
+    -- }
+    use { 'ThePrimeagen/harpoon' }
 
     -- use { 'bennypowers/nvim-regexplainer',
     --   requires = {

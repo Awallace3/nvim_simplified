@@ -80,12 +80,12 @@ Formatter = function()
     local filetype = vim.bo.filetype
     if filetype == "python" then
         vim.cmd("write")
-        local cmd =  nvim_bin_cmd .. "black --quiet" .. " " .. vim.fn.expand("%:p")
+        local cmd = nvim_bin_cmd .. "black --quiet" .. " " .. vim.fn.expand("%:p")
         vim.cmd(cmd)
         vim.cmd("e!")
     elseif filetype == "htmldjango" then
         vim.cmd("write")
-        local cmd =  nvim_bin_cmd .. "djlint" .. " --reformat --indent 4 " .. vim.fn.expand("%:p")
+        local cmd = nvim_bin_cmd .. "djlint" .. " --reformat --indent 4 " .. vim.fn.expand("%:p")
         print(cmd)
         vim.cmd(cmd)
         vim.cmd("e!")
@@ -95,11 +95,11 @@ Formatter = function()
 end
 
 local find_files_different_root = function()
-    require("telescope.builtin").find_files({ cwd = vim.fn.expand("%:p:h")})
+    require("telescope.builtin").find_files({ cwd = vim.fn.expand("%:p:h") })
 end
 
 local grep_files_different_root = function()
-    require("telescope.builtin").live_grep({ cwd = vim.fn.expand("%:p:h")})
+    require("telescope.builtin").live_grep({ cwd = vim.fn.expand("%:p:h") })
 end
 -- Neogit =  require("neogit")
 --
@@ -108,6 +108,13 @@ local function get_filetype()
     print(filetype)
     return filetype
 end
+
+require("telescope").load_extension('harpoon')
+local function harpoon_nav_file()
+    local ind = tonumber(vim.fn.input("Harpoon Index: "))
+    require("harpoon.ui").nav_file(ind)
+end
+
 
 local mappings = {
     q = { ":bn<bar>bd #<CR>", "Close Buffer" },
@@ -156,15 +163,25 @@ local mappings = {
         c = { ":Git commit<bar>:startinsert<cr>", "Git Commit" },
         af = { ":Gw<cr>", "Add File" }
     },
+    h = {
+        i = { harpoon_nav_file, "Harpoon Index" },
+        n = { ':lua require("harpoon.ui").nav_next()<cr>', "Harpoon Next" },
+        p = { ':lua require("harpoon.ui").nav_prev()<cr>', "Harpoon Previous" },
+
+    },
     f = {
+        a = { ':lua require("harpoon.mark").add_file()<cr>', "Harpoon Add" },
+        m = { ':lua require("harpoon.ui").toggle_quick_menu()<cr>', "Harpoon Menu" },
         f = { ":Telescope find_files<cr>", "Telescope Find Files" },
         r = { ":Telescope live_grep<cr>", "Telescope Live Grep" },
         F = { find_files_different_root, "Telescope Find Files" },
         R = { grep_files_different_root, "Telescope Live Grep" },
         b = { ":Telescope buffers<cr>", "Telescope Buffers" },
-        h = { ":Telescope help_tags<cr>", "Telescope Help Tags" },
+        h = { ':Telescope harpoon marks<cr>', "Telescope Harpoon" },
+        d = { ":Telescope help_tags<cr>", "Telescope Help Tags" },
         p = { ":redir @+ | echo expand('%:p') | redir END<CR>", "Current File Path" },
         t = { get_filetype, "Current File Path" },
+        i = { harpoon_nav_file, "Harpoon Index" },
     },
     p = { s = { ":w<bar>so %<bar>PackerSync<cr>", "PackerSync" } },
     -- t = {name = '+terminal', t = {":FloatermNew --wintype=popup --height=6", "terminal"}},
@@ -172,7 +189,7 @@ local mappings = {
         name = "LSP",
         i = { ":LspInfo<cr>", "Connected Language Servers" },
         k = { "<cmd>lua vim.lsp.buf.signature_help()<cr>", "Signature Help" },
-        K = { "<cmd>Lspsaga hover_doc<cr>", "Hover Commands" },
+        K = { "<cmd>lua vim.lsp.buf.hover()<cr>", "Hover Commands" },
         w = {
             '<cmd>lua vim.lsp.buf.add_workspace_folder()<cr>',
             "Add Workspace Folder"
@@ -195,12 +212,7 @@ local mappings = {
         -- D = {'<cmd>lua vim.lsp.buf.declaration()<cr>', "Go To Declaration"},
         r = { '<cmd>lua vim.lsp.buf.references()<cr>', "References" },
         R = { '<cmd>lua vim.lsp.buf.rename()<cr>', "Rename Variable" },
-        a = { '<cmd>Lspsaga code_action<cr>', "Code Action" },
-        e = { '<cmd>Lspsaga show_line_diagnostics<cr>', "Show Line Diagnostics" },
-        n = { '<cmd>Lspsaga diagnostic_jump_next<cr>', "Go To Next Diagnostic" },
-        N = {
-            '<cmd>Lspsaga diagnostic_jump_prev<cr>', "Go To Previous Diagnostic"
-        },
+        a = { '<cmd>lua vim.lsp.buf.code_action()<cr>', "Code Action" },
         T = { ':lua require("lsp_lines").toggle()<cr>', "Toggle lsp_lines" }
     },
     r = {

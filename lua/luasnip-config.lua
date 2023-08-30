@@ -168,7 +168,7 @@ ls.add_snippets('tex', {
     t({ "(\\frac{\\partial " }), i(1, "num"), t({ "}{\\partial " }),
     i(2, "den"), t({ "})_{" }), i(3, "constants"), t({ "}" }), i(0)
 }), s({ trig = "fig", namr = "figure", dscr = "simple figure" }, {
-    t({ "\\begin{figure}", '\\includegraphics{figures/' }), i(1, "i.png"),
+    t({ "\\begin{figure}", '\\includegraphics{./figures/' }), i(1, "i.png"),
     t({ '}', '\\label{fg:' }), i(2, "label"), t({ "}", "\\caption{" }),
     i(3, "caption..."), t({ "}", "\\end{figure}" }), i(0)
 }), s({ trig = "itemize", namr = "itemize", dscr = "itemize" }, {
