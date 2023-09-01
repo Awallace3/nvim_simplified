@@ -153,7 +153,7 @@ mason_lspconfig.setup_handlers({
     end,
     ["ltex"] = function()
         lspconfig.ltex.setup {
-            enabled = { "latex", "tex", "bib" },
+            enabled = { "latex", "tex", "bib", "markdown"},
             on_attach = on_attach,
             capabilities = capabilities,
             checkFrequency = "save",
