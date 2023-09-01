@@ -240,7 +240,7 @@ local mappings = {
             "mpiexec main.py"
         },
         h = {
-            ":vs<bar>term mpirun -n 18 --machinefile machineFile python3 -u mpi_jobs.py<cr>",
+            ":vs<bar>term mpirun -n 8 --machinefile machineFile python3 -u mpi_jobs.py<cr>",
             "mpiexec main.py"
         },
         u = {

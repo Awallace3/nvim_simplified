@@ -163,6 +163,11 @@ mason_lspconfig.setup_handlers({
                     dictionary = {
                         ["en-US"] = words,
                     },
+                    disabledRules = {
+                        ['en-US'] = {
+                            "ARROWS",
+                        },
+                    }
                 },
             },
         }
