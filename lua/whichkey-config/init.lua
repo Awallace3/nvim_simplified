@@ -125,7 +125,15 @@ local mappings = {
         c = { ":set number! relativenumber!<cr>", "remove numbering" },
         s = { ":colorscheme solarized<CR>", "Set Solarized Theme" }
     },
+    d = {
+        name = "Database",
+        u = { "<Cmd>DBUIToggle<Cr>", "Toggle UI" },
+        f = { "<Cmd>DBUIFindBuffer<Cr>", "Find buffer" },
+        r = { "<Cmd>DBUIRenameBuffer<Cr>", "Rename buffer" },
+        q = { "<Cmd>DBUILastQueryInfo<Cr>", "Last query info" },
+    },
     E = {
+        name = "Edit Config",
         E = { ":vs<bar>e ~/.config/nvim/init.lua<cr>", "Edit config" },
         e = { ":e<bar>e ~/.config/nvim/init.lua<cr>", "Edit config" },
         W = {
@@ -147,6 +155,7 @@ local mappings = {
     F = { Formatter, "Format Buffer" },
     g = {
         -- gitgutter
+        name = "Git",
         d = { ":Git difftool<cr>", "Git Diff" },
         n = { ":GitGutterNextHunk<cr>", "Next Hunk" },
         p = { ":GitGutterPrevHunk<cr>", "Prev Hunk" },
@@ -164,12 +173,14 @@ local mappings = {
         af = { ":Gw<cr>", "Add File" }
     },
     h = {
+        name = "Harpoon",
         i = { harpoon_nav_file, "Harpoon Index" },
         n = { ':lua require("harpoon.ui").nav_next()<cr>', "Harpoon Next" },
         p = { ':lua require("harpoon.ui").nav_prev()<cr>', "Harpoon Previous" },
 
     },
     f = {
+        name = "Find",
         a = { ':lua require("harpoon.mark").add_file()<cr>', "Harpoon Add" },
         m = { ':lua require("harpoon.ui").toggle_quick_menu()<cr>', "Harpoon Menu" },
         f = { ":Telescope find_files<cr>", "Telescope Find Files" },
@@ -216,6 +227,7 @@ local mappings = {
         T = { ':lua require("lsp_lines").toggle()<cr>', "Toggle lsp_lines" }
     },
     r = {
+        name = "Run",
         b = { ":vs <bar>term bash build.sh<cr>", "./build.sh" },
         B = { ":vs <bar>term cd src/dispersion && bash build.sh<cr>", "./build.sh" },
         d = { ":vs <bar>term make build_and_test<cr>", "dftd4 build and run" },
@@ -254,6 +266,7 @@ local mappings = {
         a = { ":vs<bar> term python3 %<cr>", "run active file" }
     },
     t = {
+        name = "Terminal",
         t = { ":ToggleTerm<cr>", "Split Below" },
         f = { toggle_float, "Floating Terminal" },
         -- l = {toggle_lazygit, "LazyGit"},
@@ -278,6 +291,7 @@ local mappings = {
 
     },
     o = {
+        name = "Overseer",
         o = { ":OverseerToggle<cr>", "Overseer Toggle" },
         r = { ":OverseerRun<cr>", "Overseer Run" },
         c = { ":OverseerRun ", "Overseer Run template" },
@@ -289,6 +303,7 @@ local mappings = {
 
     },
     m = {
+        name = "Markdown",
         e = { "<cmd>EvalBlock<CR>", "EvalBlock" },
         p = {
             ":vs <bar> term pandoc -V geometry:margin=1in -C --bibliography=refs.bib --listings --csl=default.csl -s h.md -o h.pdf --pdf-engine=xelatex <CR>",

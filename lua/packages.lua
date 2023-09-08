@@ -154,4 +154,17 @@ require('packer').startup(function()
     --     'nvim-treesitter/nvim-treesitter',
     --     'MunifTanjim/nui.nvim',
     --   } }
+    --   dadbod
+    use {
+        "tpope/vim-dadbod",
+        opt = true,
+        requires = {
+            "kristijanhusak/vim-dadbod-ui",
+            "kristijanhusak/vim-dadbod-completion",
+        },
+        config = function()
+            require("dadbod").setup()
+        end,
+        cmd = { "DBUIToggle", "DBUI", "DBUIAddConnection", "DBUIFindBuffer", "DBUIRenameBuffer", "DBUILastQueryInfo" },
+    }
 end)
