@@ -344,6 +344,15 @@ Krieg
 abbrv
 MBD
 Dimers
+<<<<<<< HEAD
+may-cc-pVTZ
+jun
+jun-cc-pVTZ
+aug-cc-pVTZ
+Tang-Toennies
+Axilrod-Teller-Muto
+SymbolicRegression.jl
+=======
 Axilrod-Teller-Muto
 Tang-Toennies
 TT
@@ -355,3 +364,4 @@ SymbolicRegression
 MM2
 MM3
 MM4
+>>>>>>> 292a617d50ffb30973a7371efd87ba0dcacaec9b

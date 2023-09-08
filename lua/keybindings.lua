@@ -53,17 +53,9 @@ function Python_term()
     ]]
 end
 
-function Python_term_dftd4()
-    vim.cmd [[
-    vs
-    term python3 main.py -m RMSE -d BJ
-    ]]
-end
-
 keymap('n', '<Leader>L', ":terminal lua %<CR>", opts)
 -- keymap('n', '<Leader>P', ":vsplit | terminal python3 %<CR>", opts)
 keymap('n', '<Leader>P', ":lua Python_term() <CR>", opts)
-keymap('n', '<Leader>d', ":lua Python_term_dftd4() <CR>", opts)
 -- keymap("n", '<Leader>R', ':vs | silent term rm corpus/d1.csv ', opts)
 -- keymap("n", '<Leader>R', ':so %<CR>', opts)
 -- keymap('n', '<Leader>wo', ":set ma | w out.log |  %<CR>", opts)
