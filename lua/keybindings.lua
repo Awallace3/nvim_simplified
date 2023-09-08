@@ -106,7 +106,6 @@ function Write_coords_to_tmp_xyz(coords)
     file:write(coords)
     file:write("\n")
     file:close()
-
 end
 
 function Jmol_visual_xyz()

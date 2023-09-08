@@ -91,7 +91,7 @@ Formatter = function()
         print(cmd)
         vim.cmd(cmd)
         vim.cmd("e!")
-    elseif filetype == "lua" then
+    elseif filetype == "lua" or filetype == "tex" then
         vim.lsp.buf.format()
     else
         vim.lsp.buf.formatting()
@@ -119,8 +119,15 @@ local function harpoon_nav_file()
     require("harpoon.ui").nav_file(ind)
 end
 
+function Round_number()
+    local precision = vim.fn.input("Precision: ", "")
+    local str_cmd = "'<,'>s/\\d\\+\\.\\d\\+/\\=printf('%." .. precision .. "f', str2float(submatch(0)))/g"
+    print(str_cmd)
+    vim.cmd(str_cmd)
+    vim.api.nvim_input("<esc>")
+end
 
-local mappings = {
+local normal_mappings = {
     q = { ":bn<bar>bd #<CR>", "Close Buffer" },
     Q = { ":wq<cr>", "Save & Quit" },
     -- w = {":w<cr>", "Save"},
@@ -291,8 +298,6 @@ local mappings = {
         o = { ':lua require("neotest").output_panel.toggle()<CR>', "Neotest Output" },
         w = { ':lua require("neotest").watch.toggle()<CR>', "Neotest Watch" },
         s = { ':lua require("neotest").summary.toggle()<CR>', "Neotest Summary" },
-
-
     },
     o = {
         name = "Overseer",
@@ -314,7 +319,15 @@ local mappings = {
             "pdflatex md"
         }
     }
-
 }
-local opts = { prefix = '<leader>' }
-wk.register(mappings, opts)
+local opts = { prefix = '<leader>', mode = "n"}
+wk.register(normal_mappings, opts)
+local visual_mappings = {
+    t = {
+        name = "LaTex",
+        r = { Round_number, "Round Number" },
+
+    }
+}
+local opts_v = { prefix = '<leader>', mode = 'v'}
+wk.register(visual_mappings, opts_v)
