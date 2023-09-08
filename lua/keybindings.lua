@@ -120,8 +120,8 @@ end
 function Jmol_visual_xyz()
     local coords = Get_visual_selection()
     Write_coords_to_tmp_xyz(coords)
-    print("Running Pymol")
-    print("pymol tmp.xyz")
+    print("Running jmol")
+    print("jmol tmp.xyz")
     io.popen("jmol tmp.xyz")
 end
 

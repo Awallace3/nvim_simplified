@@ -25,10 +25,6 @@ local toggle_top = function()
     local top = Terminal:new({ cmd = 'top', direction = "float" })
     return top:toggle()
 end
-Toggle_pymol = function()
-    local pymol = Terminal:new({ cmd = 'pymol tmp.xyz', direction = "horizontal" })
-    return pymol:toggle()
-end
 
 GetPythonFunctionName = function()
     local function_name = vim.fn.search("def", "bnW")
@@ -83,14 +79,22 @@ Formatter = function()
         local cmd = nvim_bin_cmd .. "black --quiet" .. " " .. vim.fn.expand("%:p")
         vim.cmd(cmd)
         vim.cmd("e!")
-    elseif filetype == "htmldjango" then
+    elseif filetype == "htmldjango" or filetype == "html" then
         vim.cmd("write")
         local cmd = nvim_bin_cmd .. "djlint" .. " --reformat --indent 4 " .. vim.fn.expand("%:p")
         print(cmd)
         vim.cmd(cmd)
         vim.cmd("e!")
-    else
+    elseif filetype == "css" then
+        vim.cmd("write")
+        local cmd = nvim_bin_cmd .. "stylelint" .. " --fix " .. vim.fn.expand("%:p")
+        print(cmd)
+        vim.cmd(cmd)
+        vim.cmd("e!")
+    elseif filetype == "lua" then
         vim.lsp.buf.format()
+    else
+        vim.lsp.buf.formatting()
     end
 end
 
