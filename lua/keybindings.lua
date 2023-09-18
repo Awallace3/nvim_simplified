@@ -53,17 +53,9 @@ function Python_term()
     ]]
 end
 
-function Python_term_dftd4()
-    vim.cmd [[
-    vs
-    term python3 main.py -m RMSE -d BJ
-    ]]
-end
-
 keymap('n', '<Leader>L', ":terminal lua %<CR>", opts)
 -- keymap('n', '<Leader>P', ":vsplit | terminal python3 %<CR>", opts)
 keymap('n', '<Leader>P', ":lua Python_term() <CR>", opts)
-keymap('n', '<Leader>d', ":lua Python_term_dftd4() <CR>", opts)
 -- keymap("n", '<Leader>R', ':vs | silent term rm corpus/d1.csv ', opts)
 -- keymap("n", '<Leader>R', ':so %<CR>', opts)
 -- keymap('n', '<Leader>wo', ":set ma | w out.log |  %<CR>", opts)
@@ -80,6 +72,7 @@ keymap('v', '<Leader>w', "<esc>:'<,'>s/$/  /<cr>/added_whitespace<cr>", opts)
 keymap('v', '<Leader>y', '"+y', opts)
 
 
+
 function Get_visual_selection()
     local s_start = vim.fn.getpos("'<")
     local s_end = vim.fn.getpos("'>")
@@ -94,8 +87,7 @@ function Get_visual_selection()
     return table.concat(lines, '\n')
 end
 
-function Pymol_visual_xyz()
-    local coords = Get_visual_selection()
+function Write_coords_to_tmp_xyz(coords)
     os.remove("tmp.xyz")
     local file = io.open("tmp.xyz", "w")
 
@@ -114,9 +106,30 @@ function Pymol_visual_xyz()
     file:write(coords)
     file:write("\n")
     file:close()
-    -- print("Wrote to file")
-    -- local cmd = 'echo "TESTING"'
-    -- vim.cmd[[:term vmd tmp.xyz]]
+end
+
+function Jmol_visual_xyz()
+    local coords = Get_visual_selection()
+    Write_coords_to_tmp_xyz(coords)
+    print("Running jmol")
+    print("jmol tmp.xyz")
+    io.popen("jmol tmp.xyz")
+end
+
+function Pymol_visual_xyz()
+    local coords = Get_visual_selection()
+    Write_coords_to_tmp_xyz(coords)
+    print("Running Pymol")
+    print("pymol tmp.xyz")
+    vim.cmd [[
+        vs
+        term pymol tmp.xyz
+    ]]
+end
+
+function VMD_visual_xyz()
+    local coords = Get_visual_selection()
+    Write_coords_to_tmp_xyz(coords)
     print("Running VMD")
     print("vmd -e ~/vmd_setup.tcl tmp.xyz")
     io.popen("vmd -e ~/vmd_setup.tcl tmp.xyz")
@@ -124,7 +137,9 @@ function Pymol_visual_xyz()
     print("Finished")
 end
 
+keymap("v", "<Leader>v", ':lua VMD_visual_xyz()<CR>', opts)
 keymap("v", "<Leader>p", ':lua Pymol_visual_xyz()<CR>', opts)
+keymap("v", "<Leader>j", ':lua Jmol_visual_xyz()<CR>', opts)
 
 -- keymap('n', '<Leader>F', ':Neoformat<cr>', {})
 -- keymap('n', '<Leader>s', ':vs<cr>', {})

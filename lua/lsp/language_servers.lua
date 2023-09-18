@@ -12,7 +12,7 @@ local on_attach = require("cmp_nvim_lsp").on_attach
 require "lsp_signature".setup()
 
 mason_lspconfig.setup({
-    ensure_install = { "julials", "rust_analyzer", "jedi_language_server" }
+    ensure_install = { "julials", "rust_analyzer", "jedi_language_server", "ltex"}
 })
 
 local function format_any_value(obj, buffer)
@@ -163,6 +163,11 @@ mason_lspconfig.setup_handlers({
                     dictionary = {
                         ["en-US"] = words,
                     },
+                    disabledRules = {
+                        ['en-US'] = {
+                            "ARROWS",
+                        },
+                    }
                 },
             },
         }

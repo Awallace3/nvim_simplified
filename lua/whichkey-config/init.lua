@@ -25,10 +25,6 @@ local toggle_top = function()
     local top = Terminal:new({ cmd = 'top', direction = "float" })
     return top:toggle()
 end
-Toggle_pymol = function()
-    local pymol = Terminal:new({ cmd = 'pymol tmp.xyz', direction = "horizontal" })
-    return pymol:toggle()
-end
 
 GetPythonFunctionName = function()
     local function_name = vim.fn.search("def", "bnW")
@@ -83,14 +79,22 @@ Formatter = function()
         local cmd = nvim_bin_cmd .. "black --quiet" .. " " .. vim.fn.expand("%:p")
         vim.cmd(cmd)
         vim.cmd("e!")
-    elseif filetype == "htmldjango" then
+    elseif filetype == "htmldjango" or filetype == "html" then
         vim.cmd("write")
         local cmd = nvim_bin_cmd .. "djlint" .. " --reformat --indent 4 " .. vim.fn.expand("%:p")
         print(cmd)
         vim.cmd(cmd)
         vim.cmd("e!")
-    else
+    elseif filetype == "css" then
+        vim.cmd("write")
+        local cmd = nvim_bin_cmd .. "stylelint" .. " --fix " .. vim.fn.expand("%:p")
+        print(cmd)
+        vim.cmd(cmd)
+        vim.cmd("e!")
+    elseif filetype == "lua" or filetype == "tex" then
         vim.lsp.buf.format()
+    else
+        vim.lsp.buf.formatting()
     end
 end
 
@@ -115,19 +119,47 @@ local function harpoon_nav_file()
     require("harpoon.ui").nav_file(ind)
 end
 
+function Round_number()
+    local precision = vim.fn.input("Precision: ", "")
+    local str_cmd = "'<,'>s/\\d\\+\\.\\d\\+/\\=printf('%." .. precision .. "f', str2float(submatch(0)))/g"
+    print(str_cmd)
+    vim.cmd(str_cmd)
+    vim.api.nvim_input("<esc>")
+end
 
-local mappings = {
+local normal_mappings = {
     q = { ":bn<bar>bd #<CR>", "Close Buffer" },
     Q = { ":wq<cr>", "Save & Quit" },
     -- w = {":w<cr>", "Save"},
     x = { ":bdelete<cr>", "Close" },
     c = {
-        c = { ":set number! relativenumber!<cr>", "remove numbering" },
-        s = { ":colorscheme solarized<CR>", "Set Solarized Theme" }
+        name = "ChatGPT",
+        c = { "<cmd>ChatGPT<CR>", "ChatGPT" },
+        e = { "<cmd>ChatGPTEditWithInstruction<CR>", "Edit with instruction", mode = { "n", "v" } },
+        g = { "<cmd>ChatGPTRun grammar_correction<CR>", "Grammar Correction", mode = { "n", "v" } },
+        t = { "<cmd>ChatGPTRun translate<CR>", "Translate", mode = { "n", "v" } },
+        k = { "<cmd>ChatGPTRun keywords<CR>", "Keywords", mode = { "n", "v" } },
+        d = { "<cmd>ChatGPTRun docstring<CR>", "Docstring", mode = { "n", "v" } },
+        a = { "<cmd>ChatGPTRun add_tests<CR>", "Add Tests", mode = { "n", "v" } },
+        o = { "<cmd>ChatGPTRun optimize_code<CR>", "Optimize Code", mode = { "n", "v" } },
+        s = { "<cmd>ChatGPTRun summarize<CR>", "Summarize", mode = { "n", "v" } },
+        f = { "<cmd>ChatGPTRun fix_bugs<CR>", "Fix Bugs", mode = { "n", "v" } },
+        x = { "<cmd>ChatGPTRun explain_code<CR>", "Explain Code", mode = { "n", "v" } },
+        r = { "<cmd>ChatGPTRun roxygen_edit<CR>", "Roxygen Edit", mode = { "n", "v" } },
+        l = { "<cmd>ChatGPTRun code_readability_analysis<CR>", "Code Readability Analysis", mode = { "n", "v" } },
+    },
+    d = {
+        name = "Database",
+        u = { "<Cmd>DBUIToggle<Cr>", "Toggle UI" },
+        f = { "<Cmd>DBUIFindBuffer<Cr>", "Find buffer" },
+        r = { "<Cmd>DBUIRenameBuffer<Cr>", "Rename buffer" },
+        q = { "<Cmd>DBUILastQueryInfo<Cr>", "Last query info" },
     },
     E = {
+        name = "Edit Config",
         E = { ":vs<bar>e ~/.config/nvim/init.lua<cr>", "Edit config" },
         e = { ":e<bar>e ~/.config/nvim/init.lua<cr>", "Edit config" },
+        c = { ":e<bar>e ~/.config/nvim/lua/chatgpt-config.lua<cr>", "Edit config" },
         W = {
             ":vs<bar>e ~/.config/nvim/lua/whichkey-config/init.lua<cr>",
             "Edit config"
@@ -147,6 +179,7 @@ local mappings = {
     F = { Formatter, "Format Buffer" },
     g = {
         -- gitgutter
+        name = "Git",
         d = { ":Git difftool<cr>", "Git Diff" },
         n = { ":GitGutterNextHunk<cr>", "Next Hunk" },
         p = { ":GitGutterPrevHunk<cr>", "Prev Hunk" },
@@ -164,12 +197,14 @@ local mappings = {
         af = { ":Gw<cr>", "Add File" }
     },
     h = {
+        name = "Harpoon",
         i = { harpoon_nav_file, "Harpoon Index" },
         n = { ':lua require("harpoon.ui").nav_next()<cr>', "Harpoon Next" },
         p = { ':lua require("harpoon.ui").nav_prev()<cr>', "Harpoon Previous" },
 
     },
     f = {
+        name = "Find",
         a = { ':lua require("harpoon.mark").add_file()<cr>', "Harpoon Add" },
         m = { ':lua require("harpoon.ui").toggle_quick_menu()<cr>', "Harpoon Menu" },
         f = { ":Telescope find_files<cr>", "Telescope Find Files" },
@@ -216,6 +251,7 @@ local mappings = {
         T = { ':lua require("lsp_lines").toggle()<cr>', "Toggle lsp_lines" }
     },
     r = {
+        name = "Run",
         b = { ":vs <bar>term bash build.sh<cr>", "./build.sh" },
         B = { ":vs <bar>term cd src/dispersion && bash build.sh<cr>", "./build.sh" },
         d = { ":vs <bar>term make build_and_test<cr>", "dftd4 build and run" },
@@ -240,7 +276,7 @@ local mappings = {
             "mpiexec main.py"
         },
         h = {
-            ":vs<bar>term mpirun -n 18 --machinefile machineFile python3 -u mpi_jobs.py<cr>",
+            ":vs<bar>term mpirun -n 8 --machinefile machineFile python3 -u mpi_jobs.py<cr>",
             "mpiexec main.py"
         },
         u = {
@@ -254,6 +290,7 @@ local mappings = {
         a = { ":vs<bar> term python3 %<cr>", "run active file" }
     },
     t = {
+        name = "Terminal",
         t = { ":ToggleTerm<cr>", "Split Below" },
         f = { toggle_float, "Floating Terminal" },
         -- l = {toggle_lazygit, "LazyGit"},
@@ -274,10 +311,9 @@ local mappings = {
         o = { ':lua require("neotest").output_panel.toggle()<CR>', "Neotest Output" },
         w = { ':lua require("neotest").watch.toggle()<CR>', "Neotest Watch" },
         s = { ':lua require("neotest").summary.toggle()<CR>', "Neotest Summary" },
-
-
     },
     o = {
+        name = "Overseer",
         o = { ":OverseerToggle<cr>", "Overseer Toggle" },
         r = { ":OverseerRun<cr>", "Overseer Run" },
         c = { ":OverseerRun ", "Overseer Run template" },
@@ -289,13 +325,22 @@ local mappings = {
 
     },
     m = {
+        name = "Markdown",
         e = { "<cmd>EvalBlock<CR>", "EvalBlock" },
         p = {
             ":vs <bar> term pandoc -V geometry:margin=1in -C --bibliography=refs.bib --listings --csl=default.csl -s h.md -o h.pdf --pdf-engine=xelatex <CR>",
             "pdflatex md"
         }
     }
-
 }
-local opts = { prefix = '<leader>' }
-wk.register(mappings, opts)
+local opts = { prefix = '<leader>', mode = "n"}
+wk.register(normal_mappings, opts)
+local visual_mappings = {
+    t = {
+        name = "LaTex",
+        r = { Round_number, "Round Number" },
+
+    }
+}
+local opts_v = { prefix = '<leader>', mode = 'v'}
+wk.register(visual_mappings, opts_v)
