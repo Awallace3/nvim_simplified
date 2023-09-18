@@ -106,3 +106,9 @@ vim.cmd [[
 -- vim-table-mode
 --
 --
+-- Track log files
+vim.o.autoread = true
+vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "CursorHoldI", "FocusGained", "FileChangedShell" }, {
+    command = "if mode() != 'c' | checktime | endif",
+    pattern = { "*.log", "*.out" },
+})

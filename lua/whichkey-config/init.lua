@@ -325,15 +325,18 @@ local normal_mappings = {
 
     },
     m = {
-        name = "Markdown",
+        name = "Markdown and LaTex",
         e = { "<cmd>EvalBlock<CR>", "EvalBlock" },
         p = {
             ":vs <bar> term pandoc -V geometry:margin=1in -C --bibliography=refs.bib --listings --csl=default.csl -s h.md -o h.pdf --pdf-engine=xelatex <CR>",
             "pdflatex md"
+        },
+        f = {
+            "{jV}kgq", "Format Paragraph",
         }
     }
 }
-local opts = { prefix = '<leader>', mode = "n"}
+local opts = { prefix = '<leader>', mode = "n" }
 wk.register(normal_mappings, opts)
 local visual_mappings = {
     t = {
@@ -342,5 +345,5 @@ local visual_mappings = {
 
     }
 }
-local opts_v = { prefix = '<leader>', mode = 'v'}
+local opts_v = { prefix = '<leader>', mode = 'v' }
 wk.register(visual_mappings, opts_v)

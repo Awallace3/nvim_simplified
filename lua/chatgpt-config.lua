@@ -40,7 +40,7 @@ require("chatgpt").setup({
             new_session = "<C-n>",
             cycle_windows = "<Tab>",
             cycle_modes = "<C-f>",
-            select_session = "<Space>",
+            select_session = "<C-e>",
             rename_session = "r",
             delete_session = "d",
             draft_message = "<C-d>",
