@@ -253,6 +253,10 @@ local normal_mappings = {
     r = {
         name = "Run",
         b = { ":vs <bar>term bash build.sh<cr>", "./build.sh" },
+        p = {
+            b = { ":vs <bar>term cd ../.. && bash build.sh<cr>", "build psi4" },
+            p = { ":vs<bar>term psi4 input.dat<cr>", "psi4 input.dat" },
+        },
         B = { ":vs <bar>term cd src/dispersion && bash build.sh<cr>", "./build.sh" },
         d = { ":vs <bar>term make build_and_test<cr>", "dftd4 build and run" },
         f = { ":vs <bar>term flask --app cdsg run --debug<cr>", "Run csdg" },
