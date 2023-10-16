@@ -91,7 +91,7 @@ Formatter = function()
         print(cmd)
         vim.cmd(cmd)
         vim.cmd("e!")
-    elseif filetype == "lua" or filetype == "tex" then
+    elseif filetype == "lua" or filetype == "tex" or filetype == "julia" then
         vim.lsp.buf.format()
     else
         vim.lsp.buf.formatting()
@@ -214,7 +214,8 @@ local normal_mappings = {
         b = { ":Telescope buffers<cr>", "Telescope Buffers" },
         h = { ':Telescope harpoon marks<cr>', "Telescope Harpoon" },
         d = { ":Telescope help_tags<cr>", "Telescope Help Tags" },
-        p = { ":redir @+ | echo expand('%:p') | redir END<CR>", "Current File Path" },
+        -- p = { ":redir @+ | echo expand('%:p') | redir END<CR>", "Current File Path" },
+        p = { ":echo expand('%:p')<CR>", "Current File Path" },
         t = { get_filetype, "Current File Path" },
         i = { harpoon_nav_file, "Harpoon Index" },
     },
