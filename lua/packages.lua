@@ -2,40 +2,29 @@ local use = require('packer').use
 require('packer').startup(function()
     use 'wbthomason/packer.nvim'
     use 'folke/tokyonight.nvim'
+    use 'shaunsingh/solarized.nvim'
+    use 'oxfist/night-owl.nvim'
     -- install without yarn or npm
     -- markdown preview
     use({
         "iamcco/markdown-preview.nvim",
         run = function() vim.fn["mkdp#util#install"]() end
     })
-
-    -- use({
-    --    "iamcco/markdown-preview.nvim",
-    --    run = "cd app && npm install",
-    --    setup = function() vim.g.mkdp_filetypes = {"markdown"} end,
-    --    ft = {"markdown"}
-    -- })
-
-    -- REQUIRES TSInstall markdown
-    -- use {"jbyuki/carrot.nvim"}
     use {
         "gpanders/vim-medieval"
-        -- setup = function() require("vim-medieval").setup() end
     }
     use { 'norcalli/nvim-colorizer.lua' }
-    -- use {'jubnzv/mdeval.nvim'}
-    use {'lervag/vimtex'}
-    -- use {'joom/latex-unicoder.vim'}
-    use 'tpope/vim-surround'
-    use 'windwp/nvim-autopairs'
+    use { 'lervag/vimtex' }
     use {
         'nvim-treesitter/nvim-treesitter',
         run = ':TSUpdate',
-        highlight = {enable = true}
+        highlight = { enable = true }
     }
+    use 'tpope/vim-surround'
+    use 'windwp/nvim-autopairs'
     use 'p00f/nvim-ts-rainbow'
-    use {'akinsho/bufferline.nvim', requires = 'kyazdani42/nvim-web-devicons'}
-    use {"chipsenkbeil/vimwiki-server.nvim"}
+    use { 'akinsho/bufferline.nvim', requires = 'kyazdani42/nvim-web-devicons' }
+    use { "chipsenkbeil/vimwiki-server.nvim" }
     use {
         'vimwiki/vimwiki',
         config = function()
@@ -54,94 +43,81 @@ require('packer').startup(function()
             }
             vim.g.vimwiki_ext2syntax = {
                 ['.md'] = 'markdown'
-                -- ['.markdown'] = 'markdown',
-                -- ['.mdown'] = 'markdown'
             }
         end
     }
     use {
         'nvim-telescope/telescope.nvim',
-        requires = {{'nvim-lua/plenary.nvim'}}
+        requires = { { 'nvim-lua/plenary.nvim' } }
     }
-    use 'neovim/nvim-lspconfig'
-    use({
-        "hrsh7th/nvim-cmp",
-        requires = {{"kdheepak/cmp-latex-symbols"}},
-        sources = {{name = "latex_symbols"}}
-    })
-    use 'hrsh7th/cmp-nvim-lsp'
-    use 'hrsh7th/cmp-buffer'
-    use 'hrsh7th/cmp-path'
-    use 'hrsh7th/cmp-cmdline'
-    use 'hrsh7th/vim-vsnip'
-    use {'L3MON4D3/LuaSnip'}
+    use {
+        "williamboman/mason.nvim",
+        "williamboman/mason-lspconfig.nvim",
+        "neovim/nvim-lspconfig",
+    }
     use 'onsails/lspkind-nvim'
+    use({
+        "L3MON4D3/LuaSnip",
+        -- follow latest release.
+        tag = "v2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
+        -- install jsregexp (optional!:).
+        run = "make install_jsregexp"
+    })
+    use { 'saadparwaiz1/cmp_luasnip' }
+    use { 'rafamadriz/friendly-snippets' }
+    use { 'hrsh7th/cmp-buffer' }
+    use { 'hrsh7th/cmp-nvim-lsp' }
+    use { 'hrsh7th/cmp-cmdline' }
+    use { 'hrsh7th/vim-vsnip' }
     use {
         'hrsh7th/nvim-cmp',
-        config = function()
-            require'cmp'.setup {
-                snippet = {
-                    expand = function(args)
-                        require'luasnip'.lsp_expand(args.body)
-                    end
-                },
-                sources = {{name = 'luasnip'}}
-            }
-        end
+        requires = { { "kdheepak/cmp-latex-symbols", "hrsh7th/cmp-path" } },
+        -- config = function()
+        --     require'cmp'.setup {
+        --         snippet = {
+        --             expand = function(args)
+        --                 require'luasnip'.lsp_expand(args.body)
+        --             end
+        --         },
+        --         sources = {{name = 'luasnip'}}
+        --     }
+        -- end,
+        sources = { { name = "latex_symbols" } }
     }
-    use {'saadparwaiz1/cmp_luasnip'}
-    use {"ray-x/lsp_signature.nvim"}
-    use {'folke/which-key.nvim'}
+    use { "ray-x/lsp_signature.nvim" }
+    use { 'folke/which-key.nvim' }
     use {
         'nvim-lualine/lualine.nvim'
         -- requires = {'kyazdani42/nvim-web-devicons', opt = true}
     }
-    use {'sbdchd/neoformat'}
-    use 'akinsho/toggleterm.nvim'
-    use {'preservim/nerdtree', requires = {'Xuyuanp/nerdtree-git-plugin'}}
-    use({
-        "glepnir/lspsaga.nvim",
-        branch = "main",
-        config = function() require('lspsaga').setup({}) end
-    })
-    use {"github/copilot.vim"}
-    use {"github/copilot-cmp"}
-    -- use {"github/copilot-lsp"}
+    use 'mhartington/formatter.nvim'
 
+    use 'akinsho/toggleterm.nvim'
+    use { 'preservim/nerdtree', requires = { 'Xuyuanp/nerdtree-git-plugin' } }
     -- use({
     --     "glepnir/lspsaga.nvim",
-    --     config = function()
-    --         local saga = require("lspsaga")
-    --         -- change the lsp symbol kind
-    --         -- local kind = require('lspsaga.lspkind')
-    --         -- kind[type_number][2] = icon -- see lua/lspsaga/lspkind.lua
-    --
-    --         saga.init_lsp_saga({
-    --             border_style = "rounded",
-    --             -- same as nvim-lightbulb but async
-    --             code_action_lightbulb = {
-    --                 enable = false,
-    --                 sign = false,
-    --                 sign_priority = 20,
-    --                 virtual_text = false
-    --             }
-    --         })
-    --     end
+    --     branch = "main",
+    --     config = function() require('lspsaga').setup({}) end
     -- })
-    use {'RRethy/vim-illuminate'}
+    use { "github/copilot.vim" }
+    use { 'RRethy/vim-illuminate' }
     -- git integration
-    -- use {'lewis6991/gitsigns.nvim', requires = {'nvim-lua/plenary.nvim'}}
-    use {'airblade/vim-gitgutter'}
-    use {'jreybert/vimagit'}
-    use {'tpope/vim-fugitive'}
-    use {'tpope/vim-rhubarb'}
+    use { 'airblade/vim-gitgutter' }
+    -- use {'jreybert/vimagit'}
+    use { 'NeogitOrg/neogit',
+        requires = 'nvim-lua/plenary.nvim',
+        commit = "6375d1a450ea244b517e9be9102c8d18905b332a"
+    }
+
+    use { 'tpope/vim-fugitive' }
+    use { 'tpope/vim-rhubarb' }
 
     -- debugger
     use 'mfussenegger/nvim-dap'
-    use {"rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"}}
+    use { "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } }
 
     -- comments
-    use {'terrortylor/nvim-comment'}
+    use { 'terrortylor/nvim-comment' }
     use({
         "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
         config = function() require("lsp_lines").setup() end
@@ -153,19 +129,54 @@ require('packer').startup(function()
         'stevearc/overseer.nvim',
         config = function() require('overseer').setup() end
     }
-    use {"rcarriga/nvim-notify"}
+    use { "rcarriga/nvim-notify" }
     use 'rhysd/conflict-marker.vim'
+    use {
+        "nvim-neotest/neotest",
+        requires = {
+            "nvim-lua/plenary.nvim",
+            "nvim-treesitter/nvim-treesitter",
+            "antoinemadec/FixCursorHold.nvim",
+            "nvim-neotest/neotest-python"
+        }
+    }
     -- use {
-    --     "nvim-neotest/neotest",
-    --     requires = {
-    --         "nvim-lua/plenary.nvim", "nvim-treesitter/nvim-treesitter",
-    --         "antoinemadec/FixCursorHold.nvim", "nvim-neotest/neotest-python"
-    --
-    --     }
+    --     'chipsenkbeil/distant.nvim',
+    --     branch = 'v0.3',
+    --     config = function()
+    --         require('distant'):setup()
+    --     end
     -- }
-    -- use {
-    --     "zbirenbaum/copilot-cmp",
-    --     after = {"copilot.lua"},
-    --     config = function() require("copilot_cmp").setup() end
-    -- }
+    use { 'ThePrimeagen/harpoon' }
+
+    -- use { 'bennypowers/nvim-regexplainer',
+    --   requires = {
+    --     'nvim-treesitter/nvim-treesitter',
+    --     'MunifTanjim/nui.nvim',
+    --   } }
+    --   dadbod
+    use {
+        "tpope/vim-dadbod",
+        opt = true,
+        requires = {
+            "kristijanhusak/vim-dadbod-ui",
+            "kristijanhusak/vim-dadbod-completion",
+        },
+        config = function()
+            require("dadbod").setup()
+        end,
+        cmd = { "DBUIToggle", "DBUI", "DBUIAddConnection", "DBUIFindBuffer", "DBUIRenameBuffer", "DBUILastQueryInfo" },
+    }
+    -- Packer
+    use({
+        "jackMort/ChatGPT.nvim",
+        config = function()
+            require("chatgpt").setup()
+        end,
+        requires = {
+            "MunifTanjim/nui.nvim",
+            "nvim-lua/plenary.nvim",
+            "nvim-telescope/telescope.nvim"
+        }
+    })
 end)

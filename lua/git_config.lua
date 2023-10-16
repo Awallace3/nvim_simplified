@@ -5,10 +5,123 @@ vim.g.gitgutter_sign_removed = '-'
 vim.g.gitgutter_sign_removed_first_line = '^'
 vim.g.gitgutter_sign_modified_removed = '<'
 vim.cmd[[
-    set updatetime=250
+    set updatetime=200
 ]]
 -- GitGutter: Hunks
 
 -- https://github.com/rhysd/conflict-marker.vim
 -- <LEADER> ct for theirs, co for ours, cn for none and cb for both.
 -- [x for next, ]x for previous
+
+-- Neogit
+
+require("neogit").setup {
+  disable_signs = false,
+  disable_hint = false,
+  disable_context_highlighting = false,
+  disable_commit_confirmation = false,
+  -- Neogit refreshes its internal state after specific events, which can be expensive depending on the repository size.
+  -- Disabling `auto_refresh` will make it so you have to manually refresh the status after you open it.
+  auto_refresh = true,
+  sort_branches = "-committerdate",
+  disable_builtin_notifications = false,
+  telescope_sorter = function()
+    return require("telescope").extensions.fzf.native_fzf_sorter()
+  end,
+  use_magit_keybindings = false,
+  -- Change the default way of opening neogit
+  -- kind = "",
+  -- The time after which an output console is shown for slow running commands
+  console_timeout = 2000,
+  -- Automatically show console if a command takes more than console_timeout milliseconds
+  auto_show_console = true,
+  -- Persist the values of switches/options within and across sessions
+  remember_settings = true,
+  -- Scope persisted settings on a per-project basis
+  use_per_project_settings = true,
+  -- Array-like table of settings to never persist. Uses format "Filetype--cli-value"
+  --   ie: `{ "NeogitCommitPopup--author", "NeogitCommitPopup--no-verify" }`
+  ignored_settings = {},
+  -- Change the default way of opening the commit popup
+  commit_popup = {
+    kind = "split",
+  },
+  -- Change the default way of opening the preview buffer
+  preview_buffer = {
+    kind = "split",
+  },
+  -- Change the default way of opening popups
+  popup = {
+    kind = "split",
+  },
+  -- customize displayed signs
+  signs = {
+    -- { CLOSED, OPENED }
+    section = { ">", "v" },
+    item = { ">", "v" },
+    hunk = { "", "" },
+  },
+  -- Integrations are auto-detected, and enabled if available, but can be disabled by setting to "false"
+  integrations = {
+    -- If enabled, use telescope for menu selection rather than vim.ui.select.
+    -- Allows multi-select and some things that vim.ui.select doesn't.
+    -- telescope = false,
+
+    -- Neogit only provides inline diffs. If you want a more traditional way to look at diffs, you can use `sindrets/diffview.nvim`.
+    -- The diffview integration enables the diff popup, which is a wrapper around `sindrets/diffview.nvim`.
+    --
+    -- Requires you to have `sindrets/diffview.nvim` installed.
+    -- use {
+    --   'NeogitOrg/neogit',
+    --   requires = {
+    --     'nvim-lua/plenary.nvim',
+    --     'sindrets/diffview.nvim'
+    --   }
+    -- }
+    --
+    -- diffview = false,
+  },
+  -- Setting any section to `false` will make the section not render at all
+  sections = {
+    untracked = {
+      folded = false
+    },
+    unstaged = {
+      folded = true
+    },
+    staged = {
+      folded = true
+    },
+    stashes = {
+      folded = true
+    },
+    unpulled = {
+      folded = true
+    },
+    unmerged = {
+      folded = false
+    },
+    recent = {
+      folded = true
+    },
+  },
+  -- override/add mappings
+  -- mappings = {
+  --   -- modify status buffer mappings
+  --   status = {
+  --     -- Adds a mapping with "B" as key that does the "BranchPopup" command
+  --     -- ["B"] = "BranchPopup",
+  --     -- Removes the default mapping of "s"
+  --     -- ["s"] = "",
+  --     -- ...
+  --   },
+  --   -- Modify fuzzy-finder buffer mappings
+  --   finder = {
+  --     -- Binds <cr> to trigger select action
+  --     -- ["<cr>"] = "select",
+  --     -- ...
+  --   }
+  -- }
+}
+
+

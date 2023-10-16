@@ -1,12 +1,12 @@
 -- vim.api.nvim_set_keymap({mode}, {keymap}, {mapped to}, {options})
 local keymap = vim.api.nvim_set_keymap
-local opts = {noremap = true}
+local opts = { noremap = true }
 keymap('i', 'jk', '<ESC>', opts)
 -- keymap('n', ' ', '<Leader>', opts)
 vim.g.mapleader = ' '
 -- vim.g.localleader= ';'
 
-require('nvim-autopairs').setup({disable_filetype = {"TelescopePrompt", "vim"}})
+require('nvim-autopairs').setup({ disable_filetype = { "TelescopePrompt", "vim" } })
 
 -- luasnips
 keymap('i', '<c-j>', "<cmd>lua require'luasnip'.jump(1)<CR>", opts)
@@ -53,17 +53,9 @@ function Python_term()
     ]]
 end
 
-function Python_term_dftd4()
-    vim.cmd [[
-    vs
-    term python3 main.py -m RMSE -d BJ
-    ]]
-end
-
 keymap('n', '<Leader>L', ":terminal lua %<CR>", opts)
 -- keymap('n', '<Leader>P', ":vsplit | terminal python3 %<CR>", opts)
 keymap('n', '<Leader>P', ":lua Python_term() <CR>", opts)
-keymap('n', '<Leader>d', ":lua Python_term_dftd4() <CR>", opts)
 -- keymap("n", '<Leader>R', ':vs | silent term rm corpus/d1.csv ', opts)
 -- keymap("n", '<Leader>R', ':so %<CR>', opts)
 -- keymap('n', '<Leader>wo', ":set ma | w out.log |  %<CR>", opts)
@@ -80,24 +72,22 @@ keymap('v', '<Leader>w', "<esc>:'<,'>s/$/  /<cr>/added_whitespace<cr>", opts)
 keymap('v', '<Leader>y', '"+y', opts)
 
 
+
 function Get_visual_selection()
-  local s_start = vim.fn.getpos("'<")
-  local s_end = vim.fn.getpos("'>")
-  local n_lines = math.abs(s_end[2] - s_start[2]) + 1
-  local lines = vim.api.nvim_buf_get_lines(0, s_start[2] - 1, s_end[2], false)
-  lines[1] = string.sub(lines[1], s_start[3], -1)
-  if n_lines == 1 then
-    lines[n_lines] = string.sub(lines[n_lines], 1, s_end[3] - s_start[3] + 1)
-  else
-    lines[n_lines] = string.sub(lines[n_lines], 1, s_end[3])
-  end
-  return table.concat(lines, '\n')
+    local s_start = vim.fn.getpos("'<")
+    local s_end = vim.fn.getpos("'>")
+    local n_lines = math.abs(s_end[2] - s_start[2]) + 1
+    local lines = vim.api.nvim_buf_get_lines(0, s_start[2] - 1, s_end[2], false)
+    lines[1] = string.sub(lines[1], s_start[3], -1)
+    if n_lines == 1 then
+        lines[n_lines] = string.sub(lines[n_lines], 1, s_end[3] - s_start[3] + 1)
+    else
+        lines[n_lines] = string.sub(lines[n_lines], 1, s_end[3])
+    end
+    return table.concat(lines, '\n')
 end
 
-
-
-function Pymol_visual_xyz()
-    local coords = Get_visual_selection()
+function Write_coords_to_tmp_xyz(coords)
     os.remove("tmp.xyz")
     local file = io.open("tmp.xyz", "w")
 
@@ -116,9 +106,30 @@ function Pymol_visual_xyz()
     file:write(coords)
     file:write("\n")
     file:close()
-    -- print("Wrote to file")
-    -- local cmd = 'echo "TESTING"'
-    -- vim.cmd[[:term vmd tmp.xyz]]
+end
+
+function Jmol_visual_xyz()
+    local coords = Get_visual_selection()
+    Write_coords_to_tmp_xyz(coords)
+    print("Running jmol")
+    print("jmol tmp.xyz")
+    io.popen("jmol tmp.xyz")
+end
+
+function Pymol_visual_xyz()
+    local coords = Get_visual_selection()
+    Write_coords_to_tmp_xyz(coords)
+    print("Running Pymol")
+    print("pymol tmp.xyz")
+    vim.cmd [[
+        vs
+        term pymol tmp.xyz
+    ]]
+end
+
+function VMD_visual_xyz()
+    local coords = Get_visual_selection()
+    Write_coords_to_tmp_xyz(coords)
     print("Running VMD")
     print("vmd -e ~/vmd_setup.tcl tmp.xyz")
     io.popen("vmd -e ~/vmd_setup.tcl tmp.xyz")
@@ -126,9 +137,11 @@ function Pymol_visual_xyz()
     print("Finished")
 end
 
+keymap("v", "<Leader>v", ':lua VMD_visual_xyz()<CR>', opts)
 keymap("v", "<Leader>p", ':lua Pymol_visual_xyz()<CR>', opts)
+keymap("v", "<Leader>j", ':lua Jmol_visual_xyz()<CR>', opts)
 
-keymap('n', '<Leader>F', ':Neoformat<cr>', {})
+-- keymap('n', '<Leader>F', ':Neoformat<cr>', {})
 -- keymap('n', '<Leader>s', ':vs<cr>', {})
 
 -- spell
@@ -146,10 +159,15 @@ keymap("n", "<C-S>K", ":horijzontal resize -5<cr>", opts)
 vim.g.copilot_no_tab_map = true
 vim.g.copilot_assume_mapped = true
 
-keymap("i", "<M-CR>", 'copilot#Accept("<CR>")', {expr = true})
-keymap("i", "<C-f>", 'copilot#Accept("<CR>")', {expr = true})
+keymap("i", "<M-CR>", 'copilot#Accept("<CR>")', { expr = true })
+keymap("i", "<C-f>", 'copilot#Accept("<CR>")', { expr = true })
 vim.keymap.set('i', '<M-k>', '<Plug>(copilot-next)')
 vim.keymap.set('i', '<M-j>', '<Plug>(copilot-previous)')
 vim.g.copilot_filetypes = {
     tex = false,
 }
+
+
+
+keymap('n', '[t', '<CMD>tabnext<CR>', opts)
+keymap('n', ']t', '<CMD>tabprev<CR>', opts)

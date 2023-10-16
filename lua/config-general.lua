@@ -10,7 +10,7 @@ vim.g.vimtex_compiler_method = "arara"
 -- vim.o.winbar = nil
 
 -- vim.g.syntax_on = true
-vim.cmd[[
+vim.cmd [[
     set nocompatible
     filetype plugin on
     syntax on
@@ -18,7 +18,8 @@ vim.cmd[[
 
 vim.opt_local.suffixesadd:prepend('.lua')
 vim.opt_local.suffixesadd:prepend('init.lua')
-vim.opt_local.path:prepend(vim.fn.stdpath('config')..'/lua')
+vim.opt_local.path:prepend(vim.fn.stdpath('config') .. '/lua')
+-- vim.g.python_host_prog = vim.fn.expand("~/miniconda3/envs/nvim/bin/python")
 vim.g.python3_host_prog = vim.fn.expand("~/miniconda3/envs/nvim/bin/python")
 
 vim.diagnostic.config({
@@ -30,7 +31,7 @@ vim.cmd [[ set mouse-=]]
 -- vim.api.nvim_command('setlocal spell spelllang=en_us')
 --
 vim.api.nvim_create_autocmd("FileType", {
-    pattern = { "tex"},
+    pattern = { "tex" },
     callback = function()
         vim.api.nvim_command('setlocal spell spelllang=en_us')
         vim.api.nvim_command('set spellsuggest+=10')
@@ -43,7 +44,7 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 -- vim.g.vimwiki_listsyms = '✗○◐●✓'
 vim.api.nvim_create_autocmd("FileType", {
-    pattern = {"md", "vimwiki"},
+    pattern = { "md", "vimwiki" },
     callback = function()
         vim.api.nvim_command('setlocal spell spelllang=en_us')
         vim.api.nvim_command('set spellsuggest+=10')
@@ -54,7 +55,7 @@ vim.api.nvim_create_autocmd("FileType", {
         -- vim.g.languagetool_server_command = "echo Server Started"
     end
 })
-vim.g.vimwiki_global_ext=0
+vim.g.vimwiki_global_ext = 0
 -- vim.cmd("set nocompatible")
 -- vim.cmd("filetype plugin on")
 -- vim.cmd("syntax on")
@@ -104,4 +105,10 @@ vim.cmd [[
 
 -- vim-table-mode
 --
-
+--
+-- Track log files
+vim.o.autoread = true
+vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "CursorHoldI", "FocusGained", "FileChangedShell" }, {
+    command = "if mode() != 'c' | checktime | endif",
+    pattern = { "*.log", "*.out" },
+})
