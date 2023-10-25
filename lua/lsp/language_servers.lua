@@ -120,6 +120,7 @@ mason_lspconfig.setup_handlers({
         lspconfig.julials.setup {
             on_new_config = function(new_config, _)
                 local julia = vim.fn.expand("~/.julia/environments/nvim-lspconfig/bin/julia")
+                -- local julia = vim.fn.expand("~/gits/julia/julia")
                 local sysimage_arg = "--sysimage=" ..
                     vim.fn.expand("~/.julia/environments/nvim-lspconfig/languageserver.so")
                 local sysimage_native = "--sysimage-native-code=yes"
@@ -133,7 +134,6 @@ mason_lspconfig.setup_handlers({
                         table.insert(new_config.cmd, 2, sysimage_arg)
                         table.insert(new_config.cmd, 3, sysimage_native)
                     end
-                    -- print_as_json(new_config.cmd)
                 end
             end,
             -- This just adds dirname(fname) as a fallback (see nvim-lspconfig#1768).

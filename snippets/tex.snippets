@@ -15,14 +15,14 @@ snippet tmplt "Template"
 	\\usepackage{transparent}
 	\\usepackage{xcolor}
 	$2
-	
+
 	\\newcommand{\incfig}[2][1]{%
 		    \def\svgwidth{#1\columnwidth}
 		    \import{./figures/}{#2.pdf_tex}
 	}
 	$3
 	\\pdfsuppresswarningpagegroup=1
-	
+
 	\\begin{document}
 		    $0
 	\\end{document}
@@ -50,7 +50,7 @@ snippet begin \begin{} ... \end{} block
 # Maketitle
 snippet mkt maketitle
 	\\maketitle
-	
+
 # Tabular
 snippet tab tabular (or arbitrary) environment
 	\\begin{${1:tabular}}{${2:c}}
@@ -224,6 +224,8 @@ snippet citen \citen
 # natbib citations
 snippet citep \citep
 	\\citep{${1}} ${0}
+snippet citectp \citep
+	\\centering\tiny\citep{${0}}
 snippet citet \citet
 	\\citet{${1}} ${0}
 snippet cite \cite[]{}
@@ -321,10 +323,48 @@ snippet sum \sum^{}_{}
 snippet lim \lim_{}
 	\\lim_{${1:n \\to \\infty}} ${0}
 snippet frame frame environment
-	\\begin{frame}[${1:t}]
+	\\begin{frame}[${1:c}]
 		\frametitle{${2:title}}
-		\framesubtitle{${3:subtitle}}
 		${0:${VISUAL}}
+	\\end{frame}
+snippet frameimg frame environment
+	\\begin{frame}[${1:c}]
+		\frametitle{${2:title}}
+		\begin{figure}
+		    \includegraphics[width=0.70\textwidth]{./figures${3:/f1.png}}
+		\end{figure}
+		${0:${VISUAL}}
+	\\end{frame}
+snippet frameenum frame environment
+	\\begin{frame}[${1:c}]
+		\frametitle{${2:title}}
+		\framesubtitle{${3:}}
+		\begin{enumerate}
+		    \item ${0:${VISUAL}}
+		\end{enumerate}
+	\\end{frame}
+snippet frameitem frame environment
+	\\begin{frame}[${1:c}]
+		\frametitle{${2:title}}
+		\framesubtitle{${3:}}
+		\begin{itemize}
+		    \item ${0:${VISUAL}}
+		\end{itemize}
+	\\end{frame}
+snippet frameimgsplit frame environment
+	\\begin{frame}[${1:c}]
+		\frametitle{${2:title}}
+		\frametitle{${3:}}
+		\begin{minipage}[c]{${4:0.30}\linewidth}
+		\begin{itemize}
+		    \item ${0:${VISUAL}}
+		\end{itemize}
+		\end{minipage}
+		\begin{minipage}[c]{${5:0.68}\linewidth}
+		\begin{figure}
+		    \includegraphics[width=0.70\textwidth]{./figures${6:/f1.png}}
+		\end{figure}
+		\end{minipage}
 	\\end{frame}
 snippet block block environment
 	\\begin{block}{${1:title}}
