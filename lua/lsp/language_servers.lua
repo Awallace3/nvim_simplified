@@ -198,7 +198,7 @@ lspconfig.clangd.setup {
         "--log=verbose",
         "--compile-commands-dir=./build",
         -- "--query-driver=/usr/bin/g++",
-        "--query-driver=/usr/bin/g++,/theoryfs2/ds/amwalla3/miniconda3/envs/p4dev18/bin/x86_64-conda-linux-gnu-c++",
+        -- "--query-driver=/usr/bin/g++,/theoryfs2/ds/amwalla3/miniconda3/envs/p4dev18/bin/x86_64-conda-linux-gnu-c++",
     },
     capabilities = capabilities
 }
