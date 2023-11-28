@@ -255,7 +255,8 @@ local normal_mappings = {
         name = "Run",
         b = { ":vs <bar>term . build.sh<cr>", "./build.sh" },
         p = {
-            b = { ":vs <bar>term cd ../.. && bash build.sh<cr>", "build psi4" },
+            -- b = { ":vs <bar>term cd ../.. && bash build.sh<cr>", "build psi4" },
+            b = { ":vs <bar>term cd .. && bash build.sh<cr>", "build psi4" },
             p = { ":vs<bar>term psi4 input.dat<cr>", "psi4 input.dat" },
         },
         B = { ":vs <bar>term cd src/dispersion && bash build.sh<cr>", "./build.sh" },
