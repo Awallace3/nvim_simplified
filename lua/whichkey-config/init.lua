@@ -91,7 +91,7 @@ Formatter = function()
         print(cmd)
         vim.cmd(cmd)
         vim.cmd("e!")
-    elseif filetype == "lua" or filetype == "tex" then
+    elseif filetype == "lua" or filetype == "tex" or filetype == "julia" then
         vim.lsp.buf.format()
     else
         vim.lsp.buf.formatting()
@@ -214,7 +214,8 @@ local normal_mappings = {
         b = { ":Telescope buffers<cr>", "Telescope Buffers" },
         h = { ':Telescope harpoon marks<cr>', "Telescope Harpoon" },
         d = { ":Telescope help_tags<cr>", "Telescope Help Tags" },
-        p = { ":redir @+ | echo expand('%:p') | redir END<CR>", "Current File Path" },
+        -- p = { ":redir @+ | echo expand('%:p') | redir END<CR>", "Current File Path" },
+        p = { ":echo expand('%:p')<CR>", "Current File Path" },
         t = { get_filetype, "Current File Path" },
         i = { harpoon_nav_file, "Harpoon Index" },
     },
@@ -252,7 +253,12 @@ local normal_mappings = {
     },
     r = {
         name = "Run",
-        b = { ":vs <bar>term bash build.sh<cr>", "./build.sh" },
+        b = { ":vs <bar>term . build.sh<cr>", "./build.sh" },
+        p = {
+            -- b = { ":vs <bar>term cd ../.. && bash build.sh<cr>", "build psi4" },
+            b = { ":vs <bar>term cd .. && bash build.sh<cr>", "build psi4" },
+            p = { ":vs<bar>term psi4 input.dat<cr>", "psi4 input.dat" },
+        },
         B = { ":vs <bar>term cd src/dispersion && bash build.sh<cr>", "./build.sh" },
         d = { ":vs <bar>term make build_and_test<cr>", "dftd4 build and run" },
         f = { ":vs <bar>term flask --app cdsg run --debug<cr>", "Run csdg" },

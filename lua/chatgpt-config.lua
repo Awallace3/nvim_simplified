@@ -1,7 +1,5 @@
-local home = vim.fn.expand("$HOME")
 require("chatgpt").setup({
-    api_key_cmd = "gpg --decrypt " .. home .. "/secret.txt.gpg",
-    -- api_key_cmd = "cat " .. home .. ".config/chat_gpt.txt",
+    api_key_cmd = "gpg --decrypt " .. vim.fn.expand("$HOME") .. "/secret.txt.gpg",
     yank_register = "+",
     edit_with_instructions = {
         diff = false,
@@ -19,7 +17,7 @@ require("chatgpt").setup({
         loading_text = "Loading, please wait ...",
         question_sign = "",
         answer_sign = "ﮧ",
-        max_line_length = 120,
+        max_line_length = 80,
         sessions_window = {
             border = {
                 style = "rounded",
@@ -126,7 +124,7 @@ require("chatgpt").setup({
         model = "gpt-4",
         frequency_penalty = 0,
         presence_penalty = 0,
-        max_tokens = 300,
+        max_tokens = 4000,
         temperature = 0,
         top_p = 1,
         n = 1,

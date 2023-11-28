@@ -120,6 +120,7 @@ mason_lspconfig.setup_handlers({
         lspconfig.julials.setup {
             on_new_config = function(new_config, _)
                 local julia = vim.fn.expand("~/.julia/environments/nvim-lspconfig/bin/julia")
+                -- local julia = vim.fn.expand("~/gits/julia/julia")
                 local sysimage_arg = "--sysimage=" ..
                     vim.fn.expand("~/.julia/environments/nvim-lspconfig/languageserver.so")
                 local sysimage_native = "--sysimage-native-code=yes"
@@ -133,7 +134,6 @@ mason_lspconfig.setup_handlers({
                         table.insert(new_config.cmd, 2, sysimage_arg)
                         table.insert(new_config.cmd, 3, sysimage_native)
                     end
-                    -- print_as_json(new_config.cmd)
                 end
             end,
             -- This just adds dirname(fname) as a fallback (see nvim-lspconfig#1768).
@@ -198,7 +198,7 @@ lspconfig.clangd.setup {
         "--log=verbose",
         "--compile-commands-dir=./build",
         -- "--query-driver=/usr/bin/g++",
-        "--query-driver=/usr/bin/g++,/theoryfs2/ds/amwalla3/miniconda3/envs/p4dev18/bin/x86_64-conda-linux-gnu-c++",
+        -- "--query-driver=/usr/bin/g++,/theoryfs2/ds/amwalla3/miniconda3/envs/p4dev18/bin/x86_64-conda-linux-gnu-c++",
     },
     capabilities = capabilities
 }
