@@ -153,7 +153,7 @@ mason_lspconfig.setup_handlers({
     end,
     ["ltex"] = function()
         lspconfig.ltex.setup {
-            enabled = { "latex", "tex", "bib", "markdown"},
+            enabled = { "latex", "tex", "bib", "markdown" },
             on_attach = on_attach,
             capabilities = capabilities,
             checkFrequency = "save",
@@ -166,6 +166,7 @@ mason_lspconfig.setup_handlers({
                     disabledRules = {
                         ['en-US'] = {
                             "ARROWS",
+                            "MORFOLOGIK_RULE_EN_US",
                         },
                     }
                 },
@@ -175,22 +176,9 @@ mason_lspconfig.setup_handlers({
 
 })
 
-
--- lspconfig.jsonls.setup { capabilities = capabilities }
--- lspconfig.texlab.setup { capabilities = capabilities }
-
--- lspconfig.html.setup { capabilities = capabilities }
---
--- lspconfig.tsserver.setup { capabilities = capabilities }
--- lspconfig.denols.setup { capabilities = capabilities }
-
 vim.g.markdown_fenced_languages = {
     "ts=typescript"
 }
--- texlab
--- lspconfig.texlab.setup {capabilities = capabilities}
-
--- might affect luasnips
 
 lspconfig.clangd.setup {
     cmd = {
@@ -198,37 +186,12 @@ lspconfig.clangd.setup {
         "--log=verbose",
         "--compile-commands-dir=./build",
         -- "--query-driver=/usr/bin/g++",
-        -- "--query-driver=/usr/bin/g++,/theoryfs2/ds/amwalla3/miniconda3/envs/p4dev18/bin/x86_64-conda-linux-gnu-c++",
+        "--query-driver=/usr/bin/g++,/theoryfs2/ds/amwalla3/miniconda3/envs/p4dev18/bin/x86_64-conda-linux-gnu-c++",
     },
     capabilities = capabilities
 }
 
 vim.g.LanguageClient_serverStderr = "/tmp/lsp.log"
-
-
--- lspconfig.pylsp.setup {capabilities = capabilities}
--- lspconfig.pylsp.setup {
---     capabilities = capabilities,
---     settings = {
---         pylsp = {
---             plugins = {
---                 pycodestyle = {
---                     maxLineLength = 80
---                 },
---                 jedi = {
---                     extra_paths = { "~/miniconda3/envs/nvim/bin" }
---                 }
---             }
---         }
---     }
--- }
--- local home = os.getenv("HOME")
--- lspconfig.jedi_language_server.setup {
---     capabilities = capabilities,
---     cmd = {
---         home .. "/miniconda3/envs/nvim/bin/jedi-language-server"
---     }
--- }
 lspconfig.fortls.setup { capabilities = capabilities }
 lspconfig.cmake.setup { capabilities = capabilities,
     cmd = { "cmake-language-server" },
@@ -240,44 +203,3 @@ lspconfig.cmake.setup { capabilities = capabilities,
     whitelist = { "cmake" }
 
 }
-
--- lspconfig.julials.setup { capabilities = capabilities,
-
--- on_new_config = function(new_config, _)
---     local julia = vim.fn.expand("~/.julia/environments/nvim-lspconfig/bin/julia")
---     if lspconfig.util.path.is_file(julia) then
---         local sys_image = "--sysimage=/theoryfs2/ds/amwalla3/.julia/environments/nvim-lspconfig/languageserver.so"
---         vim.notify("Engaged julia LSP!")
---         new_config.cmd[1] = julia
---         table.insert(new_config.cmd, 3, sys_image)
---     end
--- end
--- }
---
--- lspconfig.julials.setup({
---       on_new_config = function(new_config,new_root_dir)
---       Server_path = "/theoryfs2/ds/amwalla3/.julia/packages/LanguageServer/0vsx2/src"
---       Cmd = {
---         "julia",
---         "--project="..Server_path,
---         "--startup-file=no",
---         "--history-file=no",
---         -- "--sysimage=/theoryfs2/ds/amwalla3/.julia/environments/nvim-lspconfig/languageserver.so",
---         -- "--sysimage-native-code=yes",
---         "-e", [[
---           using Pkg;
---           Pkg.instantiate()
---           using LanguageServer; using SymbolServer;
---           depot_path = get(ENV, "JULIA_DEPOT_PATH", "")
---           project_path = dirname(something(Base.current_project(pwd()), Base.load_path_expand(LOAD_PATH[2])))
---           # Make sure that we only load packages from this environment specifically.
---           @info "Running language server" env=Base.load_path()[1] pwd() project_path depot_path
---           server = LanguageServer.LanguageServerInstance(stdin, stdout, project_path, depot_path);
---           server.runlinter = true;
---           run(server);
---         ]]
---     };
---     new_config.cmd = Cmd
---     -- on_attach=require'completion'.on_attach
---     end
--- })

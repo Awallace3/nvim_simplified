@@ -24,27 +24,9 @@ require('packer').startup(function()
     use 'windwp/nvim-autopairs'
     use 'p00f/nvim-ts-rainbow'
     use { 'akinsho/bufferline.nvim', requires = 'kyazdani42/nvim-web-devicons' }
-    use { "chipsenkbeil/vimwiki-server.nvim" }
     use {
         'vimwiki/vimwiki',
-        config = function()
-            vim.g.vimwiki_list = {
-                {
-                    path = '~/vimwiki',
-                    template_path = 'default',
-                    template_default = 'default',
-                    css_name = '/Users/austinwallace/vimwiki/style.css',
-                    syntax = 'markdown',
-                    ext = '.md',
-                    path_html = '~/vimwiki',
-                    custom_wiki2html = 'vimwiki_markdown',
-                    template_ext = '.tpl'
-                }
-            }
-            vim.g.vimwiki_ext2syntax = {
-                ['.md'] = 'markdown'
-            }
-        end
+        -- requires = { 'chipsenkbeil/vimwiki-server.nvim' },
     }
     use {
         'nvim-telescope/telescope.nvim',
@@ -178,5 +160,8 @@ require('packer').startup(function()
             "nvim-lua/plenary.nvim",
             "nvim-telescope/telescope.nvim"
         }
+    })
+    use({
+        "mattn/calendar-vim"
     })
 end)

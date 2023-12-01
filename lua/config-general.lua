@@ -42,31 +42,14 @@ vim.api.nvim_create_autocmd("FileType", {
         -- vim.g.languagetool_server_command = "echo Server Started"
     end
 })
--- vim.g.vimwiki_listsyms = '✗○◐●✓'
-vim.api.nvim_create_autocmd("FileType", {
-    pattern = { "md", "vimwiki" },
-    callback = function()
-        vim.api.nvim_command('setlocal spell spelllang=en_us')
-        vim.api.nvim_command('set spellsuggest+=10')
-        vim.api.nvim_command('set filetype=markdown')
-
-        -- vim.g.languagetool_server_jar =
-        --     "/usr/local/Cellar/languagetool/5.7/libexec/languagetool-server.jar"
-        -- vim.g.languagetool_server_command = "echo Server Started"
-    end
-})
-vim.g.vimwiki_global_ext = 0
--- vim.cmd("set nocompatible")
--- vim.cmd("filetype plugin on")
--- vim.cmd("syntax on")
 
 vim.o.scrolloff = 8
 
 
-vim.cmd [[
-    set splitright
-    autocmd BufWritePre *\(.md\|.diffs\|\wmain.py\)\@<! :%s/\s\+$//e
-]]
+-- vim.cmd [[
+--     set splitright
+--     autocmd BufWritePre *\(.md\|.diffs\|\wmain.py\)\@<! :%s/\s\+$//e
+-- ]]
 
 --" Add the current file's directory to the path if not already present.
 vim.cmd [[
